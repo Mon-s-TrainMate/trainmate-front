@@ -1,0 +1,27 @@
+pre-commit:
+  parallel: true
+  commands:
+    prettier:
+      run: npx prettier --write {staged_files}
+      glob: '*.{ts,tsx,js,jsx,json,css,md,yml,yaml}'
+      stage_fixed: true
+    eslint:
+      run: npx next lint --fix --file {staged_files}
+      glob: '*.{ts,tsx,js,jsx}'
+      stage_fixed: true
+
+post-merge:
+  files: 'git diff --name-only ORIG_HEAD HEAD'
+  commands:
+    npm-install:
+      run: npm install
+      glob: 'package.json'
+      fail_text: 'npm install failed'
+
+post-checkout:
+  files: 'git diff --name-only HEAD@\{1\} HEAD'
+  commands:
+    npm-install:
+      run: npm install
+      glob: 'package.json'
+      fail_text: 'npm install failed'
