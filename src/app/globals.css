@@ -9,6 +9,13 @@
   --radius-xl: 0.875rem;
   --radius-full: 99999rem;
   --color-*: initial;
+  --color-white: var(--white);
+  --color-black: var(--black);
+  --color-gray-1: var(--gray-1);
+  --color-gray-2: var(--gray-2);
+  --color-gray-5: var(--gray-5);
+  --color-gray-7: var(--gray-7);
+  --color-gray-8: var(--gray-8);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
