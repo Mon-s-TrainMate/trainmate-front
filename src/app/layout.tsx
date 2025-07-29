@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { AppSidebar } from './app-sidebar';
 import './globals.css';
 
 export const metadata: Metadata = {
@@ -13,7 +14,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko">
-      <body>{children}</body>
+      <body className="grid grid-cols-[max-content_1fr] h-dvh overflow-clip">
+        <AppSidebar />
+        <main>{children}</main>
+      </body>
     </html>
   );
 }
