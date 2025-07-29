@@ -4,13 +4,12 @@ import { Search } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 const inputVariants = cva(
-  'file:text-foreground placeholder:text-muted-foreground selection:bg-primary selection:text-primary-foreground dark:bg-input/30 border-input flex h-9 w-full min-w-0 rounded-md border bg-transparent px-3.75 py-1 text-base shadow-xs transition-[color,box-shadow] outline-none file:inline-flex file:h-7 file:border-0 file:bg-transparent file:text-sm file:font-medium disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm',
+  'file:text-foreground placeholder:text-muted-foreground selection:bg-primary selection:text-primary-foreground dark:bg-input/30 border-input flex h-9 w-full min-w-0 rounded-md border bg-transparent px-3.75 py-1 text-base shadow-xs transition-[color,box-shadow] outline-none file:inline-flex file:h-7 file:border-0 file:bg-transparent file:text-sm file:font-medium disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50',
   {
     variants: {
       inputSize: {
-        base: 'w-120 h-17 placeholder:text-muted-foreground placeholder:text-lg',
-        search:
-          'w-70 h-12 placeholder:text-muted-foreground placeholder:text-sm',
+        base: 'w-full h-17 text-lg',
+        search: 'w-full h-12 text-sm',
       },
     },
     defaultVariants: {
@@ -32,7 +31,7 @@ function Input({
   if (showSearchIcon) {
     return (
       <div className="relative">
-        <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+        <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground pointer-events-none" />
         <input
           type={type}
           data-slot="input"
