@@ -14,7 +14,11 @@ export function GreetingStep() {
         <br /> 환영합니다!
       </p>
       <div className="grid grid-cols-2 gap-x-3.5">
-        <Button variant="outline" asChild>
+        <Button
+          variant="outline"
+          asChild
+          className="border-primary text-primary"
+        >
           <Link href="/profile">나의 데이터 등록하기</Link>
         </Button>
         <Button asChild>
