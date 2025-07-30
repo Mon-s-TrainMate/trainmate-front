@@ -18,13 +18,7 @@ const meta = {
   argTypes: {
     variant: {
       control: 'select',
-      options: [
-        'primary',
-        'secondary',
-        'outline',
-        'deactivation',
-        'secondaryLink',
-      ],
+      options: ['primary', 'secondary', 'outline', 'deactivation', 'secondary'],
     },
     size: {
       control: 'select',
@@ -65,7 +59,7 @@ export const Deactivation: Story = {
 
 export const Deactivation3: Story = {
   args: {
-    variant: 'secondaryLink',
+    variant: 'secondary',
     children: '나의 데이터 등록하기',
     asChild: false,
     size: 'lg',
