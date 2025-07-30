@@ -18,7 +18,11 @@ const meta = {
   argTypes: {
     variant: {
       control: 'select',
-      options: ['primary', 'secondary', 'outline'],
+      options: ['primary', 'secondary', 'outline', 'deactivation', 'secondary'],
+    },
+    size: {
+      control: 'select',
+      options: ['sm', 'lg', 'icon'],
     },
   },
   // Use `fn` to spy on the onClick arg, which will appear in the actions panel once invoked: https://storybook.js.org/docs/essentials/actions#action-args
@@ -41,5 +45,23 @@ export const Secondary: Story = {
     variant: 'outline',
     children: 'asdasd',
     asChild: false,
+  },
+};
+
+export const Deactivation: Story = {
+  args: {
+    variant: 'deactivation',
+    children: '가입하기',
+    asChild: false,
+    size: 'lg',
+  },
+};
+
+export const Deactivation3: Story = {
+  args: {
+    variant: 'secondary',
+    children: '나의 데이터 등록하기',
+    asChild: false,
+    size: 'lg',
   },
 };
