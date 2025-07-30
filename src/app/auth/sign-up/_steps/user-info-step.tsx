@@ -22,6 +22,12 @@ export function UserInfoStep(props: UserInfoStepProps) {
   const form = useForm({
     resolver: zodResolver(signUpUserInfoFormSchema),
     mode: 'onBlur',
+    defaultValues: {
+      email: '',
+      name: '',
+      password: '',
+      passwordCheck: '',
+    },
   });
   return (
     <Form {...form}>
