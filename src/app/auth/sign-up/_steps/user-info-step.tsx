@@ -12,18 +12,17 @@ import {
 import { Input } from '@/components/ui/input';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { ChevronLeftIcon } from 'lucide-react';
-import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { SignUpUserInfoFormSchema, signUpUserInfoFormSchema } from '../schema';
 interface UserInfoStepProps {
   onSubmit: (values: SignUpUserInfoFormSchema) => void;
+  prev: () => void;
 }
 export function UserInfoStep(props: UserInfoStepProps) {
   const form = useForm({
     resolver: zodResolver(signUpUserInfoFormSchema),
     mode: 'onBlur',
   });
-  const router = useRouter();
   return (
     <Form {...form}>
       <form
@@ -31,7 +30,7 @@ export function UserInfoStep(props: UserInfoStepProps) {
         onSubmit={form.handleSubmit(props.onSubmit)}
       >
         <h2 className="flex items-center gap-3 font-bold text-2xl">
-          <button type="button" onClick={() => router.back()}>
+          <button type="button" onClick={() => props.prev()}>
             <ChevronLeftIcon />
           </button>
           <span>계정 정보</span>
