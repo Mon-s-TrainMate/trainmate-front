@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/nextjs';
-import MetricsContainer from './userMetrics';
+import MetricsContainer from './user-metrics';
 
 const meta = {
   title: 'ui/userMetrics',
