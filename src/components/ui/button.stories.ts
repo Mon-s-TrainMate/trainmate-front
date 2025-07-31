@@ -28,6 +28,7 @@ const meta = {
         'userChoice',
         'userChoiceDisabled',
         'fullPlus',
+        'emptyPlus',
       ],
     },
     size: {
@@ -108,9 +109,18 @@ export const userChoiceDisabled: Story = {
   },
 };
 
-export const Round: Story = {
+export const FullPlus: Story = {
   args: {
     variant: 'fullPlus',
+    children: '+',
+    asChild: false,
+    size: 'icon',
+  },
+};
+
+export const EmptyPlus: Story = {
+  args: {
+    variant: 'emptyPlus',
     children: '+',
     asChild: false,
     size: 'icon',
