@@ -2,7 +2,7 @@
 
 import { Input } from '@/components/ui/input';
 import { Separator } from '@/components/ui/separator';
-import { useMe } from '@/features/auth/hooks/use-me';
+import { useUsersMe } from '@/features/auth/hooks/use-me';
 import { UserRoundIcon } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -41,7 +41,7 @@ interface MemberContentProps {
   members: Member[];
 }
 function MemberListContent({ members }: MemberContentProps) {
-  const { data: user } = useMe();
+  const { data: user } = useUsersMe();
   const [keyword, setKeyword] = useState('');
   const filteredMembers = members.filter((member) =>
     member.name.includes(keyword)

@@ -5,13 +5,13 @@ import { BrandCatchphrase } from '@/components/ui/brand-catchphrase';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
 import { ClientUser } from '@/features/auth/actions/me';
-import { useMe } from '@/features/auth/hooks/use-me';
+import { useUsersMe } from '@/features/auth/hooks/use-me';
 import { BellIcon } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
 export function AppHeader() {
-  const { data: user } = useMe();
+  const { data: user } = useUsersMe();
   const pathname = usePathname();
   return (
     <div className="border-b pl-22 pr-7.5 mt-4 flex items-center">
