@@ -23,6 +23,7 @@ const buttonVariants = cva(
         link: 'text-primary underline-offset-4 hover:underline',
         plain:
           'border-none bg-background dark:bg-input/30 dark:border-input text-gray-8',
+        plainLight: 'border-none bg-background text-gray-5',
       },
       size: {
         default: 'h-12.5 px-4 py-2 has-[>svg]:px-3',
