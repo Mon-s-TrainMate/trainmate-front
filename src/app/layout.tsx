@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { AppSidebar } from './app-sidebar';
 import './globals.css';
+import Providers from './provider';
 
 export const metadata: Metadata = {
   title: 'Trainmate',
@@ -14,9 +15,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko">
-      <body className="grid grid-cols-[max-content_1fr] h-dvh overflow-clip">
-        <AppSidebar />
-        <main>{children}</main>
+      <body>
+        <Providers>
+          <div className="grid grid-cols-[max-content_1fr] h-dvh overflow-clip">
+            <AppSidebar />
+            <main>{children}</main>
+          </div>
+        </Providers>
       </body>
     </html>
   );
