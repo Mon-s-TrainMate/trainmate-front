@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Slot } from '@radix-ui/react-slot';
 import { cva, type VariantProps } from 'class-variance-authority';
-
+import { Plus } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 const buttonVariants = cva(
@@ -55,6 +55,7 @@ function Button({
   size,
   fontsize,
   asChild = false,
+  children,
   ...props
 }: React.ComponentProps<'button'> &
   VariantProps<typeof buttonVariants> & {
@@ -62,12 +63,16 @@ function Button({
   }) {
   const Comp = asChild ? Slot : 'button';
 
+  const shouldShowPlusIcon = variant === 'fullPlus' || variant === 'emptyPlus';
+
   return (
     <Comp
       data-slot="button"
       className={cn(buttonVariants({ variant, size, className, fontsize }))}
       {...props}
-    />
+    >
+      {shouldShowPlusIcon ? <Plus className="size-5" /> : children}
+    </Comp>
   );
 }
 

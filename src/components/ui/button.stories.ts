@@ -112,7 +112,6 @@ export const userChoiceDisabled: Story = {
 export const FullPlus: Story = {
   args: {
     variant: 'fullPlus',
-    children: '+',
     asChild: false,
     size: 'icon',
   },
@@ -121,7 +120,6 @@ export const FullPlus: Story = {
 export const EmptyPlus: Story = {
   args: {
     variant: 'emptyPlus',
-    children: '+',
     asChild: false,
     size: 'icon',
   },
