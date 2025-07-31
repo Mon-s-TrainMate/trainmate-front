@@ -77,9 +77,15 @@ function Button({
       className={cn(buttonVariants({ variant, size, className, fontsize }))}
       {...props}
     >
-      {showPlusIcon ? <Plus className="size-5" /> : children}
-      {showPlayIcon ? <Play className="size-5" /> : children}
-      {showTrashIcon ? <Trash className="size-5" /> : children}
+      {showPlusIcon ? (
+        <Plus className="size-5" />
+      ) : showPlayIcon ? (
+        <Play className="size-5" />
+      ) : showTrashIcon ? (
+        <Trash className="size-5" />
+      ) : (
+        children
+      )}
     </Comp>
   );
 }
