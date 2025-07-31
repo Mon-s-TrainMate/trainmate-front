@@ -18,7 +18,7 @@ const meta = {
   argTypes: {
     variant: {
       control: 'select',
-      options: ['primary', 'secondary', 'outline', 'deactivation', 'secondary'],
+      options: ['primary', 'secondary', 'plain', 'deactivation', 'secondary'],
     },
     size: {
       control: 'select',
@@ -40,10 +40,10 @@ export const Primary: Story = {
   },
 };
 
-export const Secondary: Story = {
+export const plain: Story = {
   args: {
-    variant: 'outline',
-    children: 'asdasd',
+    variant: 'plain',
+    children: '회원가입',
     asChild: false,
   },
 };
@@ -57,7 +57,7 @@ export const Deactivation: Story = {
   },
 };
 
-export const Deactivation3: Story = {
+export const Secondary: Story = {
   args: {
     variant: 'secondary',
     children: '나의 데이터 등록하기',

@@ -52,6 +52,7 @@
   --shadow-*: initial;
   --shadow-sidebar: 0px 4px 10px 0px #72727240;
   --shadow-tab-active: 2px 4px 10px 0px #b4b4b440;
+  --shadow-button: 2px 4px 10px 0px #615ef059;
 }
 
 :root {
