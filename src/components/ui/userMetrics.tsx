@@ -9,7 +9,7 @@ const UserMetrics = ({
   const isPlus = unit === '+';
 
   return (
-    <div className="font-light">
+    <section className="font-light">
       <h2 className="text-gray-5 text-xl">{title}</h2>
       <div className="flex items-center gap-15">
         <p className="text-[3.25rem]">
@@ -22,14 +22,14 @@ const UserMetrics = ({
         </p>
         {!isLast && <div className="w-0.25 h-[2rem] bg-gray-9" />}
       </div>
-    </div>
+    </section>
   );
 };
 
 const App = () => {
   const metricsData = [
-    { title: 'trainer', value: 1111, unit: '+' },
-    { title: 'member', value: 2222, unit: '+' },
+    { title: 'Trainer', value: 1111, unit: '+' },
+    { title: 'Member', value: 2222, unit: '+' },
     { title: 'total', value: 3333, unit: 'kcal' },
   ];
 
