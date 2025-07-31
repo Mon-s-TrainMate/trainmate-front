@@ -1,6 +1,6 @@
 'use server';
 
-import { API_HOST } from '../consts';
+import { API_HOST } from '@/lib/consts';
 import { User } from '../types';
 
 export interface SignInBody {
