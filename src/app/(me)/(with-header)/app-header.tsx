@@ -4,17 +4,14 @@ import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { BrandCatchphrase } from '@/components/ui/brand-catchphrase';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
-import { ClientUser, getUsersMe } from '@/features/auth/actions/me';
-import { useQuery } from '@tanstack/react-query';
+import { ClientUser } from '@/features/auth/actions/me';
+import { useMe } from '@/features/auth/hooks/use-me';
 import { BellIcon } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
 export function AppHeader() {
-  const { data: user } = useQuery({
-    queryKey: ['users', 'me'],
-    queryFn: getUsersMe,
-  });
+  const { data: user } = useMe();
   const pathname = usePathname();
   return (
     <div className="border-b pl-22 pr-7.5 mt-4 flex items-center">
