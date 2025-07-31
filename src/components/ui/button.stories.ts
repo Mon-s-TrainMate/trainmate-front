@@ -29,6 +29,9 @@ const meta = {
         'userChoiceDisabled',
         'fullPlus',
         'emptyPlus',
+        'play',
+        'playBack',
+        'trash',
       ],
     },
     size: {
@@ -120,6 +123,30 @@ export const FullPlus: Story = {
 export const EmptyPlus: Story = {
   args: {
     variant: 'emptyPlus',
+    asChild: false,
+    size: 'icon',
+  },
+};
+
+export const Play: Story = {
+  args: {
+    variant: 'play',
+    asChild: false,
+    size: 'icon',
+  },
+};
+
+export const PlayBack: Story = {
+  args: {
+    variant: 'playBack',
+    asChild: false,
+    size: 'icon',
+  },
+};
+
+export const Trash: Story = {
+  args: {
+    variant: 'trash',
     asChild: false,
     size: 'icon',
   },

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Slot } from '@radix-ui/react-slot';
 import { cva, type VariantProps } from 'class-variance-authority';
-import { Plus } from 'lucide-react';
+import { Plus, Play, Trash } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 const buttonVariants = cva(
@@ -28,6 +28,9 @@ const buttonVariants = cva(
         userChoiceDisabled: 'text-gray-5 font-bold shadow-tab-active',
         fullPlus: 'bg-primary text-white rounded-full',
         emptyPlus: 'bg-none text-gray-8 border border-gray-8 rounded-full',
+        play: 'bg-gray-5 text-white rounded-full',
+        playBack: 'bg-primary text-white rounded-full',
+        trash: 'bg-none text-gray-5 border border-gray-5 rounded-full',
       },
       size: {
         default: 'h-12.5 px-4 py-2 has-[>svg]:px-3',
@@ -63,7 +66,10 @@ function Button({
   }) {
   const Comp = asChild ? Slot : 'button';
 
-  const shouldShowPlusIcon = variant === 'fullPlus' || variant === 'emptyPlus';
+  const showPlusIcon = variant === 'fullPlus' || variant === 'emptyPlus';
+
+  const showPlayIcon = variant === 'play' || variant === 'playBack';
+  const showTrashIcon = variant === 'trash';
 
   return (
     <Comp
@@ -71,7 +77,9 @@ function Button({
       className={cn(buttonVariants({ variant, size, className, fontsize }))}
       {...props}
     >
-      {shouldShowPlusIcon ? <Plus className="size-5" /> : children}
+      {showPlusIcon ? <Plus className="size-5" /> : children}
+      {showPlayIcon ? <Play className="size-5" /> : children}
+      {showTrashIcon ? <Trash className="size-5" /> : children}
     </Comp>
   );
 }
