@@ -27,6 +27,7 @@ const meta = {
         'plainLight',
         'userChoice',
         'userChoiceDisabled',
+        'fullPlus',
       ],
     },
     size: {
@@ -104,5 +105,14 @@ export const userChoiceDisabled: Story = {
     asChild: false,
     size: 'userChoice',
     fontsize: 'lg',
+  },
+};
+
+export const Round: Story = {
+  args: {
+    variant: 'fullPlus',
+    children: '+',
+    asChild: false,
+    size: 'icon',
   },
 };

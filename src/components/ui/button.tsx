@@ -26,6 +26,7 @@ const buttonVariants = cva(
         plainLight: 'border-none bg-background text-gray-5',
         userChoice: 'text-primary font-bold shadow-tab-active',
         userChoiceDisabled: 'text-gray-5 font-bold shadow-tab-active',
+        fullPlus: 'bg-primary text-white rounded-full',
       },
       size: {
         default: 'h-12.5 px-4 py-2 has-[>svg]:px-3',
