@@ -10,6 +10,7 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
+import { getUsersQueryKey } from '@/lib/users/query-key';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useQueryClient } from '@tanstack/react-query';
 import { ChevronLeftIcon } from 'lucide-react';
@@ -45,7 +46,7 @@ export function UserInfoStep(props: UserInfoStepProps) {
           });
           if (res.success) {
             await queryClient.invalidateQueries({
-              queryKey: ['users', 'me'],
+              queryKey: getUsersQueryKey('me'),
             });
             props.next();
           } else {
