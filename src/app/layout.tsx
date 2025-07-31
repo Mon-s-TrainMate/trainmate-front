@@ -1,5 +1,4 @@
 import type { Metadata } from 'next';
-import { AppSidebar } from './app-sidebar';
 import './globals.css';
 import Providers from './provider';
 
@@ -15,13 +14,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko">
-      <body>
-        <Providers>
-          <div className="grid grid-cols-[max-content_1fr] h-dvh overflow-clip">
-            <AppSidebar />
-            <main>{children}</main>
-          </div>
-        </Providers>
+      <body className="h-dvh overflow-clip">
+        <Providers>{children}</Providers>
       </body>
     </html>
   );
