@@ -36,7 +36,7 @@ const items = [
 
 export function AppSidebar() {
   return (
-    <aside className="w-22 shadow-sidebar grid grid-rows-[max-content_1fr_max-content]">
+    <aside className="w-22 shadow-sidebar grid grid-rows-[max-content_1fr_max-content] z-50">
       <header className="pt-6 px-4 flex flex-col gap-y-4 items-center">
         <Link href="/">
           <Avatar className="size-14 rounded-xl">
@@ -80,7 +80,7 @@ function NavLink({ href, Icon }: NavLinkProps) {
     <Link
       href={href}
       className="relative flex justify-center group"
-      data-active={pathname === href}
+      data-active={pathname.startsWith(href)}
     >
       <div
         className="hidden group-data-[active=true]:block absolute size-2 bg-primary right-full top-1/2 translate-x-1/2 -translate-y-1/2 rounded-full"

@@ -13,6 +13,7 @@ import {
 import { Input } from '@/components/ui/input';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Separator } from '@/components/ui/separator';
+import { getUsersQueryKey } from '@/lib/users/query-key';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useQueryClient } from '@tanstack/react-query';
 import Link from 'next/link';
@@ -48,7 +49,7 @@ export default function Page() {
             const res = await getUser(values);
             if (res.success) {
               await queryClient.invalidateQueries({
-                queryKey: ['users', 'me'],
+                queryKey: getUsersQueryKey('me'),
               });
               router.push('/');
             } else {

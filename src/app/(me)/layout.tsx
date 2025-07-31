@@ -1,4 +1,5 @@
 import { getUsersMe } from '@/features/auth/actions/me';
+import { getUsersQueryKey } from '@/lib/users/query-key';
 import {
   dehydrate,
   HydrationBoundary,
@@ -14,7 +15,7 @@ export default async function Layout({ children }: LayoutProps) {
   const queryClient = new QueryClient();
 
   await queryClient.prefetchQuery({
-    queryKey: ['users', 'me'],
+    queryKey: getUsersQueryKey('me'),
     queryFn: getUsersMe,
   });
 
