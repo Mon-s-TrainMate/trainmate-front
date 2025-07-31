@@ -13,11 +13,13 @@
   --color-*: initial;
   --color-white: var(--white);
   --color-black: var(--black);
-  --color-gray-1: var(--gray-1);
-  --color-gray-2: var(--gray-2);
-  --color-gray-5: var(--gray-5);
+  --color-gray-0\.5: var(--gray-0\.5); /* background */
+  --color-gray-1: var(--gray-1); /* light gray 01 */
+  --color-gray-2: var(--gray-2); /* light gray 02 */
+  --color-gray-5: var(--gray-5); /* gray */
+  --color-gray-6: var(--gray-6); /* medium gray 01 */
   --color-gray-7: var(--gray-7);
-  --color-gray-8: var(--gray-8);
+  --color-gray-8: var(--gray-8); /* black */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -63,9 +65,11 @@
 
   --white: #ffffff;
   --black: #000000;
+  --gray-0\.5: #f8f8f8;
   --gray-1: #f0f0f0;
   --gray-2: #d8d8d8;
   --gray-5: #b4b4b4;
+  --gray-6: #7f7f7f;
   --gray-7: #585858;
   --gray-8: #484848;
 
