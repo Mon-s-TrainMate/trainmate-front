@@ -11,27 +11,57 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useQueryClient } from '@tanstack/react-query';
 import { ChevronLeftIcon } from 'lucide-react';
-import { useRouter } from 'next/navigation';
+import { RefObject } from 'react';
 import { useForm } from 'react-hook-form';
-import { SignUpUserInfoFormSchema, signUpUserInfoFormSchema } from '../schema';
+import { createUser } from '../_actions/action';
+import { SignUpAgreementFormSchema, signUpUserInfoFormSchema } from '../schema';
 interface UserInfoStepProps {
-  onSubmit: (values: SignUpUserInfoFormSchema) => void;
+  agreementResultRef: RefObject<SignUpAgreementFormSchema | undefined>;
+  prev: () => void;
+  next: () => void;
 }
 export function UserInfoStep(props: UserInfoStepProps) {
+  const queryClient = useQueryClient();
   const form = useForm({
     resolver: zodResolver(signUpUserInfoFormSchema),
     mode: 'onBlur',
+    defaultValues: {
+      email: '',
+      name: '',
+      password: '',
+      confirm_password: '',
+    },
   });
-  const router = useRouter();
   return (
     <Form {...form}>
       <form
         className="flex flex-col gap-y-10 w-full"
-        onSubmit={form.handleSubmit(props.onSubmit)}
+        onSubmit={form.handleSubmit(async (values) => {
+          const res = await createUser({
+            ...values,
+            ...props.agreementResultRef.current!,
+          });
+          if (res.success) {
+            await queryClient.invalidateQueries({
+              queryKey: ['users', 'me'],
+            });
+            props.next();
+          } else {
+            for (const [key, errors] of Object.entries(res.errors)) {
+              const fieldName = key === 'non_field_errors' ? 'root' : key;
+
+              form.setError(fieldName as 'root', {
+                type: 'manual',
+                message: errors[0],
+              });
+            }
+          }
+        })}
       >
         <h2 className="flex items-center gap-3 font-bold text-2xl">
-          <button type="button" onClick={() => router.back()}>
+          <button type="button" onClick={() => props.prev()}>
             <ChevronLeftIcon />
           </button>
           <span>계정 정보</span>
@@ -82,7 +112,7 @@ export function UserInfoStep(props: UserInfoStepProps) {
         />
         <FormField
           control={form.control}
-          name="passwordCheck"
+          name="confirm_password"
           render={({ field }) => (
             <FormItem>
               <FormLabel>비밀번호 확인</FormLabel>
@@ -97,6 +127,11 @@ export function UserInfoStep(props: UserInfoStepProps) {
             </FormItem>
           )}
         />
+        {form.formState.errors.root && (
+          <p className="text-destructive text-sm">
+            {form.formState.errors.root.message}
+          </p>
+        )}
         <Button disabled={!form.formState.isValid}>가입하기</Button>
       </form>
     </Form>

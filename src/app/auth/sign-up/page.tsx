@@ -9,6 +9,8 @@ import { SignUpAgreementFormSchema } from './schema';
 export default function Page() {
   const agreementResultRef = useRef<SignUpAgreementFormSchema>(undefined);
   const [step, setStep] = useState(0);
+  const next = () => setStep((step) => step + 1);
+  const prev = () => setStep((step) => step - 1);
   return (
     <div className="flex flex-col items-center gap-15 mt-45">
       <div className="flex flex-col gap-y-10 max-w-lg px-4 w-full">
@@ -16,16 +18,15 @@ export default function Page() {
           <AgreementStep
             onSubmit={(values) => {
               agreementResultRef.current = values;
-              setStep((step) => step + 1);
+              next();
             }}
           />
         )}
         {step === 1 && (
           <UserInfoStep
-            onSubmit={(values) => {
-              console.log(values);
-              setStep((step) => step + 1);
-            }}
+            agreementResultRef={agreementResultRef}
+            prev={prev}
+            next={next}
           />
         )}
         {step === 2 && <GreetingStep />}
