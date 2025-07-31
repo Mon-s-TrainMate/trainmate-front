@@ -58,7 +58,7 @@ export const Primary: Story = {
   },
 };
 
-export const plain: Story = {
+export const Plain: Story = {
   args: {
     variant: 'plain',
     children: '회원가입',
@@ -84,7 +84,7 @@ export const Secondary: Story = {
   },
 };
 
-export const plainLight: Story = {
+export const PlainLight: Story = {
   args: {
     variant: 'plainLight',
     children: '회원가입',
@@ -102,7 +102,7 @@ export const UserChoice: Story = {
   },
 };
 
-export const userChoiceDisabled: Story = {
+export const UserChoiceDisabled: Story = {
   args: {
     variant: 'userChoiceDisabled',
     children: '트레이너',
