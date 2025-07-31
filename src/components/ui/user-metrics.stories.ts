@@ -9,4 +9,10 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const userMetrics: Story = {};
+export const userMetrics: Story = {
+  args: {
+    trainer: 0,
+    member: 0,
+    total: 0,
+  },
+};

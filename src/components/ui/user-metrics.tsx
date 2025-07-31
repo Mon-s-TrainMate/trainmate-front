@@ -26,11 +26,11 @@ const UserMetrics = ({
   );
 };
 
-const MetricsContainer = () => {
+const MetricsContainer = ({ trainer = 0, member = 0, total = 0 }) => {
   const metricsData = [
-    { title: 'Trainer', value: 1111, unit: '+' },
-    { title: 'Member', value: 2222, unit: '+' },
-    { title: 'total', value: 3333, unit: 'kcal' },
+    { title: 'Trainer', value: trainer, unit: '+' },
+    { title: 'Member', value: member, unit: '+' },
+    { title: 'Total', value: total, unit: 'kcal' },
   ];
 
   return (
