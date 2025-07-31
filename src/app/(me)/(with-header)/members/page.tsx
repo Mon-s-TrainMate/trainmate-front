@@ -1,6 +1,8 @@
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { authGuard } from '@/features/auth/actions/auth-guard';
 
-export default function Page() {
+export default async function Page() {
+  await authGuard();
   return (
     <div className="flex justify-center items-center">
       <div className="flex items-center gap-x-5">
