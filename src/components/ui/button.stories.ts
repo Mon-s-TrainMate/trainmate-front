@@ -25,11 +25,17 @@ const meta = {
         'deactivation',
         'secondary',
         'plainLight',
+        'userChoice',
+        'userChoiceDisabled',
       ],
     },
     size: {
       control: 'select',
-      options: ['sm', 'lg', 'icon'],
+      options: ['sm', 'lg', 'icon', 'userChoice'],
+    },
+    fontsize: {
+      control: 'select',
+      options: ['lg'],
     },
   },
   // Use `fn` to spy on the onClick arg, which will appear in the actions panel once invoked: https://storybook.js.org/docs/essentials/actions#action-args
@@ -78,5 +84,25 @@ export const plainLight: Story = {
     variant: 'plainLight',
     children: '회원가입',
     asChild: false,
+  },
+};
+
+export const UserChoice: Story = {
+  args: {
+    variant: 'userChoice',
+    children: '개인회원',
+    asChild: false,
+    size: 'userChoice',
+    fontsize: 'lg',
+  },
+};
+
+export const userChoiceDisabled: Story = {
+  args: {
+    variant: 'userChoiceDisabled',
+    children: '트레이너',
+    asChild: false,
+    size: 'userChoice',
+    fontsize: 'lg',
   },
 };

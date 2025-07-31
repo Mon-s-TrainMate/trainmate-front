@@ -24,17 +24,25 @@ const buttonVariants = cva(
         plain:
           'border-none bg-background dark:bg-input/30 dark:border-input text-gray-8',
         plainLight: 'border-none bg-background text-gray-5',
+        userChoice: 'text-primary font-bold shadow-tab-active',
+        userChoiceDisabled: 'text-gray-5 font-bold shadow-tab-active',
       },
       size: {
         default: 'h-12.5 px-4 py-2 has-[>svg]:px-3',
         sm: 'h-8 rounded-md gap-1.5 px-3 has-[>svg]:px-2.5',
         lg: 'h-14.5 rounded-md px-6 has-[>svg]:px-4',
         icon: 'size-9',
+        userChoice: 'h-13 rounded-[0.6rem] gap-2.5 px-3',
+      },
+      fontsize: {
+        default: 'text-base',
+        lg: 'text-lg',
       },
     },
     defaultVariants: {
       variant: 'default',
       size: 'default',
+      fontsize: 'default',
     },
   }
 );
@@ -43,6 +51,7 @@ function Button({
   className,
   variant,
   size,
+  fontsize,
   asChild = false,
   ...props
 }: React.ComponentProps<'button'> &
@@ -54,7 +63,7 @@ function Button({
   return (
     <Comp
       data-slot="button"
-      className={cn(buttonVariants({ variant, size, className }))}
+      className={cn(buttonVariants({ variant, size, className, fontsize }))}
       {...props}
     />
   );
