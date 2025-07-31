@@ -26,7 +26,7 @@ const UserMetrics = ({
   );
 };
 
-const App = () => {
+const MetricsContainer = () => {
   const metricsData = [
     { title: 'Trainer', value: 1111, unit: '+' },
     { title: 'Member', value: 2222, unit: '+' },
@@ -48,4 +48,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default MetricsContainer;

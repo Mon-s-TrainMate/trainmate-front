@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/nextjs';
-import UserMetrics from './userMetrics';
+import MetricsContainer from './userMetrics';
 
 const meta = {
   title: 'ui/userMetrics',
-  component: UserMetrics,
-} satisfies Meta<typeof UserMetrics>;
+  component: MetricsContainer,
+} satisfies Meta<typeof MetricsContainer>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
