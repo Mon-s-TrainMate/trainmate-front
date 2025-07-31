@@ -24,11 +24,9 @@ export default function Page() {
         )}
         {step === 1 && (
           <UserInfoStep
-            onSubmit={(values) => {
-              console.log(values);
-              next();
-            }}
+            agreementResultRef={agreementResultRef}
             prev={prev}
+            next={next}
           />
         )}
         {step === 2 && <GreetingStep />}

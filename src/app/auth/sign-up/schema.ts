@@ -15,6 +15,19 @@ export const signUpUserInfoFormSchema = z
     name: z.string().min(1),
     email: emailSchema,
     password: passwordSchema,
-    passwordCheck: passwordSchema,
+    confirm_password: passwordSchema,
   })
-  .refine((obj) => obj.password === obj.passwordCheck);
+  .refine((obj) => obj.password === obj.confirm_password);
+
+export type CreateUserDataSchema = z.infer<typeof createUserDataSchema>;
+export const createUserDataSchema = z
+  .object({
+    serviceTos: z.boolean().refine((value) => value === true),
+    personalInformationTos: z.boolean().refine((value) => value === true),
+    optionalTos: z.boolean().optional(),
+    name: z.string().min(1),
+    email: emailSchema,
+    password: passwordSchema,
+    confirm_password: passwordSchema,
+  })
+  .refine((obj) => obj.password === obj.confirm_password);

@@ -14,8 +14,11 @@ import { Input } from '@/components/ui/input';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Separator } from '@/components/ui/separator';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useQueryClient } from '@tanstack/react-query';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
+import { getUser } from './_actions/action';
 import { SignInFormSchema, signInFormSchema } from './schema';
 
 const userTypes: { value: SignInFormSchema['userType']; label: string }[] = [
@@ -24,6 +27,8 @@ const userTypes: { value: SignInFormSchema['userType']; label: string }[] = [
 ];
 
 export default function Page() {
+  const router = useRouter();
+  const queryClient = useQueryClient();
   const form = useForm({
     resolver: zodResolver(signInFormSchema),
     defaultValues: {
@@ -39,8 +44,23 @@ export default function Page() {
       <Form {...form}>
         <form
           className="flex flex-col gap-y-10 max-w-lg px-4 w-full"
-          onSubmit={form.handleSubmit((values) => {
-            console.log(values);
+          onSubmit={form.handleSubmit(async (values) => {
+            const res = await getUser(values);
+            if (res.success) {
+              await queryClient.invalidateQueries({
+                queryKey: ['users', 'me'],
+              });
+              router.push('/');
+            } else {
+              for (const [key, errors] of Object.entries(res.errors)) {
+                const fieldName = key === 'non_field_errors' ? 'root' : key;
+
+                form.setError(fieldName as 'root', {
+                  type: 'manual',
+                  message: errors[0],
+                });
+              }
+            }
           })}
         >
           <FormField
@@ -104,6 +124,11 @@ export default function Page() {
               </FormItem>
             )}
           />
+          {form.formState.errors.root && (
+            <p className="text-destructive text-sm">
+              {form.formState.errors.root.message}
+            </p>
+          )}
           <FormField
             control={form.control}
             name="keepLogin"
