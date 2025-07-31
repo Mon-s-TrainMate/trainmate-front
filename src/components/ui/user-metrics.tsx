@@ -20,7 +20,7 @@ const UserMetrics = ({
             {unit}
           </span>
         </p>
-        {!isLast && <div className="w-0.25 h-[2rem] bg-gray-9" />}
+        {!isLast && <div className="w-0.25 h-[2rem] bg-gray-2" />}
       </div>
     </section>
   );
