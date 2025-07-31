@@ -9,18 +9,18 @@ const UserMetrics = ({
   const isPlus = unit === '+';
 
   return (
-    <div className="">
-      <h2 className="text-gray-5 text-[20px]">{title}</h2>
-      <div className="flex">
-        <p className="text-[52px]">
+    <div className="font-light">
+      <h2 className="text-gray-5 text-xl">{title}</h2>
+      <div className="flex items-center gap-15">
+        <p className="text-[3.25rem]">
           {value.toLocaleString()}
           <span
-            className={`text-gray-8 ${isPlus ? 'text-[52px]' : 'text-[24px]'}`}
+            className={`text-gray-8 ${isPlus ? 'text-[3.25rem]' : 'text-[1.5rem] ml-2'}`}
           >
             {unit}
           </span>
         </p>
-        {!isLast && <div className="w-[1px] h-[32px] bg-gray-9" />}
+        {!isLast && <div className="w-0.25 h-[2rem] bg-gray-9" />}
       </div>
     </div>
   );
@@ -34,7 +34,7 @@ const App = () => {
   ];
 
   return (
-    <div className="flex">
+    <div className="flex gap-15">
       {metricsData.map((metric, index) => (
         <UserMetrics
           key={index}
