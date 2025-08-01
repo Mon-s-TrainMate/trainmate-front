@@ -14,7 +14,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko">
-      <body className="h-dvh overflow-clip">
+      <body className="h-dvh overflow-clip bg-gray-0.5">
         <Providers>{children}</Providers>
       </body>
     </html>

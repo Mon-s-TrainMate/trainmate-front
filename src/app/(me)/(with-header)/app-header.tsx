@@ -14,7 +14,7 @@ export function AppHeader() {
   const { data: user } = useUsersMe();
   const pathname = usePathname();
   return (
-    <div className="border-b pl-22 pr-7.5 mt-4 flex items-center">
+    <div className="border-b pl-22 pr-7.5 pt-4 flex items-center bg-white">
       {pathname === '/' && <BrandCatchphrase />}
       {user != null ? <SignedInActions user={user} /> : <AnonymousActions />}
     </div>
