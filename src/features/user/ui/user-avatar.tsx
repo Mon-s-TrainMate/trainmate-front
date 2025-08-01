@@ -16,13 +16,13 @@ const styles = cva('', {
   },
 });
 export type UserAvatarProps = {
-  src?: string;
+  src?: string | null;
   className?: string;
 } & VariantProps<typeof styles>;
 export function UserAvatar({ src, size, className }: UserAvatarProps) {
   return (
     <Avatar className={styles({ size, className })}>
-      <AvatarImage src={src} />
+      <AvatarImage src={src ?? undefined} />
       <AvatarFallback />
     </Avatar>
   );
