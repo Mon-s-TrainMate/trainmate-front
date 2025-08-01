@@ -68,7 +68,7 @@ export function MemberRecordSummary({
       onOpenChange={(open) => {
         setOpen(open);
       }}
-      className="shadow-record-summary-card"
+      className="shadow-level-1-light"
     >
       <CollapsibleTrigger asChild>
         <button className={triggerStyles({ open })}>
