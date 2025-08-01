@@ -148,7 +148,9 @@ export default function Page() {
                       onBlur={field.onBlur}
                     />
                   </FormControl>
-                  <FormLabel>로그인 상태 유지하기</FormLabel>
+                  <FormLabel className={field.value ? 'text-primary' : ''}>
+                    로그인 상태 유지하기
+                  </FormLabel>
                 </div>
                 <FormMessage />
               </FormItem>
