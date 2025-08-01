@@ -23,7 +23,7 @@ export default async function Layout({ children }: LayoutProps) {
     <HydrationBoundary state={dehydrate(queryClient)}>
       <div className="grid grid-cols-[max-content_1fr] h-full overflow-clip">
         <AppSidebar />
-        <main>{children}</main>
+        <main className="h-full min-h-0">{children}</main>
       </div>
     </HydrationBoundary>
   );

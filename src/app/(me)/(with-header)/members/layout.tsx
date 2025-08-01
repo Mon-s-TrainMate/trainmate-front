@@ -8,7 +8,7 @@ interface LayoutProps {
 export default async function Layout({ children }: LayoutProps) {
   await authGuard();
   return (
-    <div className="grid grid-cols-[25rem_1fr] bg-gray-0.5">
+    <div className="grid grid-cols-[25rem_1fr] bg-gray-0.5 h-full min-h-0">
       <Sidebar />
       {children}
     </div>
