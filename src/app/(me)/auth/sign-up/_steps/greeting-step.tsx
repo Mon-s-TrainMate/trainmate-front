@@ -1,13 +1,11 @@
-import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
+import { UserAvatar } from '@/features/user/ui/user-avatar';
 import Link from 'next/link';
 
 export function GreetingStep() {
   return (
     <div>
-      <Avatar className="size-20 rounded-xl mb-11 mx-auto">
-        <AvatarFallback />
-      </Avatar>
+      <UserAvatar size="xl" className="mb-11 mx-auto" />
       <p className="text-[2.125rem] break-keep text-balance text-center mb-20">
         <span className="font-semibold text-primary">TrainMate</span>의 멤버가
         된 것을
