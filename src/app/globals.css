@@ -54,6 +54,7 @@
   --shadow-*: initial;
   --shadow-sidebar: 0px 4px 10px 0px #72727240;
   --shadow-tab-active: 2px 4px 10px 0px #b4b4b440;
+  --shadow-record-summary-card: 0px 4px 12px 0px #b4b4b426;
 }
 
 :root {
