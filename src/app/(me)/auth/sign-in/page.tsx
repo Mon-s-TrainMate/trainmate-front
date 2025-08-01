@@ -102,7 +102,13 @@ export default function Page() {
               <FormItem>
                 <FormLabel>이메일</FormLabel>
                 <FormControl>
-                  <Input placeholder="이메일 주소를 입력해주세요." {...field} />
+                  <Input
+                    placeholder="이메일 주소를 입력해주세요."
+                    {...field}
+                    className={`focus-visible:border-primary ${
+                      field.value ? 'border-primary' : ''
+                    }`}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -119,6 +125,9 @@ export default function Page() {
                     type="password"
                     placeholder="비밀번호를 입력해주세요."
                     {...field}
+                    className={`focus-visible:border-primary ${
+                      field.value ? 'border-primary' : ''
+                    }`}
                   />
                 </FormControl>
                 <FormMessage />
@@ -148,7 +157,9 @@ export default function Page() {
                       onBlur={field.onBlur}
                     />
                   </FormControl>
-                  <FormLabel>로그인 상태 유지하기</FormLabel>
+                  <FormLabel className={field.value ? 'text-primary' : ''}>
+                    로그인 상태 유지하기
+                  </FormLabel>
                 </div>
                 <FormMessage />
               </FormItem>
