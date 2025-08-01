@@ -1,11 +1,11 @@
 'use client';
 
-import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { BrandCatchphrase } from '@/components/ui/brand-catchphrase';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
 import { ClientUser } from '@/features/auth/actions/me';
 import { useUsersMe } from '@/features/auth/hooks/use-me';
+import { UserAvatar } from '@/features/user/ui/user-avatar';
 import { BellIcon } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -28,9 +28,7 @@ function SignedInActions({ user }: SignedInActionsProps) {
   return (
     <div className="ml-auto flex items-center gap-x-9">
       <div className="flex items-center gap-x-4">
-        <Avatar className="size-8 rounded-sm">
-          <AvatarFallback />
-        </Avatar>
+        <UserAvatar size="xs" />
         <span className="text-xl break-keep text-gray-8">{user.name}</span>
         <Separator
           orientation="vertical"

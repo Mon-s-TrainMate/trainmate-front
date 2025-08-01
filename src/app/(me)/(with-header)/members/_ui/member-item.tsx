@@ -1,5 +1,5 @@
 'use client';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { UserAvatar } from '@/features/user/ui/user-avatar';
 import { cva } from 'class-variance-authority';
 import { format, isToday } from 'date-fns';
 import { ChevronRightIcon } from 'lucide-react';
@@ -34,10 +34,7 @@ export function MemberItem({
 }: Props) {
   return (
     <div className={memberItemStyles({ active })}>
-      <Avatar className="size-12 rounded-lg">
-        <AvatarImage src={thumbnail} />
-        <AvatarFallback />
-      </Avatar>
+      <UserAvatar size="sm" src={thumbnail} />
       <div className="flex-1">
         <div className="font-bold text-gray-8">{name}</div>
         <div className="text-xs text-gray-5">{email}</div>

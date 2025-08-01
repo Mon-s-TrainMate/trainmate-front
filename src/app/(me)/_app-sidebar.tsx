@@ -1,6 +1,6 @@
 'use client';
 
-import { Avatar, AvatarFallback } from '@/components/ui/avatar';
+import { UserAvatar } from '@/features/user/ui/user-avatar';
 import {
   CalendarIcon,
   FileTextIcon,
@@ -39,9 +39,7 @@ export function AppSidebar() {
     <aside className="w-22 shadow-sidebar grid grid-rows-[max-content_1fr_max-content] z-50">
       <header className="pt-6 px-4 flex flex-col gap-y-4 items-center">
         <Link href="/">
-          <Avatar className="size-14 rounded-xl">
-            <AvatarFallback></AvatarFallback>
-          </Avatar>
+          <UserAvatar />
         </Link>
         <div
           role="separator"
