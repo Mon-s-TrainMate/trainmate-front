@@ -1,33 +1,19 @@
 import z from 'zod';
 import { emailSchema, passwordSchema } from '../schema';
 
-export type SignUpAgreementFormSchema = z.infer<
-  typeof signUpAgreementFormSchema
->;
-export const signUpAgreementFormSchema = z.object({
-  serviceTos: z.boolean().refine((value) => value === true),
-  personalInformationTos: z.boolean().refine((value) => value === true),
-  optionalTos: z.boolean().optional(),
-});
-export type SignUpUserInfoFormSchema = z.infer<typeof signUpUserInfoFormSchema>;
-export const signUpUserInfoFormSchema = z
+export type FormSchema = z.infer<typeof formSchema>;
+export const formSchema = z
   .object({
-    name: z.string().min(1),
+    terms_agreed: z.boolean().refine((value) => value),
+    privacy_agreed: z.boolean().refine((value) => value),
+    marketing_agreed: z.boolean(),
+    user_type: z.enum(['member', 'trainer']),
+    name: z.string().min(1, { error: '이름을 입력해주세요.' }),
     email: emailSchema,
     password: passwordSchema,
     confirm_password: passwordSchema,
   })
-  .refine((obj) => obj.password === obj.confirm_password);
-
-export type CreateUserDataSchema = z.infer<typeof createUserDataSchema>;
-export const createUserDataSchema = z
-  .object({
-    serviceTos: z.boolean().refine((value) => value === true),
-    personalInformationTos: z.boolean().refine((value) => value === true),
-    optionalTos: z.boolean().optional(),
-    name: z.string().min(1),
-    email: emailSchema,
-    password: passwordSchema,
-    confirm_password: passwordSchema,
-  })
-  .refine((obj) => obj.password === obj.confirm_password);
+  .refine((schema) => schema.password === schema.confirm_password, {
+    path: ['confirm_password'],
+    error: '비밀번호가 일치하지 않습니다.',
+  });
