@@ -9,6 +9,9 @@ export interface SignUpBody {
   password: string;
   confirm_password: string;
   user_type: string;
+  terms_agreed: boolean;
+  privacy_agreed: boolean;
+  marketing_agreed: boolean;
 }
 export type SignUpResponse =
   | {
@@ -33,6 +36,9 @@ export async function signUp(data: SignUpBody): Promise<SignUpResponse> {
       password: data.password,
       confirm_password: data.confirm_password,
       user_type: data.user_type,
+      terms_agreed: data.terms_agreed,
+      privacy_agreed: data.privacy_agreed,
+      marketing_agreed: data.marketing_agreed,
     }),
   });
   const body = await res.json();
