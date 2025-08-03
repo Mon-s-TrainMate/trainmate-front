@@ -5,7 +5,7 @@ import { ZodError } from 'zod';
 import { createUser, users } from '../../../data';
 
 export const mswSignup = http.post(
-  API_HOST + '/api/accounts/login',
+  API_HOST + '/api/accounts/signup',
   async ({ request }) => {
     try {
       const body = await formSchema.parseAsync(request.json());
