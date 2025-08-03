@@ -46,7 +46,10 @@ export const mswSignup = http.post(
             success: false,
             message: '회원가입에 실패했습니다.',
             errors: Object.fromEntries(
-              error.issues.map((issue) => [issue.path.join('.'), issue.message])
+              error.issues.map((issue) => [
+                issue.path.join('.'),
+                [issue.message],
+              ])
             ),
           },
           { status: 400 }
