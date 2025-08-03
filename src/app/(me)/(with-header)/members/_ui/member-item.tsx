@@ -21,7 +21,7 @@ const memberItemIconStyles = cva('', {
 interface Props {
   name: string;
   email: string;
-  thumbnail: string;
+  thumbnail?: string;
   recentRecordTime?: Date;
   active?: boolean;
 }
