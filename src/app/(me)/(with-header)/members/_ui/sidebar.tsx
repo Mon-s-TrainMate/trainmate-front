@@ -57,7 +57,7 @@ function MemberListContent({ members }: MemberContentProps) {
           onChange={(e) => setKeyword(e.currentTarget.value)}
         />
       </div>
-      {user != null && <MemberLink {...user} email="" thumbnail="" />}
+      {user != null && <MemberLink {...user} />}
       <Separator />
       {filteredMembers.map((member) => (
         <MemberLink key={member.email} {...member} />
