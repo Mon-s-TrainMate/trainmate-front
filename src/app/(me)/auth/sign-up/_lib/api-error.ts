@@ -1,7 +1,7 @@
 import { Observer } from '@/lib/observer/observer';
-import { FormSchema } from '../schema';
+import { SignUpFormSchema } from '../schema';
 
-type FieldName = keyof FormSchema;
+type FieldName = keyof SignUpFormSchema;
 
 export type SignUpFormErrors<Path = FieldName> = {
   path: Path;

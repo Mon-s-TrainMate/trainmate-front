@@ -19,9 +19,9 @@ import {
   appendSignUpFormSessionData,
   getSignUpFormSessionData,
 } from '../_lib/session-data';
-import { formSchema } from '../schema';
+import { signUpFormSchema } from '../schema';
 
-const schema = formSchema.pick({
+const schema = signUpFormSchema.pick({
   terms_agreed: true,
   privacy_agreed: true,
   marketing_agreed: true,

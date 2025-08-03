@@ -21,12 +21,12 @@ import {
   appendSignUpFormSessionData,
   getSignUpFormSessionData,
 } from '../_lib/session-data';
-import { formSchema } from '../schema';
+import { signUpFormSchema } from '../schema';
 import { keys as step0Keys } from './step-0';
 
 const prevKeys = step0Keys;
 
-const schema = formSchema.pick({
+const schema = signUpFormSchema.pick({
   user_type: true,
   name: true,
   email: true,

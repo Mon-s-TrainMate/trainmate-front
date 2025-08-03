@@ -1,4 +1,4 @@
-import { formSchema } from '@/app/(me)/auth/sign-up/schema';
+import { signUpFormSchema } from '@/app/(me)/auth/sign-up/schema';
 import { API_HOST } from '@/lib/consts';
 import { http, HttpResponse } from 'msw';
 import { ZodError } from 'zod';
@@ -8,7 +8,7 @@ export const mswSignup = http.post(
   API_HOST + '/api/accounts/signup',
   async ({ request }) => {
     try {
-      const body = formSchema.parse(await request.json());
+      const body = signUpFormSchema.parse(await request.json());
       const existsUser = users.find((user) => user.email === body.email);
       if (existsUser != null) {
         return HttpResponse.json(

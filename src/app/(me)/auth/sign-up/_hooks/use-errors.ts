@@ -4,9 +4,9 @@ import {
   signUpFormApiErrorObserver,
   SignUpFormErrors,
 } from '../_lib/api-error';
-import { FormSchema } from '../schema';
+import { SignUpFormSchema } from '../schema';
 
-export function useSignUpFormApiErrors<Path extends keyof FormSchema>(
+export function useSignUpFormApiErrors<Path extends keyof SignUpFormSchema>(
   fn: (errors: SignUpFormErrors<Path>) => void,
   paths: Path[]
 ) {
