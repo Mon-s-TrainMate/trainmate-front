@@ -3,9 +3,9 @@ import { signIn } from '@/features/auth/api/sign-in';
 import { signUp } from '@/features/auth/api/sign-up';
 import { ACCESS_TOKEN_KEY, REFRESH_TOKEN_KEY } from '@/features/auth/consts';
 import { setServerSession } from '@/features/auth/server-session';
-import type { FormSchema } from '../schema';
+import type { SignUpFormSchema } from '../schema';
 
-export async function createUser(data: FormSchema) {
+export async function createUser(data: SignUpFormSchema) {
   const signUpResponse = await signUp({
     name: data.name,
     email: data.email,

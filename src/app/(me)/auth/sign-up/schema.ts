@@ -1,8 +1,8 @@
 import z from 'zod';
 import { emailSchema, passwordSchema } from '../schema';
 
-export type FormSchema = z.infer<typeof formSchema>;
-export const formSchema = z
+export type SignUpFormSchema = z.infer<typeof signUpFormSchema>;
+export const signUpFormSchema = z
   .object({
     terms_agreed: z.boolean().refine((value) => value),
     privacy_agreed: z.boolean().refine((value) => value),

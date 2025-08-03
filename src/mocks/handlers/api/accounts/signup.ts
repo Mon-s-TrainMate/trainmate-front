@@ -1,14 +1,14 @@
-import { formSchema } from '@/app/(me)/auth/sign-up/schema';
+import { signUpFormSchema } from '@/app/(me)/auth/sign-up/schema';
 import { API_HOST } from '@/lib/consts';
 import { http, HttpResponse } from 'msw';
 import { ZodError } from 'zod';
 import { createUser, users } from '../../../data';
 
 export const mswSignup = http.post(
-  API_HOST + '/api/accounts/login',
+  API_HOST + '/api/accounts/signup',
   async ({ request }) => {
     try {
-      const body = await formSchema.parseAsync(request.json());
+      const body = signUpFormSchema.parse(await request.json());
       const existsUser = users.find((user) => user.email === body.email);
       if (existsUser != null) {
         return HttpResponse.json(
@@ -46,7 +46,10 @@ export const mswSignup = http.post(
             success: false,
             message: '회원가입에 실패했습니다.',
             errors: Object.fromEntries(
-              error.issues.map((issue) => [issue.path.join('.'), issue.message])
+              error.issues.map((issue) => [
+                issue.path.join('.'),
+                [issue.message],
+              ])
             ),
           },
           { status: 400 }

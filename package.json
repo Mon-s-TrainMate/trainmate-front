@@ -12,7 +12,7 @@
     "test:e2e:ui": "npm run test:e2e -- --ui",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "mock": "bun run src/mocks/dev-server.ts --watch"
+    "mock": "bun run --watch src/mocks/dev-server.ts"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.0",

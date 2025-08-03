@@ -16,13 +16,13 @@ import { useForm } from 'react-hook-form';
 import { useSignUpFormApiErrors } from '../_hooks/use-errors';
 import { useUserDataGuard } from '../_hooks/use-user-data';
 import { getSignUpFormSessionData } from '../_lib/session-data';
-import { formSchema } from '../schema';
+import { signUpFormSchema } from '../schema';
 import { keys as step0Keys } from './step-0';
 import { keys as step1Keys } from './step-1';
 
 const prevKeys = [...step0Keys, ...step1Keys];
 
-const schema = formSchema
+const schema = signUpFormSchema
   .pick({
     password: true,
     confirm_password: true,

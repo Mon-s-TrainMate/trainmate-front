@@ -11,7 +11,7 @@ import { GreetingStep } from './_steps/greeting-step';
 import { Step0, keys as step0Keys } from './_steps/step-0';
 import { Step1, keys as step1Keys } from './_steps/step-1';
 import { Step2, keys as step2Keys } from './_steps/step-2';
-import { formSchema } from './schema';
+import { signUpFormSchema } from './schema';
 
 export default function Page() {
   const [stepIndex, setStepIndex] = useState(2);
@@ -21,7 +21,7 @@ export default function Page() {
   const next = () => setStepIndex((step) => step + 1);
   const back = () => setStepIndex((step) => step - 1);
   const onSubmit = async (values: unknown) => {
-    const data = formSchema.parse(values);
+    const data = signUpFormSchema.parse(values);
     const res = await createUser(data);
     if (res.success) {
       clearSignUpFormSessionData();
