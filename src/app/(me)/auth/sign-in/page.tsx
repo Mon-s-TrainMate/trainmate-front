@@ -10,6 +10,15 @@ import {
   FormLabel,
   FormMessage,
 } from '@/components/ui/form';
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from '@/components/ui/alert-dialog';
 import { Input } from '@/components/ui/input';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Separator } from '@/components/ui/separator';
@@ -21,6 +30,8 @@ import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { getUser } from './_actions/action';
 import { SignInFormSchema, signInFormSchema } from './schema';
+import { AlertCircle } from 'lucide-react';
+import { useState } from 'react';
 
 const userTypes: { value: SignInFormSchema['userType']; label: string }[] = [
   { value: 'member', label: '개인 회원' },
@@ -30,6 +41,8 @@ const userTypes: { value: SignInFormSchema['userType']; label: string }[] = [
 export default function Page() {
   const router = useRouter();
   const queryClient = useQueryClient();
+  const [isAlertOpen, setIsAlertOpen] = useState(false);
+
   const form = useForm({
     resolver: zodResolver(signInFormSchema),
     defaultValues: {
@@ -55,12 +68,12 @@ export default function Page() {
             } else {
               for (const [key, errors] of Object.entries(res.errors)) {
                 const fieldName = key === 'non_field_errors' ? 'root' : key;
-
                 form.setError(fieldName as 'root', {
                   type: 'manual',
                   message: errors[0],
                 });
               }
+              setIsAlertOpen(true);
             }
           })}
         >
@@ -176,6 +189,29 @@ export default function Page() {
           </Link>
         </form>
       </Form>
+
+      <AlertDialog open={isAlertOpen} onOpenChange={setIsAlertOpen}>
+        <AlertDialogContent>
+          <AlertDialogHeader className="flex-row">
+            <AlertCircle color="#E33434" />
+            <div>
+              <AlertDialogTitle>계정 정보를 확인해주세요.</AlertDialogTitle>
+              <AlertDialogDescription>
+                가입하신 이메일, 비밀번호를 다시 확인해주세요.
+              </AlertDialogDescription>
+            </div>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogAction
+              autoFocus
+              className="w-full"
+              onClick={() => setIsAlertOpen(false)}
+            >
+              확인하기
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </div>
   );
 }
