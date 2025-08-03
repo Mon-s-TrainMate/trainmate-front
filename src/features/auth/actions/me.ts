@@ -12,5 +12,7 @@ export async function getUsersMe() {
     id: claim.user_id as number,
     name: claim.name as string,
     userType: claim.user_type as 'trainer' | 'member',
+    email: claim.email as string,
+    thumbnail: undefined,
   };
 }
