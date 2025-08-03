@@ -30,6 +30,7 @@ import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { getUser } from './_actions/action';
 import { SignInFormSchema, signInFormSchema } from './schema';
+import { AlertCircle } from 'lucide-react';
 
 const userTypes: { value: SignInFormSchema['userType']; label: string }[] = [
   { value: 'member', label: '개인 회원' },
@@ -188,14 +189,17 @@ export default function Page() {
 
       <AlertDialog open={true}>
         <AlertDialogContent>
-          <AlertDialogHeader>
-            <AlertDialogTitle>계정 정보를 확인해주세요.</AlertDialogTitle>
-            <AlertDialogDescription>
-              가입하신 이메일, 비밀번호를 다시 확인해주세요.
-            </AlertDialogDescription>
+          <AlertDialogHeader className="flex-row">
+            <AlertCircle color="#E33434" />
+            <div>
+              <AlertDialogTitle>계정 정보를 확인해주세요.</AlertDialogTitle>
+              <AlertDialogDescription>
+                가입하신 이메일, 비밀번호를 다시 확인해주세요.
+              </AlertDialogDescription>
+            </div>
           </AlertDialogHeader>
           <AlertDialogFooter>
-            <AlertDialogAction>확인하기</AlertDialogAction>
+            <AlertDialogAction className="w-full">확인하기</AlertDialogAction>
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>
