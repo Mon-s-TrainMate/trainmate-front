@@ -8,7 +8,7 @@ export const mswSignup = http.post(
   API_HOST + '/api/accounts/signup',
   async ({ request }) => {
     try {
-      const body = await formSchema.parseAsync(request.json());
+      const body = formSchema.parse(await request.json());
       const existsUser = users.find((user) => user.email === body.email);
       if (existsUser != null) {
         return HttpResponse.json(
