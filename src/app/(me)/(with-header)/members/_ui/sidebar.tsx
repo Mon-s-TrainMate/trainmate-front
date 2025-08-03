@@ -3,6 +3,7 @@
 import { Input } from '@/components/ui/input';
 import { Separator } from '@/components/ui/separator';
 import { useUsersMe } from '@/features/auth/hooks/use-me';
+import { useMemberList } from '@/features/member/hooks/use-member-list';
 import { UserRoundIcon } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -11,11 +12,11 @@ import { MemberItem } from './member-item';
 import { Member } from './types';
 
 export function Sidebar() {
-  const members: Member[] = [];
+  const { data: members } = useMemberList();
   return (
     <aside className="bg-white">
       <header className="flex items-center p-6 border-b">
-        <MemberListHeader count={members.length} />
+        <MemberListHeader count={members?.length ?? 0} />
       </header>
       <MemberListContent members={members} />
     </aside>
@@ -38,14 +39,13 @@ function MemberListHeader({ count }: MemberListHeader) {
 }
 
 interface MemberContentProps {
-  members: Member[];
+  members?: Member[];
 }
 function MemberListContent({ members }: MemberContentProps) {
   const { data: user } = useUsersMe();
   const [keyword, setKeyword] = useState('');
-  const filteredMembers = members.filter((member) =>
-    member.name.includes(keyword)
-  );
+  const filteredMembers =
+    members?.filter((member) => member.name.includes(keyword)) ?? [];
   return (
     <div className="flex flex-col gap-y-3 px-3 py-6">
       <div className="mx-2.5">

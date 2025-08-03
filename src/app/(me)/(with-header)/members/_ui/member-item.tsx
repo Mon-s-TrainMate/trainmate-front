@@ -21,20 +21,20 @@ const memberItemIconStyles = cva('', {
 interface Props {
   name: string;
   email: string;
-  thumbnail?: string;
+  profileImage?: string;
   recentRecordTime?: Date;
   active?: boolean;
 }
 export function MemberItem({
   name,
   email,
-  thumbnail,
+  profileImage,
   recentRecordTime,
   active = false,
 }: Props) {
   return (
     <div className={memberItemStyles({ active })}>
-      <UserAvatar size="sm" src={thumbnail} />
+      <UserAvatar size="sm" src={profileImage} />
       <div className="flex-1">
         <div className="font-bold text-gray-8">{name}</div>
         <div className="text-xs text-gray-5">{email}</div>

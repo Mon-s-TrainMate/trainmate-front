@@ -1,4 +1,5 @@
 import { Button } from '@/components/ui/button';
+import { authGuard } from '@/features/auth/actions/auth-guard';
 import { getMemberProfileById } from '@/features/member/api/get-member-profile-by-id';
 import { getMemberRecordList } from '@/features/member/api/get-member-record-list';
 import { formatDuration } from '@/lib/time/format-duration';
@@ -12,6 +13,7 @@ interface Props {
 }
 export default async function Page({ params }: Props) {
   const { memberId } = await params;
+  await authGuard();
   const profile = await getMemberProfileById(memberId);
   const sets = await getMemberRecordList(memberId);
   const totalDurationSec = sets.reduce(

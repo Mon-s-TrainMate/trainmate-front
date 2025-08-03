@@ -1,6 +1,7 @@
 'use server';
 
 import { getAccessToken } from '@/features/auth/server-session';
+import { API_HOST } from '@/lib/consts';
 
 export type MemberRecordListResponse = {
   success: true;
@@ -22,44 +23,23 @@ export async function getMemberRecordList(
     limit?: number;
   }
 ) {
-  await getAccessToken();
-  const body: MemberRecordListResponse = {
-    success: true,
-    sets: [
-      {
-        set_id: 1,
-        is_trainer: false,
-        exercise_name: '숨쉬기 운동',
-        set_count: 5,
-        total_duration_sec: 65536,
-        calories_burned: 0,
-      },
-      {
-        set_id: 2,
-        is_trainer: true,
-        exercise_name: '로잉 머신',
-        set_count: 3,
-        total_duration_sec: 1024,
-        calories_burned: 1510,
-      },
-      {
-        set_id: 3,
-        is_trainer: true,
-        exercise_name: '머신 랫 풀 다운',
-        set_count: 2,
-        total_duration_sec: 512,
-        calories_burned: 1610,
-      },
-      {
-        set_id: 4,
-        is_trainer: true,
-        exercise_name: '덤벨 로우',
-        set_count: 1,
-        total_duration_sec: 32,
-        calories_burned: 810,
-      },
-    ],
-  };
+  const token = await getAccessToken();
+  const url = new URL(`${API_HOST}/api/members/${memberId}/records`);
+  if (options?.date != null) url.searchParams.append('date', options.date);
+  const res = await fetch(url, {
+    headers: {
+      'content-type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  const body: MemberRecordListResponse = await res.json();
+  if (!res.ok) {
+    if (res.status === 404) {
+      return [];
+    }
+    throw res.status;
+  }
+
   return body.sets.map((set) => ({
     id: set.set_id,
     isTrainer: set.is_trainer,
