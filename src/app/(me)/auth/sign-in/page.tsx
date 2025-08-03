@@ -31,6 +31,7 @@ import { useForm } from 'react-hook-form';
 import { getUser } from './_actions/action';
 import { SignInFormSchema, signInFormSchema } from './schema';
 import { AlertCircle } from 'lucide-react';
+import { useState } from 'react';
 
 const userTypes: { value: SignInFormSchema['userType']; label: string }[] = [
   { value: 'member', label: '개인 회원' },
@@ -40,6 +41,7 @@ const userTypes: { value: SignInFormSchema['userType']; label: string }[] = [
 export default function Page() {
   const router = useRouter();
   const queryClient = useQueryClient();
+  const [isAlertOpen, setIsAlertOpen] = useState(false);
 
   const form = useForm({
     resolver: zodResolver(signInFormSchema),
@@ -71,6 +73,7 @@ export default function Page() {
                   message: errors[0],
                 });
               }
+              setIsAlertOpen(true);
             }
           })}
         >
@@ -187,7 +190,7 @@ export default function Page() {
         </form>
       </Form>
 
-      <AlertDialog>
+      <AlertDialog open={isAlertOpen} onOpenChange={setIsAlertOpen}>
         <AlertDialogContent>
           <AlertDialogHeader className="flex-row">
             <AlertCircle color="#E33434" />
@@ -199,7 +202,12 @@ export default function Page() {
             </div>
           </AlertDialogHeader>
           <AlertDialogFooter>
-            <AlertDialogAction className="w-full">확인하기</AlertDialogAction>
+            <AlertDialogAction
+              className="w-full"
+              onClick={() => setIsAlertOpen(false)}
+            >
+              확인하기
+            </AlertDialogAction>
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>
