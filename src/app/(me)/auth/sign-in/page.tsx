@@ -203,6 +203,7 @@ export default function Page() {
           </AlertDialogHeader>
           <AlertDialogFooter>
             <AlertDialogAction
+              autoFocus
               className="w-full"
               onClick={() => setIsAlertOpen(false)}
             >
