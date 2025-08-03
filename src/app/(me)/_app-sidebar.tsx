@@ -36,7 +36,7 @@ const items = [
 
 export function AppSidebar() {
   return (
-    <aside className="w-22 shadow-sidebar grid grid-rows-[max-content_1fr_max-content] z-50 bg-white">
+    <aside className="w-22 shadow-sidebar grid grid-rows-[max-content_1fr_max-content] z-50 bg-white sticky top-0">
       <header className="pt-6 px-4 flex flex-col gap-y-4 items-center">
         <Link href="/">
           <UserAvatar />
