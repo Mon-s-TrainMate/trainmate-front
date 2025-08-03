@@ -187,7 +187,7 @@ export default function Page() {
         </form>
       </Form>
 
-      <AlertDialog open={true}>
+      <AlertDialog>
         <AlertDialogContent>
           <AlertDialogHeader className="flex-row">
             <AlertCircle color="#E33434" />
