@@ -11,7 +11,8 @@
     "test:e2e": "playwright test",
     "test:e2e:ui": "npm run test:e2e -- --ui",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "mock": "bun run src/mocks/dev-server.ts --watch"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.0",
@@ -41,10 +42,12 @@
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
+    "@mswjs/http-middleware": "^0.10.3",
     "@playwright/test": "^1.54.1",
     "@storybook/nextjs": "^9.0.18",
     "@tailwindcss/postcss": "^4",
     "@tanstack/eslint-plugin-query": "^5.81.2",
+    "@types/express": "^5.0.3",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
@@ -52,7 +55,9 @@
     "eslint-config-next": "15.4.4",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-storybook": "^9.0.18",
+    "express": "^5.1.0",
     "lefthook": "^1.12.2",
+    "msw": "^2.10.4",
     "prettier": "^3.6.2",
     "storybook": "^9.0.18",
     "tailwindcss": "^4",
