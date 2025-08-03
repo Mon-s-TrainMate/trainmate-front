@@ -10,6 +10,15 @@ import {
   FormLabel,
   FormMessage,
 } from '@/components/ui/form';
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from '@/components/ui/alert-dialog';
 import { Input } from '@/components/ui/input';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Separator } from '@/components/ui/separator';
@@ -19,6 +28,7 @@ import { useQueryClient } from '@tanstack/react-query';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
+import { useState } from 'react';
 import { getUser } from './_actions/action';
 import { SignInFormSchema, signInFormSchema } from './schema';
 
@@ -30,6 +40,10 @@ const userTypes: { value: SignInFormSchema['userType']; label: string }[] = [
 export default function Page() {
   const router = useRouter();
   const queryClient = useQueryClient();
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
+
   const form = useForm({
     resolver: zodResolver(signInFormSchema),
     defaultValues: {
@@ -46,21 +60,25 @@ export default function Page() {
         <form
           className="flex flex-col gap-y-10 max-w-lg px-4 w-full"
           onSubmit={form.handleSubmit(async (values) => {
-            const res = await getUser(values);
-            if (res.success) {
-              await queryClient.invalidateQueries({
-                queryKey: getUsersQueryKey('me'),
-              });
-              router.push('/');
-            } else {
-              for (const [key, errors] of Object.entries(res.errors)) {
-                const fieldName = key === 'non_field_errors' ? 'root' : key;
-
-                form.setError(fieldName as 'root', {
-                  type: 'manual',
-                  message: errors[0],
+            try {
+              const res = await getUser(values);
+              if (res.success) {
+                await queryClient.invalidateQueries({
+                  queryKey: getUsersQueryKey('me'),
                 });
+                router.push('/');
+              } else {
+                for (const [key, errors] of Object.entries(res.errors)) {
+                  const fieldName = key === 'non_field_errors' ? 'root' : key;
+                  form.setError(fieldName as 'root', {
+                    type: 'manual',
+                    message: errors[0],
+                  });
+                }
               }
+            } catch (error) {
+              setErrorMessage('가입하신 이메일, 비밀번호를 다시 확인해주세요.');
+              setIsModalOpen(true);
             }
           })}
         >
@@ -176,6 +194,20 @@ export default function Page() {
           </Link>
         </form>
       </Form>
+
+      <AlertDialog open={isModalOpen} onOpenChange={setIsModalOpen}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>계정 정보를 확인해주세요.</AlertDialogTitle>
+            <AlertDialogDescription>{errorMessage}</AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogAction onClick={() => setIsModalOpen(false)}>
+              확인하기
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </div>
   );
 }
