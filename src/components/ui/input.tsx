@@ -2,9 +2,10 @@ import * as React from 'react';
 import { cva, type VariantProps } from 'class-variance-authority';
 import { Search } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { Button } from './button';
 
 const inputVariants = cva(
-  'file:text-foreground placeholder:text-muted-foreground selection:bg-primary placeholder:px-1 selection:text-primary-foreground dark:bg-input/30 border-input flex h-9 w-full min-w-0 rounded-md border bg-transparent px-3.75 py-1 text-base shadow-xs transition-[color,box-shadow] outline-none file:inline-flex file:h-7 file:border-0 file:bg-transparent file:text-sm file:font-medium disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50',
+  'file:text-foreground placeholder:text-muted-foreground selection:bg-primary placeholder:px-1 selection:text-primary-foreground dark:bg-input/30 border-input flex h-9 w-full min-w-0 rounded-[0.875rem] border bg-transparent px-3.75 py-1 text-base shadow-xs transition-[color,box-shadow] outline-none file:inline-flex file:h-7 file:border-0 file:bg-transparent file:text-sm file:font-medium disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50',
   {
     variants: {
       type: {
@@ -29,10 +30,12 @@ function Input({
   type,
   inputSize,
   showSearchIcon = false,
+  isButton = false,
   ...props
 }: React.ComponentProps<'input'> &
   VariantProps<typeof inputVariants> & {
     showSearchIcon?: boolean;
+    isButton?: boolean;
   }) {
   if (showSearchIcon) {
     return (
@@ -53,6 +56,28 @@ function Input({
     );
   }
 
+  const buttonSize = {
+    normal: 'w-24.5 h-17',
+    small: 'w-24.5 h-12',
+  };
+
+  if (isButton) {
+    return (
+      <div className="flex gap-2">
+        <input
+          type={type}
+          className={cn(inputVariants({ type, inputSize }), className)}
+          {...props}
+        />
+        <Button
+          variant="primary"
+          className={buttonSize[inputSize ?? 'normal'] ?? buttonSize.normal}
+        >
+          button
+        </Button>
+      </div>
+    );
+  }
   return (
     <input
       type={type}
