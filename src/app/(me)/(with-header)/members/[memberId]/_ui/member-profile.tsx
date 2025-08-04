@@ -28,7 +28,7 @@ export function MemberProfile({
         <Value title="근골격량" value={muscleMassKg} unit="kg" />
       </div>
       <div>
-        <Button size="icon" variant="ghost" onClick={onClick}>
+        <Button size="icon" variant="text" onClick={onClick}>
           <PlusCircleIcon />
         </Button>
       </div>
