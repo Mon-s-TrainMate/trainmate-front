@@ -1,10 +1,10 @@
 import { API_HOST } from '@/lib/consts';
 import { http, HttpResponse } from 'msw';
-import { users } from '../../../data';
-import { signJwt } from '../../../utils';
+import { users } from '../../data';
+import { signJwt } from '../../utils';
 
 export const mswLogin = http.post<never, { email: string }>(
-  API_HOST + '/api/accounts/login',
+  API_HOST + '/auth/login/',
   async ({ request }) => {
     const body = await request.json();
 
