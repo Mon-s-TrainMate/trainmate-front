@@ -78,7 +78,7 @@ export function Step2({ onBack, onSubmit }: Props) {
           control={form.control}
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="text-sm text-gray-8">비밀번호</FormLabel>
+              <FormLabel className="text-sm text-black">비밀번호</FormLabel>
               <FormControl className="text-lg">
                 <Input
                   type="password"
@@ -96,7 +96,7 @@ export function Step2({ onBack, onSubmit }: Props) {
           control={form.control}
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="text-sm text-gray-8">
+              <FormLabel className="text-sm text-black">
                 비밀번호 확인
               </FormLabel>
               <FormControl className="text-lg">

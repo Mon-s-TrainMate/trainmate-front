@@ -44,7 +44,7 @@ export function AppSidebar() {
         <div
           role="separator"
           aria-orientation="horizontal"
-          className="w-10 h-0.5 bg-gray-1 rounded-full"
+          className="w-10 h-0.5 bg-gray-4 rounded-full"
         ></div>
       </header>
       <section className="py-8.25 flex flex-col gap-y-2">
@@ -68,7 +68,7 @@ function NavLink({ href, Icon }: NavLinkProps) {
   if (href == null) {
     return (
       <button className="appearance-none flex justify-center">
-        <div className="flex items-center justify-center size-12 rounded-full text-gray-5">
+        <div className="flex items-center justify-center size-12 rounded-full text-gray-2">
           <Icon />
         </div>
       </button>
@@ -84,7 +84,7 @@ function NavLink({ href, Icon }: NavLinkProps) {
         className="hidden group-data-[active=true]:block absolute size-2 bg-primary right-full top-1/2 translate-x-1/2 -translate-y-1/2 rounded-full"
         aria-hidden
       ></div>
-      <div className="flex items-center justify-center size-12 rounded-full text-gray-8 group-data-[active=true]:bg-primary-foreground group-data-[active=true]:text-primary">
+      <div className="flex items-center justify-center size-12 rounded-full text-black group-data-[active=true]:bg-primary-foreground group-data-[active=true]:text-primary">
         <Icon />
       </div>
     </Link>

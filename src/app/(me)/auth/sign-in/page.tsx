@@ -85,7 +85,7 @@ export default function Page() {
                 <FormLabel className="sr-only">회원 유형</FormLabel>
                 <FormControl>
                   <RadioGroup
-                    className="grid grid-cols-2 gap-2.5 p-2 rounded-xl bg-gray-1"
+                    className="grid grid-cols-2 gap-2.5 p-2 rounded-xl bg-gray-4"
                     onValueChange={field.onChange}
                     value={field.value}
                   >
@@ -97,7 +97,7 @@ export default function Page() {
                             value={userType.value}
                           />
                         </FormControl>
-                        <FormLabel className="flex justify-center items-center peer-aria-checked:bg-white peer-aria-checked:shadow-tab-active bg-transparent text-gray-5 rounded-md h-13 text-lg font-bold text-center peer-aria-checked:text-primary">
+                        <FormLabel className="flex justify-center items-center peer-aria-checked:bg-white peer-aria-checked:shadow-tab-active bg-transparent text-gray-2 rounded-md h-13 text-lg font-bold text-center peer-aria-checked:text-primary">
                           {userType.label}
                         </FormLabel>
                       </FormItem>
@@ -181,7 +181,7 @@ export default function Page() {
           <Button type="submit">로그인하기</Button>
           <Link
             href="/auth/sign-up"
-            className="grid grid-cols-[1fr_max-content_1fr] items-center gap-x-6.25 break-keep text-gray-5"
+            className="grid grid-cols-[1fr_max-content_1fr] items-center gap-x-6.25 break-keep text-gray-2"
           >
             <Separator />
             <span>회원가입</span>

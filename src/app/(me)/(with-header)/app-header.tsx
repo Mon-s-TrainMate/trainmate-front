@@ -29,16 +29,16 @@ function SignedInActions({ user }: SignedInActionsProps) {
     <div className="ml-auto flex items-center gap-x-9">
       <div className="flex items-center gap-x-4">
         <UserAvatar size="xs" />
-        <span className="text-xl break-keep text-gray-8">{user.name}</span>
+        <span className="text-xl break-keep text-black">{user.name}</span>
         <Separator
           orientation="vertical"
-          className="min-h-3 rounded-full bg-gray-2"
+          className="min-h-3 rounded-full bg-gray-3"
         />
-        <span className="text-gray-5">
+        <span className="text-gray-2">
           {user.userType === 'trainer' ? '트레이너' : '회원'}
         </span>
       </div>
-      <button className="flex items-center justify-center text-gray-8">
+      <button className="flex items-center justify-center text-black">
         <BellIcon strokeWidth={1} />
       </button>
     </div>

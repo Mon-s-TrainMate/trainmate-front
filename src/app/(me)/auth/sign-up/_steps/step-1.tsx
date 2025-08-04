@@ -83,7 +83,7 @@ export function Step1({ onBack, onNext }: Props) {
           name="user_type"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="text-sm text-gray-8">
+              <FormLabel className="text-sm text-black">
                 가입 유형을 선택해주세요.
               </FormLabel>
               <FormControl>
@@ -116,7 +116,7 @@ export function Step1({ onBack, onNext }: Props) {
           control={form.control}
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="text-sm text-gray-8">이름</FormLabel>
+              <FormLabel className="text-sm text-black">이름</FormLabel>
               <FormControl className="text-lg">
                 <Input
                   autoComplete="name"
@@ -133,7 +133,7 @@ export function Step1({ onBack, onNext }: Props) {
           control={form.control}
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="text-sm text-gray-8">이메일</FormLabel>
+              <FormLabel className="text-sm text-black">이메일</FormLabel>
               <FormControl className="text-lg">
                 <Input
                   type="email"

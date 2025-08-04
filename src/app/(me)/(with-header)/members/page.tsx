@@ -7,7 +7,7 @@ export default async function Page() {
     <div className="flex justify-center items-center">
       <div className="flex items-center gap-x-5">
         <UserAvatar size="lg" />
-        <p className="text-2xl text-gray-6">
+        <p className="text-2xl text-gray-1">
           회원님을 선택하고
           <br />
           운동을 시작해 볼까요?

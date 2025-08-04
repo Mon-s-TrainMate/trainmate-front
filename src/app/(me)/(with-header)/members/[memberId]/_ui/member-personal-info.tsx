@@ -44,8 +44,8 @@ export function MemberPersonalInfoWidget({
     <div className="rounded-lg bg-white p-6 flex items-start gap-x-5">
       <UserAvatar src={thumbnail} size="lg" />
       <div className="flex-1">
-        <div className="text-gray-8 text-2xl font-semibold">{name}</div>
-        <div className="text-gray-5 flex items-center gap-x-7.5">
+        <div className="text-black text-2xl font-semibold">{name}</div>
+        <div className="text-gray-2 flex items-center gap-x-7.5">
           {email && (
             <div className="flex items-center gap-x-2">
               <MailIcon />
@@ -129,17 +129,17 @@ function ProfileEditDialog({
                 name="phoneNumber"
                 defaultValue={phoneNumber ?? ''}
                 placeholder="010-0000-0000"
-                className={state?.errors?.phoneNumber ? 'border-red-500' : ''}
+                className={state?.errors?.phoneNumber ? 'border-red-1' : ''}
               />
               {state?.errors?.phoneNumber && (
-                <p className="text-sm text-red-600">
+                <p className="text-sm text-red-1">
                   {state.errors.phoneNumber[0]}
                 </p>
               )}
             </div>
           </div>
           {state?.message && !state?.success && (
-            <div className="text-sm text-red-600">{state.message}</div>
+            <div className="text-sm text-red-1">{state.message}</div>
           )}
 
           <DialogFooter className="grid grid-cols-2 gap-x-2.5">
