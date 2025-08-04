@@ -30,7 +30,7 @@ function MemberListHeader({ count }: MemberListHeader) {
   return (
     <div className="flex-1 gap-x-2.5 flex items-center">
       <div className="text-2xl font-bold">회원목록</div>
-      <div className="text-[0.625rem] text-gray-7 bg-gray-1 flex items-center py-0.5 px-2 gap-x-1 rounded-full">
+      <div className="text-[0.625rem] text-black bg-gray-4 flex items-center py-0.5 px-2 gap-x-1 rounded-full">
         <UserRoundIcon size="0.625rem" />
         {count}
       </div>

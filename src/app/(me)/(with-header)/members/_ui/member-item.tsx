@@ -36,10 +36,10 @@ export function MemberItem({
     <div className={memberItemStyles({ active })}>
       <UserAvatar size="sm" src={profileImage} />
       <div className="flex-1">
-        <div className="font-bold text-gray-8">{name}</div>
-        <div className="text-xs text-gray-5">{email}</div>
+        <div className="font-bold text-black">{name}</div>
+        <div className="text-xs text-gray-2">{email}</div>
       </div>
-      <div className="flex items-center text-gray-8 gap-2">
+      <div className="flex items-center text-black gap-2">
         {recentRecordTime && <Time time={recentRecordTime} />}
         <ChevronRightIcon
           className={memberItemIconStyles({ active })}
@@ -50,7 +50,7 @@ export function MemberItem({
   );
 }
 
-const timeStyles = cva('text-xs text-gray-8', {
+const timeStyles = cva('text-xs text-black', {
   variants: {
     today: {
       true: 'text-primary',

@@ -39,7 +39,7 @@ export default async function Page({ params }: Props) {
         />
       </div>
       <div className="flex flex-col gap-y-5.5">
-        <div className="flex items-center justify-between tracking-[-1.18px] text-gray-7 font-light">
+        <div className="flex items-center justify-between tracking-[-1.18px] text-black font-light">
           <div>날짜</div>
           <div className="flex items-center gap-x-5">
             <div className="flex items-center gap-x-4">

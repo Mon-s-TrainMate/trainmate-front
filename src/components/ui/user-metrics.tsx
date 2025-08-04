@@ -10,17 +10,17 @@ const UserMetrics = ({
 
   return (
     <section className="font-light">
-      <h2 className="text-gray-5 text-xl">{title}</h2>
+      <h2 className="text-gray-2 text-xl">{title}</h2>
       <div className="flex items-center gap-15">
         <p className="text-[3.25rem]">
           {value.toLocaleString()}
           <span
-            className={`text-gray-8 ${isPlus ? 'text-[3.25rem]' : 'text-[1.5rem] ml-2'}`}
+            className={`text-black ${isPlus ? 'text-[3.25rem]' : 'text-[1.5rem] ml-2'}`}
           >
             {unit}
           </span>
         </p>
-        {!isLast && <div className="w-0.25 h-[2rem] bg-gray-2" />}
+        {!isLast && <div className="w-0.25 h-[2rem] bg-gray-3" />}
       </div>
     </section>
   );

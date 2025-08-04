@@ -29,7 +29,7 @@ const triggerContainerStyles = cva('flex justify-between pb-6 items-center', {
     },
   },
 });
-const triggerIconStyles = cva('text-gray-8 transition-all', {
+const triggerIconStyles = cva('text-black transition-all', {
   variants: {
     open: {
       true: 'rotate-180 text-primary',
@@ -40,7 +40,7 @@ const badgeStyles = cva('size-2 rounded-full min-w-2', {
   variants: {
     isTrainer: {
       true: 'bg-primary',
-      false: 'bg-gray-5',
+      false: 'bg-gray-2',
     },
   },
   defaultVariants: {
@@ -75,7 +75,7 @@ export function MemberRecordSummary({
           <div className={triggerContainerStyles({ open })}>
             <div className="flex items-center gap-x-3">
               <div className={badgeStyles({ isTrainer })}></div>
-              <div className="text-gray-8 font-bold tracking-[-0.18px]">
+              <div className="text-black font-bold tracking-[-0.18px]">
                 {exerciseName}
               </div>
             </div>
@@ -120,8 +120,8 @@ const valueContainerStyles = cva(
   {
     variants: {
       isMuted: {
-        true: 'text-gray-5',
-        false: 'text-gray-8',
+        true: 'text-gray-2',
+        false: 'text-black',
       },
     },
   }
@@ -144,7 +144,7 @@ interface Props {
 function Value({ Icon, value, unit, primary = false, isMuted }: Props) {
   return (
     <div className="flex items-center gap-x-3 tracking-[-1.18px]">
-      <div className="text-gray-5">
+      <div className="text-gray-2">
         <Icon />
       </div>
       <div className={valueContainerStyles({ isMuted })}>

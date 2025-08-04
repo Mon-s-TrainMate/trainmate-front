@@ -90,7 +90,7 @@ export function Step0(props: Props) {
             <div className="flex">
               <label
                 className={cn(
-                  'flex-1 flex items-center gap-x-2 text-gray-5 aria-checked:text-primary font-semibold text-base select-none'
+                  'flex-1 flex items-center gap-x-2 text-gray-2 aria-checked:text-primary font-semibold text-base select-none'
                 )}
                 aria-checked={allChecked}
               >
@@ -106,7 +106,7 @@ export function Step0(props: Props) {
               <AccordionTrigger className="w-8 justify-end" />
             </div>
             <AccordionContent>
-              <div className="rounded-xl py-2.5 px-4 border text-gray-5 max-h-85 overflow-y-auto">
+              <div className="rounded-xl py-2.5 px-4 border text-gray-2 max-h-85 overflow-y-auto">
                 {agreementData.all.content}
               </div>
             </AccordionContent>
@@ -121,7 +121,7 @@ export function Step0(props: Props) {
                     <FormItem className="flex-1">
                       <label
                         className={cn(
-                          'flex items-center gap-x-2 text-gray-5 aria-checked:text-primary font-semibold text-base select-none'
+                          'flex items-center gap-x-2 text-gray-2 aria-checked:text-primary font-semibold text-base select-none'
                         )}
                         aria-checked={field.value}
                       >
@@ -144,7 +144,7 @@ export function Step0(props: Props) {
                 <AccordionTrigger className="w-8 justify-end" />
               </div>
               <AccordionContent>
-                <div className="rounded-xl py-2.5 px-4 border text-gray-5 max-h-85 overflow-y-auto">
+                <div className="rounded-xl py-2.5 px-4 border text-gray-2 max-h-85 overflow-y-auto">
                   {item.content}
                 </div>
               </AccordionContent>

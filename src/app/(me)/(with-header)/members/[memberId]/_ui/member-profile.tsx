@@ -44,14 +44,14 @@ interface ValueProps {
 function Value({ title, value, unit }: ValueProps) {
   return (
     <div className="grid font-light tracking-[-1.18px]">
-      <div className="text-gray-5 text-xs">{title}</div>
+      <div className="text-gray-2 text-xs">{title}</div>
       {value != null ? (
-        <div className="text-gray-8 text-2xl flex items-end gap-x-2">
+        <div className="text-black text-2xl flex items-end gap-x-2">
           <span className="text-4xl">{value}</span>
           {unit}
         </div>
       ) : (
-        <div className="text-gray-5 flex items-center justify-center w-full h-full min-w-18 min-h-10">
+        <div className="text-gray-2 flex items-center justify-center w-full h-full min-w-18 min-h-10">
           미입력
         </div>
       )}

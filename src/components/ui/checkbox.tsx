@@ -6,7 +6,7 @@ import { CheckIcon } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 const checkboxVariants = cva(
-  'peer border-[var(--gray-5)] dark:border-[var(--gray-5)] dark:bg-input/30 data-[state=checked]:border-primary focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 size-4 shrink-0 rounded-[4px] border shadow-xs transition-shadow outline-none focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50',
+  'peer border-gray-2 dark:border-gray-2 dark:bg-input/30 data-[state=checked]:border-primary focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 size-4 shrink-0 rounded-[4px] border shadow-xs transition-shadow outline-none focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50',
   {
     variants: {
       checkboxSize: {
@@ -34,7 +34,7 @@ function Checkbox({
       <CheckboxPrimitive.Indicator
         forceMount
         data-slot="checkbox-indicator"
-        className="flex items-center justify-center text-[var(--gray-5)] data-[state=checked]:text-primary"
+        className="flex items-center justify-center text-gray-2 data-[state=checked]:text-primary"
       >
         <CheckIcon className="size-3" />
       </CheckboxPrimitive.Indicator>

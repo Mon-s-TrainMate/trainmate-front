@@ -11,16 +11,24 @@
   --radius-xl: 0.875rem;
   --radius-full: 99999rem;
   --color-*: initial;
+
+  --color-main-1: var(--main-1);
+  --color-main-2: var(--main-2);
+  --color-main-3: var(--main-3);
+  --color-main-4: var(--main-4);
+  --color-main-5: var(--main-5);
+
   --color-white: var(--white);
+  --color-gray-5: var(--gray-5);
+  --color-gray-4: var(--gray-4);
+  --color-gray-3: var(--gray-3);
+  --color-gray-2: var(--gray-2);
+  --color-gray-1: var(--gray-1);
   --color-black: var(--black);
-  --color-gray-0\.5: var(--gray-0\.5); /* background */
-  --color-gray-1: var(--gray-1); /* light gray 01 */
-  --color-gray-2: var(--gray-2); /* light gray 02 */
-  --color-gray-5: var(--gray-5); /* gray */
-  --color-gray-6: var(--gray-6); /* medium gray 01 */
-  --color-gray-7: var(--gray-7);
-  --color-gray-8: var(--gray-8); /* black */
-  --color-red-1: var(--red-1); /*red*/
+
+  --color-red-1: var(--red-1);
+  --color-red-2: var(--red-2);
+
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -28,8 +36,6 @@
   --color-popover: var(--popover);
   --color-popover-foreground: var(--popover-foreground);
   --color-primary: var(--primary);
-  --color-primary-3: var(--primary-3);
-  --color-primary-4: var(--primary-4);
   --color-primary-foreground: var(--primary-foreground);
   --color-secondary: var(--secondary);
   --color-secondary-foreground: var(--secondary-foreground);
@@ -40,7 +46,6 @@
   --color-destructive: var(--destructive);
   --color-border: var(--border);
   --color-input: var(--input);
-  --color-button-primary-hover: var(--button-primary-hover);
   --color-ring: var(--ring);
   --color-chart-1: var(--chart-1);
   --color-chart-2: var(--chart-2);
@@ -69,37 +74,40 @@
     'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji', 'Segoe UI Emoji',
     'Segoe UI Symbol', sans-serif;
 
+  --main-1: #4845d3;
+  --main-2: #615ef0;
+  --main-3: #908ee6;
+  --main-4: #bcbbff;
+  --main-5: #f6f6fe;
+
   --white: #ffffff;
-  --black: #000000;
-  --gray-0\.5: #f8f8f8;
-  --gray-1: #f0f0f0;
-  --gray-2: #d8d8d8;
-  --gray-5: #b4b4b4;
-  --gray-6: #7f7f7f;
-  --gray-7: #585858;
-  --gray-8: #484848;
+  --gray-5: #f8f8f8;
+  --gray-4: #f0f0f0;
+  --gray-3: #d8d8d8;
+  --gray-2: #b4b4b4;
+  --gray-1: #7f7f7f;
+  --black: #484848;
+
   --red-1: #e33434;
+  --red-2: #e86f6f;
 
   --background: var(--white);
-  --foreground: var(--gray-8);
+  --foreground: var(--black);
   --card: var(--white);
-  --card-foreground: var(--gray-8);
+  --card-foreground: var(--black);
   --popover: var(--white);
-  --popover-foreground: var(--gray-8);
-  --primary: #615ef0;
-  --primary-3: #908ee6;
-  --primary-4: #bcbbff;
-  --primary-foreground: #f6f6fe;
-  --secondary: var(--gray-1);
-  --secondary-foreground: var(--gray-8);
-  --muted: var(--gray-1);
-  --muted-foreground: var(--gray-5);
-  --accent: var(--gray-1);
-  --accent-foreground: var(--gray-8);
+  --popover-foreground: var(--black);
+  --primary: var(--main-2);
+  --primary-foreground: var(--main-5);
+  --secondary: var(--gray-4);
+  --secondary-foreground: var(--black);
+  --muted: var(--gray-4);
+  --muted-foreground: var(--gray-2);
+  --accent: var(--gray-4);
+  --accent-foreground: var(--black);
   --destructive: oklch(0.577 0.245 27.325);
-  --border: var(--gray-1);
-  --input: var(--gray-2);
-  --button-primary-hover: #4845d3;
+  --border: var(--gray-4);
+  --input: var(--gray-3);
   --ring: oklch(0.705 0.015 286.067);
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
@@ -107,11 +115,11 @@
   --chart-4: oklch(0.828 0.189 84.429);
   --chart-5: oklch(0.769 0.188 70.08);
   --sidebar: var(--white);
-  --sidebar-foreground: var(--gray-8);
-  --sidebar-primary: var(--gray-8);
+  --sidebar-foreground: var(--black);
+  --sidebar-primary: var(--black);
   --sidebar-primary-foreground: var(--white);
-  --sidebar-accent: var(--gray-1);
-  --sidebar-accent-foreground: var(--gray-8);
+  --sidebar-accent: var(--gray-4);
+  --sidebar-accent-foreground: var(--black);
   --sidebar-border: oklch(0.92 0.004 286.32);
   --sidebar-ring: oklch(0.705 0.015 286.067);
 }
