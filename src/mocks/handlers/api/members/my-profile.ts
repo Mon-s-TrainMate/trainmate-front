@@ -1,3 +1,4 @@
+import { UpdateMemberProfileData } from '@/features/member/api/update-member-profile';
 import { API_HOST } from '@/lib/consts';
 import { users } from '@/mocks/data';
 import { withAuthorization } from '@/mocks/utils';
@@ -40,7 +41,7 @@ export const mswMyProfile = http.get(
 );
 
 // PUT /api/members/profile/ - Full profile update
-export const mswUpdateMyProfile = http.put(
+export const mswUpdateMyProfile = http.put<never, UpdateMemberProfileData>(
   API_HOST + '/api/members/profile/',
   async ({ request }) => {
     const payload = await withAuthorization(request);
@@ -59,15 +60,13 @@ export const mswUpdateMyProfile = http.put(
 
     // Update user data
     const user = users[userIndex];
-    if (body.profile_image !== undefined)
-      user.profile_image = body.profile_image;
-    if (body.age !== undefined) user.age = body.age;
-    if (body.height_cm !== undefined) user.height_cm = body.height_cm;
-    if (body.weight_kg !== undefined) user.weight_kg = body.weight_kg;
-    if (body.body_fat_percentage !== undefined)
+    if (body.profile_image != null) user.profile_image = body.profile_image;
+    if (body.age != null) user.age = body.age;
+    if (body.height_cm != null) user.height_cm = body.height_cm;
+    if (body.weight_kg != null) user.weight_kg = body.weight_kg;
+    if (body.body_fat_percentage != null)
       user.body_fat_percentage = body.body_fat_percentage;
-    if (body.muscle_mass_kg !== undefined)
-      user.muscle_mass_kg = body.muscle_mass_kg;
+    if (body.muscle_mass_kg != null) user.muscle_mass_kg = body.muscle_mass_kg;
     user.updated_at = new Date().toISOString();
 
     return HttpResponse.json({
@@ -91,7 +90,7 @@ export const mswUpdateMyProfile = http.put(
 );
 
 // PATCH /api/members/profile/ - Partial profile update
-export const mswPatchMyProfile = http.patch(
+export const mswPatchMyProfile = http.patch<never, UpdateMemberProfileData>(
   API_HOST + '/api/members/profile/',
   async ({ request }) => {
     const payload = await withAuthorization(request);
@@ -110,15 +109,13 @@ export const mswPatchMyProfile = http.patch(
 
     // Update user data (same logic as PUT for partial updates)
     const user = users[userIndex];
-    if (body.profile_image !== undefined)
-      user.profile_image = body.profile_image;
-    if (body.age !== undefined) user.age = body.age;
-    if (body.height_cm !== undefined) user.height_cm = body.height_cm;
-    if (body.weight_kg !== undefined) user.weight_kg = body.weight_kg;
-    if (body.body_fat_percentage !== undefined)
+    if (body.profile_image != null) user.profile_image = body.profile_image;
+    if (body.age != null) user.age = body.age;
+    if (body.height_cm != null) user.height_cm = body.height_cm;
+    if (body.weight_kg != null) user.weight_kg = body.weight_kg;
+    if (body.body_fat_percentage != null)
       user.body_fat_percentage = body.body_fat_percentage;
-    if (body.muscle_mass_kg !== undefined)
-      user.muscle_mass_kg = body.muscle_mass_kg;
+    if (body.muscle_mass_kg != null) user.muscle_mass_kg = body.muscle_mass_kg;
     user.updated_at = new Date().toISOString();
 
     return HttpResponse.json({
