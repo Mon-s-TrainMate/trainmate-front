@@ -49,7 +49,7 @@ function AnonymousActions() {
   return (
     <div className="ml-auto flex items-center gap-x-7">
       <Link href="/auth/sign-up">
-        <Button variant="ghost">회원가입</Button>
+        <Button variant="text">회원가입</Button>
       </Link>
       <Link href="/auth/sign-in">
         <Button>로그인하기</Button>

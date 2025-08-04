@@ -13,7 +13,7 @@ export function GreetingStep() {
       </p>
       <div className="grid grid-cols-2 gap-x-3.5">
         <Button
-          variant="outline"
+          variant="secondary"
           asChild
           className="border-primary text-primary"
         >
