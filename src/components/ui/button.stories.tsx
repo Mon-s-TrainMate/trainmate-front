@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from '@storybook/nextjs';
 
 import { fn } from 'storybook/test';
 
+import { BotIcon } from 'lucide-react';
 import { Button } from './button';
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
@@ -41,5 +42,13 @@ export const Primary: Story = {
     variant: 'primary',
     size: 'md',
     children: 'Button',
+  },
+};
+
+export const Icon: Story = {
+  args: {
+    variant: 'primary',
+    size: 'icon',
+    children: <BotIcon />,
   },
 };
