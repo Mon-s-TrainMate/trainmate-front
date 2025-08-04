@@ -10,7 +10,7 @@ const inputVariants = cva(
     variants: {
       type: {
         normal:
-          'hover:bg-primary-foreground focus:border-primary disabled:gray-0\.5',
+          'hover:bg-primary-foreground focus:border-primary disabled:gray-5',
         error: 'border-red-1',
       },
       inputSize: {
