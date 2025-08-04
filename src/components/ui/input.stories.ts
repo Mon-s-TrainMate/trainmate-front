@@ -6,16 +6,10 @@ const meta = {
   component: Input,
   argTypes: {
     placeholder: { control: 'text' },
-    type: {
-      control: 'select',
-      options: ['normal', 'error'],
-    },
+    value: { control: 'text' },
     inputSize: {
       control: 'select',
-      options: ['normal', 'small'],
-    },
-    showSearchIcon: {
-      control: 'boolean',
+      options: ['lg', 'sm'],
     },
   },
 } satisfies Meta<typeof Input>;
@@ -23,9 +17,25 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const ShowInput: Story = {
+export const EmptyInput: Story = {
   args: {
     placeholder: 'Placeholder',
-    type: 'normal',
+  },
+};
+export const FilledInput: Story = {
+  args: {
+    value: '강장공장',
+  },
+};
+export const EmptySmInput: Story = {
+  args: {
+    placeholder: 'Placeholder',
+    inputSize: 'sm',
+  },
+};
+export const FilledSmInput: Story = {
+  args: {
+    value: '강장공장',
+    inputSize: 'sm',
   },
 };
