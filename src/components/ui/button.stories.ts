@@ -18,11 +18,11 @@ const meta = {
   argTypes: {
     variant: {
       control: 'select',
-      options: ['primary', 'secondary', 'outline', 'deactivation', 'secondary'],
+      options: ['primary', 'secondary', 'tertiary', 'text'],
     },
     size: {
       control: 'select',
-      options: ['sm', 'lg', 'icon'],
+      options: ['small', 'medium', 'large'],
     },
   },
   // Use `fn` to spy on the onClick arg, which will appear in the actions panel once invoked: https://storybook.js.org/docs/essentials/actions#action-args
@@ -33,35 +33,10 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 // More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
-export const Primary: Story = {
+export const primary: Story = {
   args: {
-    variant: 'default',
-    children: 'content',
-  },
-};
-
-export const Secondary: Story = {
-  args: {
-    variant: 'outline',
-    children: 'asdasd',
-    asChild: false,
-  },
-};
-
-export const Deactivation: Story = {
-  args: {
-    variant: 'deactivation',
-    children: '가입하기',
-    asChild: false,
-    size: 'lg',
-  },
-};
-
-export const Deactivation3: Story = {
-  args: {
-    variant: 'secondary',
-    children: '나의 데이터 등록하기',
-    asChild: false,
-    size: 'lg',
+    variant: 'primary',
+    size: 'medium',
+    children: 'Button',
   },
 };
