@@ -5,6 +5,7 @@ import { API_HOST } from '@/lib/consts';
 
 export type UpdateMemberProfileData = {
   name?: string;
+  profile_image?: string | null;
   age?: number | null;
   height_cm?: number | null;
   weight_kg?: number | null;
