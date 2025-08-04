@@ -2,17 +2,17 @@ import type { Meta, StoryObj } from '@storybook/nextjs';
 import { Input } from './input';
 
 const meta = {
-  title: 'ui/input',
+  title: 'ui/Input',
   component: Input,
   argTypes: {
     placeholder: { control: 'text' },
     type: {
       control: 'select',
-      options: ['text', 'email', 'password'],
+      options: ['normal', 'error'],
     },
     inputSize: {
       control: 'select',
-      options: ['base', 'search'],
+      options: ['normal', 'small'],
     },
     showSearchIcon: {
       control: 'boolean',
@@ -23,48 +23,9 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Email: Story = {
+export const ShowInput: Story = {
   args: {
-    placeholder: '이메일 주소를 입력해주세요.',
-    type: 'email',
-  },
-};
-
-export const Password: Story = {
-  args: {
-    placeholder: '비밀번호를 입력해주세요.',
-    type: 'password',
-  },
-};
-
-export const PasswordCheck: Story = {
-  args: {
-    placeholder: '비밀번호를 입력해주세요.',
-    type: 'password',
-  },
-};
-
-export const Username: Story = {
-  args: {
-    placeholder: '이름을 입력해주세요.',
-    type: 'text',
-  },
-};
-
-export const ExerciseSearch: Story = {
-  args: {
-    placeholder: '운동명을 검색해보세요.',
-    type: 'text',
-    inputSize: 'search',
-    showSearchIcon: true,
-  },
-};
-
-export const UserSearch: Story = {
-  args: {
-    placeholder: '회원 이름을 검색해보세요.',
-    type: 'text',
-    inputSize: 'search',
-    showSearchIcon: true,
+    placeholder: 'Placeholder',
+    type: 'normal',
   },
 };
