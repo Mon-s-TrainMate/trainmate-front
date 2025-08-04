@@ -25,7 +25,7 @@ export type SignUpResponse =
       errors: Record<string, string[]>;
     };
 export async function signUp(data: SignUpBody): Promise<SignUpResponse> {
-  const res = await fetch(`${API_HOST}/api/accounts/signup/`, {
+  const res = await fetch(`${API_HOST}/auth/sign-up/`, {
     method: 'POST',
     headers: {
       'content-type': 'application/json',

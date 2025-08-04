@@ -1,5 +1,5 @@
-import { mswLogin } from './handlers/api/accounts/login';
-import { mswSignup } from './handlers/api/accounts/signup';
+import { mswLogin } from './handlers/auth/login';
+import { mswSignup } from './handlers/auth/signup';
 import { mswMemberList } from './handlers/api/members/member-list';
 import {
   mswMyProfile,

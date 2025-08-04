@@ -2,10 +2,10 @@ import { signUpFormSchema } from '@/app/(me)/auth/sign-up/schema';
 import { API_HOST } from '@/lib/consts';
 import { http, HttpResponse } from 'msw';
 import { ZodError } from 'zod';
-import { createUser, users } from '../../../data';
+import { createUser, users } from '../../data';
 
 export const mswSignup = http.post(
-  API_HOST + '/api/accounts/signup',
+  API_HOST + '/auth/sign-up/',
   async ({ request }) => {
     try {
       const body = signUpFormSchema.parse(await request.json());

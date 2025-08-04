@@ -24,7 +24,7 @@ export type SignInResponse =
     };
 
 export async function signIn(data: SignInBody): Promise<SignInResponse> {
-  const res = await fetch(`${API_HOST}/api/accounts/login/`, {
+  const res = await fetch(`${API_HOST}/auth/login/`, {
     method: 'POST',
     headers: {
       'content-type': 'application/json',
