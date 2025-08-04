@@ -4,7 +4,7 @@ import { getMemberProfileById } from '@/features/member/api/get-member-profile-b
 import { getMemberRecordList } from '@/features/member/api/get-member-record-list';
 import { formatDuration } from '@/lib/time/format-duration';
 import { ChevronRightIcon } from 'lucide-react';
-import { MemberPersonalInfo } from './_ui/member-personal-info';
+import { MemberPersonalInfoWidget } from './_ui/member-personal-info';
 import { MemberProfile } from './_ui/member-profile';
 import { MemberRecordSummary } from './_ui/member-record-summary';
 
@@ -25,7 +25,8 @@ export default async function Page({ params }: Props) {
   return (
     <div className="px-10 py-8 min-w-0 flex flex-col gap-y-15 overflow-y-auto">
       <div className="flex flex-col gap-y-4">
-        <MemberPersonalInfo
+        <MemberPersonalInfoWidget
+          id={profile.id}
           thumbnail={profile.profileImage}
           name={profile.name}
           email={profile.email}
