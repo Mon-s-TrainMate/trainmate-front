@@ -9,29 +9,22 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default: 'bg-primary text-primary-foreground',
-        destructive:
-          'bg-destructive text-white focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40 dark:bg-destructive/60',
-        outline:
-          'border bg-background dark:bg-input/30 dark:border-input text-[var(--gray-5)]',
+        primary:
+          'bg-primary text-white hover:bg-button-primary-hover disable:bg-gray-2',
         secondary:
-          'border border-primary bg-background dark:bg-input/30 text-primary',
-        deactivation:
-          'border bg-[var(--gray-2)] text-[var(--white)] dark:bg-input/30 dark:border-input',
-        ghost:
-          'hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50',
-        link: 'text-primary underline-offset-4 hover:underline',
+          'bg-primary-4 text-white hover:bg-primary-3 disable:bg-gray-2',
+        tertiary: 'bg-gray-8 text-white hover:bg-gray-6 disable:bg-gray-2',
+        text: 'bg-none text-gray-8 hover:bg-primary-foreground hover:text-primary disable:text-gary-2',
       },
       size: {
-        default: 'h-12.5 px-4 py-2 has-[>svg]:px-3',
-        sm: 'h-8 rounded-md gap-1.5 px-3 has-[>svg]:px-2.5',
-        lg: 'h-14.5 rounded-md px-6 has-[>svg]:px-4',
-        icon: 'size-9',
+        small: 'w-17.5 h-10.5 font-medium',
+        medium: 'w-20.75 h-11.5 font-semibold',
+        large: 'w-24.5 h-11.5 font-bold',
       },
     },
     defaultVariants: {
-      variant: 'default',
-      size: 'default',
+      variant: 'primary',
+      size: 'medium',
     },
   }
 );

@@ -27,6 +27,8 @@
   --color-popover: var(--popover);
   --color-popover-foreground: var(--popover-foreground);
   --color-primary: var(--primary);
+  --color-primary-3: var(--primary-3);
+  --color-primary-4: var(--primary-4);
   --color-primary-foreground: var(--primary-foreground);
   --color-secondary: var(--secondary);
   --color-secondary-foreground: var(--secondary-foreground);
@@ -37,6 +39,7 @@
   --color-destructive: var(--destructive);
   --color-border: var(--border);
   --color-input: var(--input);
+  --color-button-primary-hover: var(--button-primary-hover);
   --color-ring: var(--ring);
   --color-chart-1: var(--chart-1);
   --color-chart-2: var(--chart-2);
@@ -82,6 +85,8 @@
   --popover: var(--white);
   --popover-foreground: var(--gray-8);
   --primary: #615ef0;
+  --primary-3: #908ee6;
+  --primary-4: #bcbbff;
   --primary-foreground: #f6f6fe;
   --secondary: var(--gray-1);
   --secondary-foreground: var(--gray-8);
@@ -92,6 +97,7 @@
   --destructive: oklch(0.577 0.245 27.325);
   --border: var(--gray-1);
   --input: var(--gray-2);
+  --button-primary-hover: #4845d3;
   --ring: oklch(0.705 0.015 286.067);
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
