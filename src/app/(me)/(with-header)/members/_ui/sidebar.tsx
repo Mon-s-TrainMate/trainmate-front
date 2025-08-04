@@ -50,8 +50,7 @@ function MemberListContent({ members }: MemberContentProps) {
     <div className="flex flex-col gap-y-3 px-3 py-6">
       <div className="mx-2.5">
         <Input
-          inputSize="search"
-          showSearchIcon
+          inputSize="sm"
           placeholder="회원 이름을 검색해보세요."
           value={keyword}
           onChange={(e) => setKeyword(e.currentTarget.value)}
