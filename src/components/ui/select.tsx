@@ -12,7 +12,7 @@ const selectTriggerVariants = cva(
   {
     variants: {
       size: {
-        normal: 'h-13 w-38.75',
+        normal: 'h-13',
       },
     },
     defaultVariants: {
