@@ -8,6 +8,10 @@ const meta = {
     placeholder: { control: 'text' },
     disabled: { control: 'boolean' },
     unit: { control: 'text' },
+    align: {
+      control: { type: 'select' },
+      options: ['left', 'center'],
+    },
   },
 } satisfies Meta<typeof SelectBox>;
 

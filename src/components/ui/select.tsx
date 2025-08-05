@@ -196,6 +196,7 @@ type SelectBoxProps = {
   onValueChange?: (value: string) => void;
   disabled?: boolean;
   unit?: string;
+  align?: 'left' | 'center';
 };
 
 function SelectBox({
@@ -205,6 +206,7 @@ function SelectBox({
   unit = 'unit',
   onValueChange,
   disabled = false,
+  align = 'left',
 }: SelectBoxProps) {
   const [open, setOpen] = React.useState(false);
 
@@ -217,7 +219,14 @@ function SelectBox({
       open={open}
     >
       <SelectTrigger open={open}>
-        <SelectValue placeholder={placeholder} />
+        <div
+          className={cn(
+            'flex-1',
+            align === 'center' ? 'text-center' : 'text-left'
+          )}
+        >
+          <SelectValue placeholder={placeholder} />
+        </div>
         <p className="ml-auto text-base font-normal text-black">{unit}</p>
       </SelectTrigger>
       <SelectContent className="border-shadow-level-1-lighter rounded-xl border">
