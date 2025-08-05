@@ -4,7 +4,7 @@ import { withAuthorization } from '@/mocks/utils';
 import { http, HttpResponse } from 'msw';
 
 export const mswMemberRecords = http.get(
-  API_HOST + '/api/members/:member_id/records',
+  API_HOST + '/api/members/:memberId/records',
   async ({ params, request }) => {
     const memberId = Number(params.memberId);
     const user = users.find((user) => user.id === memberId);
