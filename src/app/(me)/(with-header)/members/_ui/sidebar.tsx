@@ -15,7 +15,7 @@ export function Sidebar() {
   const { data: members } = useMemberList();
   return (
     <aside className="bg-white">
-      <header className="flex items-center p-6 border-b">
+      <header className="flex items-center border-b p-6">
         <MemberListHeader count={members?.length ?? 0} />
       </header>
       <MemberListContent members={members} />
@@ -28,9 +28,9 @@ interface MemberListHeader {
 }
 function MemberListHeader({ count }: MemberListHeader) {
   return (
-    <div className="flex-1 gap-x-2.5 flex items-center">
+    <div className="flex flex-1 items-center gap-x-2.5">
       <div className="text-2xl font-bold">회원목록</div>
-      <div className="text-[0.625rem] text-black bg-gray-4 flex items-center py-0.5 px-2 gap-x-1 rounded-full">
+      <div className="flex items-center gap-x-1 rounded-full bg-gray-4 px-2 py-0.5 text-[0.625rem] text-black">
         <UserRoundIcon size="0.625rem" />
         {count}
       </div>

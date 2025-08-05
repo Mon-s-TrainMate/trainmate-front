@@ -41,11 +41,11 @@ export function MemberPersonalInfoWidget({
   const { data: me } = useUsersMe();
   const isMe = me?.id === id;
   return (
-    <div className="rounded-lg bg-white p-6 flex items-start gap-x-5">
+    <div className="flex items-start gap-x-5 rounded-lg bg-white p-6">
       <UserAvatar src={thumbnail} size="lg" />
       <div className="flex-1">
-        <div className="text-black text-2xl font-semibold">{name}</div>
-        <div className="text-gray-2 flex items-center gap-x-7.5">
+        <div className="text-2xl font-semibold text-black">{name}</div>
+        <div className="flex items-center gap-x-7.5 text-gray-2">
           {email && (
             <div className="flex items-center gap-x-2">
               <MailIcon />
@@ -106,13 +106,13 @@ function ProfileEditDialog({
       <DialogContent>
         <form action={formAction} className="flex flex-col gap-y-10">
           <DialogHeader>
-            <DialogTitle className="flex items-center gap-x-3 font-bold text-2xl">
+            <DialogTitle className="flex items-center gap-x-3 text-2xl font-bold">
               <CircleAlertIcon className="text-primary" />
               프로필 수정
             </DialogTitle>
           </DialogHeader>
           <div className="flex flex-col gap-y-9">
-            <div className="flex gap-x-5 items-center">
+            <div className="flex items-center gap-x-5">
               <UserAvatarWithFileInput src={thumbnail} />
               <div>
                 <div className="font-semibold">{name}</div>

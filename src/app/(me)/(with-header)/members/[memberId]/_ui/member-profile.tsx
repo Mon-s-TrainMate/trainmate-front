@@ -17,8 +17,8 @@ export function MemberProfile({
   onClick,
 }: MemberProfileProps) {
   return (
-    <div className="rounded-lg bg-white p-6 flex items-start gap-x-5">
-      <div className="flex-1 flex items-center gap-x-12.5">
+    <div className="flex items-start gap-x-5 rounded-lg bg-white p-6">
+      <div className="flex flex-1 items-center gap-x-12.5">
         <Value title="키" value={heightCm} unit="cm" />
         <VerticalSeparator />
         <Value title="몸무게" value={weightKg} unit="kg" />
@@ -44,14 +44,14 @@ interface ValueProps {
 function Value({ title, value, unit }: ValueProps) {
   return (
     <div className="grid font-light tracking-[-1.18px]">
-      <div className="text-gray-2 text-xs">{title}</div>
+      <div className="text-xs text-gray-2">{title}</div>
       {value != null ? (
-        <div className="text-black text-2xl flex items-end gap-x-2">
+        <div className="flex items-end gap-x-2 text-2xl text-black">
           <span className="text-4xl">{value}</span>
           {unit}
         </div>
       ) : (
-        <div className="text-gray-2 flex items-center justify-center w-full h-full min-w-18 min-h-10">
+        <div className="flex h-full min-h-10 w-full min-w-18 items-center justify-center text-gray-2">
           미입력
         </div>
       )}

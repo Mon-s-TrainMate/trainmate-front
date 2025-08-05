@@ -57,7 +57,7 @@ export function Step2({ onBack, onSubmit }: Props) {
   return (
     <Form {...form}>
       <form
-        className="flex flex-col gap-y-10 w-full"
+        className="flex w-full flex-col gap-y-10"
         onSubmit={form.handleSubmit(async (values) => {
           const data = {
             ...getSignUpFormSessionData(),
@@ -66,7 +66,7 @@ export function Step2({ onBack, onSubmit }: Props) {
           await onSubmit?.(data);
         })}
       >
-        <h2 className="flex items-center gap-3 font-bold text-2xl">
+        <h2 className="flex items-center gap-3 text-2xl font-bold">
           <button type="button" onClick={onBack}>
             <ChevronLeftIcon />
           </button>

@@ -66,8 +66,8 @@ export default function Page() {
   }[];
   const step = steps[stepIndex];
   return (
-    <div className="flex items-center justify-center h-full">
-      <div className="flex flex-col gap-y-10 max-w-lg p-6 w-full bg-white rounded-lg shadow-level-1">
+    <div className="flex h-full items-center justify-center">
+      <div className="flex w-full max-w-lg flex-col gap-y-10 rounded-lg bg-white p-6 shadow-level-1">
         {step != null && <step.Step {...step.props} />}
       </div>
     </div>

@@ -53,11 +53,11 @@ export default function Page() {
     },
   });
   return (
-    <div className="flex flex-col items-center gap-15 mt-35">
+    <div className="mt-35 flex flex-col items-center gap-15">
       <BrandCatchphrase />
       <Form {...form}>
         <form
-          className="flex flex-col gap-y-10 max-w-lg px-4 w-full"
+          className="flex w-full max-w-lg flex-col gap-y-10 px-4"
           onSubmit={form.handleSubmit(async (values) => {
             const res = await getUser(values);
             if (res.success) {
@@ -85,7 +85,7 @@ export default function Page() {
                 <FormLabel className="sr-only">회원 유형</FormLabel>
                 <FormControl>
                   <RadioGroup
-                    className="grid grid-cols-2 gap-2.5 p-2 rounded-xl bg-gray-4"
+                    className="grid grid-cols-2 gap-2.5 rounded-xl bg-gray-4 p-2"
                     onValueChange={field.onChange}
                     value={field.value}
                   >
@@ -93,11 +93,11 @@ export default function Page() {
                       <FormItem key={userType.value}>
                         <FormControl>
                           <RadioGroupItem
-                            className="hidden peer"
+                            className="peer hidden"
                             value={userType.value}
                           />
                         </FormControl>
-                        <FormLabel className="flex justify-center items-center peer-aria-checked:bg-white peer-aria-checked:shadow-tab-active bg-transparent text-gray-2 rounded-md h-13 text-lg font-bold text-center peer-aria-checked:text-primary">
+                        <FormLabel className="flex h-13 items-center justify-center rounded-md bg-transparent text-center text-lg font-bold text-gray-2 peer-aria-checked:bg-white peer-aria-checked:text-primary peer-aria-checked:shadow-tab-active">
                           {userType.label}
                         </FormLabel>
                       </FormItem>
@@ -148,7 +148,7 @@ export default function Page() {
             )}
           />
           {form.formState.errors.root && (
-            <p className="text-destructive text-sm">
+            <p className="text-sm text-destructive">
               {form.formState.errors.root.message}
             </p>
           )}

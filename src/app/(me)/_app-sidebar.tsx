@@ -36,18 +36,18 @@ const items = [
 
 export function AppSidebar() {
   return (
-    <aside className="w-22 shadow-sidebar grid grid-rows-[max-content_1fr_max-content] z-50 bg-white sticky top-0">
-      <header className="pt-6 px-4 flex flex-col gap-y-4 items-center">
+    <aside className="sticky top-0 z-50 grid w-22 grid-rows-[max-content_1fr_max-content] bg-white shadow-sidebar">
+      <header className="flex flex-col items-center gap-y-4 px-4 pt-6">
         <Link href="/">
           <UserAvatar />
         </Link>
         <div
           role="separator"
           aria-orientation="horizontal"
-          className="w-10 h-0.5 bg-gray-4 rounded-full"
+          className="h-0.5 w-10 rounded-full bg-gray-4"
         ></div>
       </header>
-      <section className="py-8.25 flex flex-col gap-y-2">
+      <section className="flex flex-col gap-y-2 py-8.25">
         {items.map((item) => (
           <NavLink key={item.id} {...item} />
         ))}
@@ -67,8 +67,8 @@ function NavLink({ href, Icon }: NavLinkProps) {
   const pathname = usePathname();
   if (href == null) {
     return (
-      <button className="appearance-none flex justify-center">
-        <div className="flex items-center justify-center size-12 rounded-full text-gray-2">
+      <button className="flex appearance-none justify-center">
+        <div className="flex size-12 items-center justify-center rounded-full text-gray-2">
           <Icon />
         </div>
       </button>
@@ -77,14 +77,14 @@ function NavLink({ href, Icon }: NavLinkProps) {
   return (
     <Link
       href={href}
-      className="relative flex justify-center group"
+      className="group relative flex justify-center"
       data-active={pathname.startsWith(href)}
     >
       <div
-        className="hidden group-data-[active=true]:block absolute size-2 bg-primary right-full top-1/2 translate-x-1/2 -translate-y-1/2 rounded-full"
+        className="absolute top-1/2 right-full hidden size-2 translate-x-1/2 -translate-y-1/2 rounded-full bg-primary group-data-[active=true]:block"
         aria-hidden
       ></div>
-      <div className="flex items-center justify-center size-12 rounded-full text-black group-data-[active=true]:bg-primary-foreground group-data-[active=true]:text-primary">
+      <div className="flex size-12 items-center justify-center rounded-full text-black group-data-[active=true]:bg-primary-foreground group-data-[active=true]:text-primary">
         <Icon />
       </div>
     </Link>

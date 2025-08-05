@@ -6,11 +6,11 @@ import { CheckIcon } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 const checkboxVariants = cva(
-  'peer border-gray-2 dark:border-gray-2 dark:bg-input/30 data-[state=checked]:border-primary focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 size-4 shrink-0 rounded-[4px] border shadow-xs transition-shadow outline-none focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50',
+  'peer shadow-xs size-4 shrink-0 rounded-[4px] border border-gray-2 transition-shadow outline-none focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 disabled:cursor-not-allowed disabled:opacity-50 aria-invalid:ring-destructive/20 data-[state=checked]:border-primary dark:border-gray-2 dark:bg-input/30 dark:aria-invalid:ring-destructive/40',
   {
     variants: {
       checkboxSize: {
-        base: 'w-4.5 h-4.5 rounded-full',
+        base: 'h-4.5 w-4.5 rounded-full',
       },
     },
     defaultVariants: {
