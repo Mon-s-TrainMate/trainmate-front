@@ -136,7 +136,7 @@ function SelectItem({
       className={cn(
         selectItemVariants(),
         align === 'center'
-          ? 'justify-center text-center'
+          ? 'justify-center px-0 text-center'
           : 'justify-start text-left',
         className
       )}
