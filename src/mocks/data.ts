@@ -1,30 +1,20 @@
 import { addDays, formatISO, set } from 'date-fns';
 
 function createExerciseRecords() {
-  const size = (Math.random() * 5) | 0;
+  const size = (Math.random() * 3 + 2) | 0;
   const today = addDays(
     set(new Date(), { hours: 0, minutes: 0, seconds: 0, milliseconds: 0 }),
     -size + 1
   );
   return Array.from({ length: size }, (_, i) => {
     const date = formatISO(addDays(today, i), { representation: 'date' });
-    return createExerciseRecord(date);
-  });
+    const size = (Math.random() * 5) | 0;
+    return Array.from({ length: size }).map(() => createExerciseRecord(date));
+  }).flat();
 }
 
 let exerciseRecordId = 0;
 function createExerciseRecord(date: string) {
-  return {
-    record_id: exerciseRecordId++,
-    date,
-    sets: Array.from({ length: (Math.random() * 5) | 0 }, () =>
-      createExerciseSet()
-    ),
-  };
-}
-
-let exerciseSetId = 0;
-function createExerciseSet() {
   const is_trainer = Math.random() < 0.5;
   const exercise_name = [
     '숨쉬기 운동',
@@ -32,16 +22,43 @@ function createExerciseSet() {
     '머신 랫 풀 다운',
     '덤벨 로우',
   ][(Math.random() * 4) | 0];
-  const set_count = (Math.random() * 20) | 0;
-  const total_duration_sec = (Math.random() * 65536) | 0;
-  const calories_burned = (Math.random() * 4096) | 0;
+
+  const sets = Array.from({ length: (Math.random() * 5 + 1) | 0 }, () =>
+    createExerciseRecordSet()
+  );
+
+  const set_count = sets.length;
+  const total_duration_sec = sets.reduce((sum, set) => sum + set.duration, 0);
+  const calories_burned = sets.reduce(
+    (sum, set) => sum + set.calories_burned,
+    0
+  );
+
   return {
-    set_id: exerciseSetId++,
+    record_id: exerciseRecordId++,
+    date,
     is_trainer,
     exercise_name,
     set_count,
     total_duration_sec,
     calories_burned,
+    sets,
+  };
+}
+
+let exerciseSetId = 0;
+function createExerciseRecordSet() {
+  const repeat = (Math.random() * 10 + 1) | 0;
+  const duration = (Math.random() * 300 + 30) | 0;
+  const calories_burned = (Math.random() * 50 + 10) | 0;
+  const kg = (Math.random() * 100 + 10) | 0;
+
+  return {
+    set_id: exerciseSetId++,
+    repeat,
+    duration,
+    calories_burned,
+    kg,
   };
 }
 
