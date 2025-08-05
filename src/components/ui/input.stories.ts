@@ -11,6 +11,12 @@ const meta = {
       control: 'select',
       options: ['lg', 'sm'],
     },
+    disabled: {
+      control: 'boolean',
+    },
+    'aria-invalid': {
+      control: 'boolean',
+    },
   },
 } satisfies Meta<typeof Input>;
 
