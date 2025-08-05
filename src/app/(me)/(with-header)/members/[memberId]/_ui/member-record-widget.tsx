@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 import { useMemberRecordList } from '@/features/member/hooks/use-member-record-list';
 import { formatDuration } from '@/lib/time/format-duration';
 import { ChevronRightIcon } from 'lucide-react';
+import Link from 'next/link';
 import { useState } from 'react';
 import { MemberRecordSummary } from './member-record-summary';
 
@@ -48,7 +49,9 @@ export function MemberRecordWidget({ memberId }: MemberRecordWidgetProps) {
       </div>
       <div className="flex flex-col gap-y-2">
         {records.map((record) => (
-          <MemberRecordSummary key={record.id} {...record} />
+          <Link href={`/members/${memberId}/records`} key={record.id}>
+            <MemberRecordSummary {...record} />
+          </Link>
         ))}
       </div>
       <div className="flex flex-col items-center justify-center p-6">
