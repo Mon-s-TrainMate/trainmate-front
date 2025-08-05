@@ -7,6 +7,7 @@ const meta = {
   argTypes: {
     placeholder: { control: 'text' },
     disabled: { control: 'boolean' },
+    unit: { control: 'text' },
   },
 } satisfies Meta<typeof SelectBox>;
 
@@ -21,5 +22,6 @@ export const Basic: Story = {
       { label: '02', value: '02' },
       { label: '03', value: '03' },
     ],
+    unit: 'unit',
   },
 };

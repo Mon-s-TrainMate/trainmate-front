@@ -195,12 +195,14 @@ type SelectBoxProps = {
   value?: string;
   onValueChange?: (value: string) => void;
   disabled?: boolean;
+  unit?: string;
 };
 
 function SelectBox({
   items,
   placeholder,
   value,
+  unit = 'unit',
   onValueChange,
   disabled = false,
 }: SelectBoxProps) {
@@ -216,6 +218,7 @@ function SelectBox({
     >
       <SelectTrigger open={open}>
         <SelectValue placeholder={placeholder} />
+        {unit && <p className="text-base font-normal text-black">{unit}</p>}
       </SelectTrigger>
       <SelectContent className="border-shadow-level-1-lighter rounded-xl border">
         {items.map(({ label, value }) => (
