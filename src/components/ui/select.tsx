@@ -3,38 +3,26 @@ import { cva, type VariantProps } from 'class-variance-authority';
 
 import * as React from 'react';
 import * as SelectPrimitive from '@radix-ui/react-select';
-import { CheckIcon, ChevronDownIcon, ChevronUpIcon } from 'lucide-react';
+import { ChevronDownIcon, ChevronUpIcon } from 'lucide-react';
 
 import { cn } from '@/lib/utils';
 
 const selectTriggerVariants = cva(
-  "shadow-xs flex w-fit items-center justify-start gap-2 rounded-md border border-input bg-transparent px-3 py-2 text-sm whitespace-nowrap transition-[color,box-shadow] outline-none focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 disabled:cursor-not-allowed disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-destructive/20 data-[placeholder]:text-muted-foreground *:data-[slot=select-value]:line-clamp-1 *:data-[slot=select-value]:flex *:data-[slot=select-value]:items-center *:data-[slot=select-value]:gap-2 dark:bg-input/30 dark:hover:bg-input/50 dark:aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 [&_svg:not([class*='text-'])]:text-muted-foreground",
+  "shadow-xs border-gary-1 aria-invalid:border-gary-1 flex w-fit items-center justify-start gap-2 rounded-md border bg-transparent px-3 py-2 text-sm whitespace-nowrap transition-[color,box-shadow] outline-none hover:bg-main-5 focus-visible:border-main-2 focus-visible:ring-[3px] focus-visible:ring-ring/50 disabled:cursor-not-allowed disabled:bg-gray-2 disabled:opacity-50 aria-invalid:ring-destructive/20 data-[placeholder]:text-muted-foreground *:data-[slot=select-value]:line-clamp-1 *:data-[slot=select-value]:flex *:data-[slot=select-value]:items-center *:data-[slot=select-value]:gap-2 dark:bg-input/30 dark:hover:bg-input/50 dark:aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 [&_svg:not([class*='text-'])]:text-muted-foreground",
   {
     variants: {
       size: {
-        default: 'h-9 w-50',
-        sm: 'h-8',
+        normal: 'h-13 w-38.75',
       },
     },
     defaultVariants: {
-      size: 'default',
+      size: 'normal',
     },
   }
 );
 
 const selectItemVariants = cva(
-  'relative flex w-full cursor-default items-center gap-2 rounded-sm pr-8 pl-2 text-sm outline-hidden select-none focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*="size-"])]:size-4 [&_svg:not([class*="text-"])]:text-muted-foreground *:[span]:last:flex *:[span]:last:items-center *:[span]:last:gap-2',
-  {
-    variants: {
-      size: {
-        default: 'py-1.5 text-sm',
-        sm: 'py-1 text-xs',
-      },
-    },
-    defaultVariants: {
-      size: 'default',
-    },
-  }
+  '[&_svg:not([class*="text-"])] text-base:text-muted-foreground relative flex h-8.75 w-full cursor-default items-center gap-2 rounded-sm pr-8 pl-2 text-sm outline-hidden select-none focus:bg-main-5 focus:text-main-2 disabled:text-gray-3 data-[disabled]:pointer-events-none data-[disabled]:opacity-50 data-[state=checked]:text-main-2 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*="size-"])]:size-4 *:[span]:last:flex *:[span]:last:items-center *:[span]:last:gap-2'
 );
 
 const selectContentVariants = cva(
@@ -61,7 +49,7 @@ function SelectValue({
 
 function SelectTrigger({
   className,
-  size = 'default',
+  size = 'normal',
   children,
   ...props
 }: React.ComponentProps<typeof SelectPrimitive.Trigger> &
@@ -93,7 +81,7 @@ function SelectContent({
       <SelectPrimitive.Content
         data-slot="select-content"
         className={cn(
-          selectContentVariants,
+          selectContentVariants(),
           position === 'popper' &&
             'data-[side=bottom]:translate-y-1 data-[side=left]:-translate-x-1 data-[side=right]:translate-x-1 data-[side=top]:-translate-y-1',
           className
@@ -106,7 +94,7 @@ function SelectContent({
           className={cn(
             'p-1',
             position === 'popper' &&
-              'h-[var(--radix-select-trigger-height)] w-full min-w-[var(--radix-select-trigger-width)] scroll-my-1'
+              'flex h-[var(--radix-select-trigger-height)] w-full min-w-[var(--radix-select-trigger-width)] scroll-my-1 flex-col gap-1'
           )}
         >
           {children}
@@ -133,21 +121,15 @@ function SelectLabel({
 function SelectItem({
   className,
   children,
-  size = 'default',
   ...props
 }: React.ComponentProps<typeof SelectPrimitive.Item> &
   VariantProps<typeof selectItemVariants>) {
   return (
     <SelectPrimitive.Item
       data-slot="select-item"
-      className={cn(selectItemVariants({ size }), className)}
+      className={cn(selectItemVariants(), className)}
       {...props}
     >
-      <span className="absolute right-2 flex size-3.5 items-center justify-center">
-        <SelectPrimitive.ItemIndicator>
-          <CheckIcon className="size-4" />
-        </SelectPrimitive.ItemIndicator>
-      </span>
       <SelectPrimitive.ItemText>{children}</SelectPrimitive.ItemText>
     </SelectPrimitive.Item>
   );
@@ -206,7 +188,6 @@ type SelectBoxProps = {
   items: { label: string; value: string }[];
   placeholder?: string;
   value?: string;
-  size?: 'default' | 'sm';
   onValueChange?: (value: string) => void;
   disabled?: boolean;
 };
@@ -215,18 +196,17 @@ function SelectBox({
   items,
   placeholder,
   value,
-  size = 'default',
   onValueChange,
   disabled = false,
 }: SelectBoxProps) {
   return (
     <Select value={value} onValueChange={onValueChange} disabled={disabled}>
-      <SelectTrigger size={size}>
+      <SelectTrigger>
         <SelectValue placeholder={placeholder} />
       </SelectTrigger>
-      <SelectContent>
+      <SelectContent className="border-shadow-level-1-lighter rounded-xl border">
         {items.map(({ label, value }) => (
-          <SelectItem key={value} value={value} size={size}>
+          <SelectItem key={value} value={value}>
             {label}
           </SelectItem>
         ))}

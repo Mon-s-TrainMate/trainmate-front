@@ -65,6 +65,7 @@
   --shadow-tab-active: 2px 4px 10px 0px #b4b4b440;
   --shadow-level-1: 0px 4px 12px 0px #b4b4b440;
   --shadow-level-1-light: 0px 4px 12px 0px #b4b4b426;
+  --shadow-level-1-lighter: 0px 4px 12px 0px #b4b4b459;
 }
 
 :root {
@@ -89,7 +90,7 @@
   --black: #484848;
 
   --red-1: #e33434;
-  --red-2: #e86f6f;
+  --red-2: hsl(0, 72%, 67%);
 
   --background: var(--white);
   --foreground: var(--black);
