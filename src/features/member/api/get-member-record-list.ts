@@ -3,24 +3,26 @@
 import { getAccessToken } from '@/features/auth/server-session';
 import { API_HOST } from '@/lib/consts';
 
-export type MemberRecordListResponse = {
-  success: true;
-  sets: {
-    set_id: number;
-    is_trainer: boolean;
-    exercise_name: string;
-    set_count: number;
-    total_duration_sec: number;
-    calories_burned: number;
-  }[];
-};
+export type MemberRecordListResponse =
+  | {
+      success: true;
+      records: {
+        record_id: number;
+        is_trainer: boolean;
+        exercise_name: string;
+        set_count: number;
+        total_duration_sec: number;
+        calories_burned: number;
+      }[];
+    }
+  | {
+      success: false;
+    };
 
 export async function getMemberRecordList(
   memberId: string,
   options?: {
     date?: string;
-    page?: number;
-    limit?: number;
   }
 ) {
   const token = await getAccessToken();
@@ -33,19 +35,14 @@ export async function getMemberRecordList(
     },
   });
   const body: MemberRecordListResponse = await res.json();
-  if (!res.ok) {
-    if (res.status === 404) {
-      return [];
-    }
-    throw res.status;
-  }
+  if (!body.success) throw body;
 
-  return body.sets.map((set) => ({
-    id: set.set_id,
-    isTrainer: set.is_trainer,
-    exerciseName: set.exercise_name,
-    setCount: set.set_count,
-    totalDurationSec: set.total_duration_sec,
-    caloriesBurned: set.calories_burned,
+  return body.records.map((record) => ({
+    id: record.record_id,
+    isTrainer: record.is_trainer,
+    exerciseName: record.exercise_name,
+    setCount: record.set_count,
+    totalDurationSec: record.total_duration_sec,
+    caloriesBurned: record.calories_burned,
   }));
 }
