@@ -7,10 +7,6 @@ const meta = {
   argTypes: {
     placeholder: { control: 'text' },
     value: { control: 'text' },
-    variant: {
-      control: 'select',
-      options: ['normal', 'error'],
-    },
     inputSize: {
       control: 'select',
       options: ['lg', 'sm'],
