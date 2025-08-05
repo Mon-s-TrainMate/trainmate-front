@@ -51,9 +51,10 @@ function SelectTrigger({
   className,
   size = 'normal',
   children,
+  open,
   ...props
 }: React.ComponentProps<typeof SelectPrimitive.Trigger> &
-  VariantProps<typeof selectTriggerVariants>) {
+  VariantProps<typeof selectTriggerVariants> & { open?: boolean }) {
   return (
     <SelectPrimitive.Trigger
       data-slot="select-trigger"
@@ -62,7 +63,11 @@ function SelectTrigger({
       {...props}
     >
       <SelectPrimitive.Icon asChild>
-        <ChevronDownIcon className="size-4 opacity-50" />
+        {open ? (
+          <ChevronUpIcon className="size-4 opacity-50" />
+        ) : (
+          <ChevronDownIcon className="size-4 opacity-50" />
+        )}
       </SelectPrimitive.Icon>
       {children}
     </SelectPrimitive.Trigger>
@@ -199,9 +204,17 @@ function SelectBox({
   onValueChange,
   disabled = false,
 }: SelectBoxProps) {
+  const [open, setOpen] = React.useState(false);
+
   return (
-    <Select value={value} onValueChange={onValueChange} disabled={disabled}>
-      <SelectTrigger>
+    <Select
+      value={value}
+      onValueChange={onValueChange}
+      disabled={disabled}
+      onOpenChange={setOpen}
+      open={open}
+    >
+      <SelectTrigger open={open}>
         <SelectValue placeholder={placeholder} />
       </SelectTrigger>
       <SelectContent className="border-shadow-level-1-lighter rounded-xl border">
