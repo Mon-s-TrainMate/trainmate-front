@@ -218,7 +218,7 @@ function SelectBox({
     >
       <SelectTrigger open={open}>
         <SelectValue placeholder={placeholder} />
-        {unit && <p className="text-base font-normal text-black">{unit}</p>}
+        <p className="ml-auto text-base font-normal text-black">{unit}</p>
       </SelectTrigger>
       <SelectContent className="border-shadow-level-1-lighter rounded-xl border">
         {items.map(({ label, value }) => (
