@@ -65,13 +65,13 @@ export function Step1({ onBack, onNext }: Props) {
   return (
     <Form {...form}>
       <form
-        className="flex flex-col gap-y-10 w-full"
+        className="flex w-full flex-col gap-y-10"
         onSubmit={form.handleSubmit((values) => {
           appendSignUpFormSessionData(values);
           onNext();
         })}
       >
-        <h2 className="flex items-center gap-3 font-bold text-2xl">
+        <h2 className="flex items-center gap-3 text-2xl font-bold">
           <button type="button" onClick={onBack}>
             <ChevronLeftIcon />
           </button>
@@ -100,7 +100,7 @@ export function Step1({ onBack, onNext }: Props) {
                       <FormControl>
                         <RadioGroupItem value={radio.value} className="peer" />
                       </FormControl>
-                      <FormLabel className="peer-aria-checked:text-primary text-lg">
+                      <FormLabel className="text-lg peer-aria-checked:text-primary">
                         {radio.label}
                       </FormLabel>
                     </FormItem>

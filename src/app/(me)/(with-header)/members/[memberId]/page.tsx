@@ -23,7 +23,7 @@ export default async function Page({ params }: Props) {
   const caloriesBurned = sets.reduce((acc, set) => acc + set.caloriesBurned, 0);
 
   return (
-    <div className="px-10 py-8 min-w-0 flex flex-col gap-y-15 overflow-y-auto">
+    <div className="flex min-w-0 flex-col gap-y-15 overflow-y-auto px-10 py-8">
       <div className="flex flex-col gap-y-4">
         <MemberPersonalInfoWidget
           id={profile.id}
@@ -39,7 +39,7 @@ export default async function Page({ params }: Props) {
         />
       </div>
       <div className="flex flex-col gap-y-5.5">
-        <div className="flex items-center justify-between tracking-[-1.18px] text-black font-light">
+        <div className="flex items-center justify-between font-light tracking-[-1.18px] text-black">
           <div>날짜</div>
           <div className="flex items-center gap-x-5">
             <div className="flex items-center gap-x-4">
@@ -63,7 +63,7 @@ export default async function Page({ params }: Props) {
           ))}
         </div>
         <div className="flex flex-col items-center justify-center p-6">
-          <Button className="max-w-80 w-full">
+          <Button className="w-full max-w-80">
             운동 관리하기
             <ChevronRightIcon />
           </Button>

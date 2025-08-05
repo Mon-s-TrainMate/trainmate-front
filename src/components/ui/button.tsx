@@ -5,23 +5,23 @@ import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '@/lib/utils';
 
 const buttonVariants = cva(
-  "cursor-pointer inline-flex items-center justify-center gap-2 w-full whitespace-nowrap text-sm font-medium transition-all disabled:pointer-events-none [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive",
+  "inline-flex w-full shrink-0 cursor-pointer items-center justify-center gap-2 text-sm font-medium whitespace-nowrap transition-all outline-none focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 disabled:pointer-events-none aria-invalid:border-destructive aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
   {
     variants: {
       variant: {
         primary:
-          'bg-primary text-white border border-transparent hover:bg-main-1 hover:border-main-2 disabled:bg-gray-3',
+          'border border-transparent bg-primary text-white hover:border-main-2 hover:bg-main-1 disabled:bg-gray-3',
         secondary:
-          'bg-main-4 text-white border border-transparent hover:bg-main-3 hover:border-main-4 disabled:bg-gray-3',
+          'border border-transparent bg-main-4 text-white hover:border-main-4 hover:bg-main-3 disabled:bg-gray-3',
         tertiary:
-          'bg-black text-white border border-transparent hover:bg-gray-1 hover:border-black disabled:bg-gray-3',
+          'border border-transparent bg-black text-white hover:border-black hover:bg-gray-1 disabled:bg-gray-3',
         text: 'bg-none text-black hover:bg-primary-foreground hover:text-primary disabled:text-gray-3',
       },
       size: {
-        sm: 'h-10.5 px-3.5 rounded-sm font-medium',
-        md: 'h-11.5 px-5 rounded-md font-semibold',
-        lg: 'h-11.5 px-6 rounded-md font-bold',
-        icon: 'size-6 p-0 rounded-sm',
+        sm: 'h-10.5 rounded-sm px-3.5 font-medium',
+        md: 'h-11.5 rounded-md px-5 font-semibold',
+        lg: 'h-11.5 rounded-md px-6 font-bold',
+        icon: 'size-6 rounded-sm p-0',
       },
     },
     defaultVariants: {

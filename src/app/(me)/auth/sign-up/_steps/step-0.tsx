@@ -73,13 +73,13 @@ export function Step0(props: Props) {
   return (
     <Form {...form}>
       <form
-        className="flex flex-col gap-y-10 w-full"
+        className="flex w-full flex-col gap-y-10"
         onSubmit={form.handleSubmit((values) => {
           appendSignUpFormSessionData(values);
           props.onNext();
         })}
       >
-        <h2 className="flex items-center gap-3 font-bold text-2xl">
+        <h2 className="flex items-center gap-3 text-2xl font-bold">
           <button type="button" onClick={props.onBack}>
             <ChevronLeftIcon />
           </button>
@@ -90,7 +90,7 @@ export function Step0(props: Props) {
             <div className="flex">
               <label
                 className={cn(
-                  'flex-1 flex items-center gap-x-2 text-gray-2 aria-checked:text-primary font-semibold text-base select-none'
+                  'flex flex-1 items-center gap-x-2 text-base font-semibold text-gray-2 select-none aria-checked:text-primary'
                 )}
                 aria-checked={allChecked}
               >
@@ -106,7 +106,7 @@ export function Step0(props: Props) {
               <AccordionTrigger className="w-8 justify-end" />
             </div>
             <AccordionContent>
-              <div className="rounded-xl py-2.5 px-4 border text-gray-2 max-h-85 overflow-y-auto">
+              <div className="max-h-85 overflow-y-auto rounded-xl border px-4 py-2.5 text-gray-2">
                 {agreementData.all.content}
               </div>
             </AccordionContent>
@@ -121,7 +121,7 @@ export function Step0(props: Props) {
                     <FormItem className="flex-1">
                       <label
                         className={cn(
-                          'flex items-center gap-x-2 text-gray-2 aria-checked:text-primary font-semibold text-base select-none'
+                          'flex items-center gap-x-2 text-base font-semibold text-gray-2 select-none aria-checked:text-primary'
                         )}
                         aria-checked={field.value}
                       >
@@ -144,7 +144,7 @@ export function Step0(props: Props) {
                 <AccordionTrigger className="w-8 justify-end" />
               </div>
               <AccordionContent>
-                <div className="rounded-xl py-2.5 px-4 border text-gray-2 max-h-85 overflow-y-auto">
+                <div className="max-h-85 overflow-y-auto rounded-xl border px-4 py-2.5 text-gray-2">
                   {item.content}
                 </div>
               </AccordionContent>

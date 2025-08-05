@@ -15,14 +15,14 @@ import {
 } from 'lucide-react';
 import { FC, useState } from 'react';
 
-const triggerStyles = cva('w-full px-6 pt-6 bg-white rounded-t-lg', {
+const triggerStyles = cva('w-full rounded-t-lg bg-white px-6 pt-6', {
   variants: {
     open: {
       false: 'rounded-b-lg',
     },
   },
 });
-const triggerContainerStyles = cva('flex justify-between pb-6 items-center', {
+const triggerContainerStyles = cva('flex items-center justify-between pb-6', {
   variants: {
     open: {
       true: 'border-b',
@@ -36,7 +36,7 @@ const triggerIconStyles = cva('text-black transition-all', {
     },
   },
 });
-const badgeStyles = cva('size-2 rounded-full min-w-2', {
+const badgeStyles = cva('size-2 min-w-2 rounded-full', {
   variants: {
     isTrainer: {
       true: 'bg-primary',
@@ -75,12 +75,12 @@ export function MemberRecordSummary({
           <div className={triggerContainerStyles({ open })}>
             <div className="flex items-center gap-x-3">
               <div className={badgeStyles({ isTrainer })}></div>
-              <div className="text-black font-bold tracking-[-0.18px]">
+              <div className="font-bold tracking-[-0.18px] text-black">
                 {exerciseName}
               </div>
             </div>
             <div className="flex items-center gap-x-9">
-              <div className="flex items-center justify-between gap-x-2 min-w-100">
+              <div className="flex min-w-100 items-center justify-between gap-x-2">
                 <Value
                   Icon={ListCheckIcon}
                   value={setCount}
@@ -108,7 +108,7 @@ export function MemberRecordSummary({
           </div>
         </button>
       </CollapsibleTrigger>
-      <CollapsibleContent className="bg-white p-6 rounded-b-lg">
+      <CollapsibleContent className="rounded-b-lg bg-white p-6">
         로딩중...
       </CollapsibleContent>
     </Collapsible>
@@ -116,7 +116,7 @@ export function MemberRecordSummary({
 }
 
 const valueContainerStyles = cva(
-  'flex items-end font-light gap-2 transition-colors',
+  'flex items-end gap-2 font-light transition-colors',
   {
     variants: {
       isMuted: {

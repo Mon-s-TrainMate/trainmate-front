@@ -14,7 +14,7 @@ export default function Error({
     console.error(error);
   }, [error]);
   return (
-    <div className="flex flex-col justify-center items-center gap-4">
+    <div className="flex flex-col items-center justify-center gap-4">
       <h2 className="text-2xl font-bold">오류 발생</h2>
       <Button variant="secondary" onClick={reset}>
         재시도

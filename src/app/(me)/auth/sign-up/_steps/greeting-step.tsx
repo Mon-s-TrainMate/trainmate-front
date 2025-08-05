@@ -5,8 +5,8 @@ import Link from 'next/link';
 export function GreetingStep() {
   return (
     <div>
-      <UserAvatar size="xl" className="mb-11 mx-auto" />
-      <p className="text-[2.125rem] break-keep text-balance text-center mb-20">
+      <UserAvatar size="xl" className="mx-auto mb-11" />
+      <p className="mb-20 text-center text-[2.125rem] text-balance break-keep">
         <span className="font-semibold text-primary">TrainMate</span>의 멤버가
         된 것을
         <br /> 환영합니다!
