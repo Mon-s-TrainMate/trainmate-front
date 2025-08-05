@@ -126,13 +126,20 @@ function SelectLabel({
 function SelectItem({
   className,
   children,
+  align = 'left',
   ...props
 }: React.ComponentProps<typeof SelectPrimitive.Item> &
-  VariantProps<typeof selectItemVariants>) {
+  VariantProps<typeof selectItemVariants> & { align?: 'left' | 'center' }) {
   return (
     <SelectPrimitive.Item
       data-slot="select-item"
-      className={cn(selectItemVariants(), className)}
+      className={cn(
+        selectItemVariants(),
+        align === 'center'
+          ? 'justify-center text-center'
+          : 'justify-start text-left',
+        className
+      )}
       {...props}
     >
       <SelectPrimitive.ItemText>{children}</SelectPrimitive.ItemText>
@@ -219,19 +226,14 @@ function SelectBox({
       open={open}
     >
       <SelectTrigger open={open}>
-        <div
-          className={cn(
-            'flex-1',
-            align === 'center' ? 'text-center' : 'text-left'
-          )}
-        >
+        <div className="flex-1 text-center">
           <SelectValue placeholder={placeholder} />
         </div>
         <p className="ml-auto text-base font-normal text-black">{unit}</p>
       </SelectTrigger>
       <SelectContent className="border-shadow-level-1-lighter rounded-xl border">
         {items.map(({ label, value }) => (
-          <SelectItem key={value} value={value}>
+          <SelectItem key={value} value={value} align={align}>
             {label}
           </SelectItem>
         ))}

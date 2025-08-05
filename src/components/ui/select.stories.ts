@@ -27,5 +27,6 @@ export const Basic: Story = {
       { label: '03', value: '03' },
     ],
     unit: 'unit',
+    align: 'left',
   },
 };
