@@ -1,5 +1,5 @@
 import z from 'zod';
-import { emailSchema, passwordSchema } from '../schema';
+import { emailSchema, passwordSchema } from '@/lib/schema';
 
 export type SignInFormSchema = z.infer<typeof signInFormSchema>;
 export const signInFormSchema = z.object({

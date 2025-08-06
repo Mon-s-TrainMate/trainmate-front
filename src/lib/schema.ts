@@ -17,3 +17,7 @@ export const passwordSchema = z
     error: '비밀번호에 특수문자가 한 글자 이상 포함되어야 합니다.',
   })
   .min(10, { error: '비밀번호는 10자리 이상이어야 합니다.' });
+export const nameSchema = z.string().min(1, { error: '이름을 입력해주세요.' });
+export const ageSchema = z
+  .number()
+  .positive({ error: '나이는 양수여야 합니다.' });
