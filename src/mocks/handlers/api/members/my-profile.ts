@@ -29,6 +29,7 @@ export const mswMyProfile = http.get(
         email: user.email,
         user_type: user.user_type,
         profile_image: user.profile_image,
+        phone: user.phone,
         age: user.age,
         height_cm: user.height_cm,
         weight_kg: user.weight_kg,
@@ -61,6 +62,7 @@ export const mswUpdateMyProfile = http.put<never, UpdateMemberProfileData>(
     // Update user data
     const user = users[userIndex];
     if (body.profile_image != null) user.profile_image = body.profile_image;
+    if (body.phone != null) user.phone = body.phone;
     if (body.age != null) user.age = body.age;
     if (body.height_cm != null) user.height_cm = body.height_cm;
     if (body.weight_kg != null) user.weight_kg = body.weight_kg;
@@ -78,6 +80,7 @@ export const mswUpdateMyProfile = http.put<never, UpdateMemberProfileData>(
         email: user.email,
         user_type: user.user_type,
         profile_image: user.profile_image,
+        phone: user.phone,
         age: user.age,
         height_cm: user.height_cm,
         weight_kg: user.weight_kg,
@@ -110,6 +113,7 @@ export const mswPatchMyProfile = http.patch<never, UpdateMemberProfileData>(
     // Update user data (same logic as PUT for partial updates)
     const user = users[userIndex];
     if (body.profile_image != null) user.profile_image = body.profile_image;
+    if (body.phone != null) user.phone = body.phone;
     if (body.age != null) user.age = body.age;
     if (body.height_cm != null) user.height_cm = body.height_cm;
     if (body.weight_kg != null) user.weight_kg = body.weight_kg;
@@ -127,6 +131,7 @@ export const mswPatchMyProfile = http.patch<never, UpdateMemberProfileData>(
         email: user.email,
         user_type: user.user_type,
         profile_image: user.profile_image,
+        phone: user.phone,
         age: user.age,
         height_cm: user.height_cm,
         weight_kg: user.weight_kg,

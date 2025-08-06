@@ -12,6 +12,7 @@ export type MemberProfileResponse = {
     user_type: 'trainer' | 'member';
     created_at: string;
     profile_image: string | null;
+    phone: string | null;
     age: number | null;
     height_cm: number | null;
     weight_kg: number | null;
@@ -37,6 +38,7 @@ export async function getMemberProfileById(memberId: string) {
     userType: body.user.user_type,
     createdAt: new Date(body.user.created_at),
     profileImage: body.user.profile_image,
+    phone: body.user.phone,
     age: body.user.age,
     heightCm: body.user.height_cm,
     weightKg: body.user.weight_kg,

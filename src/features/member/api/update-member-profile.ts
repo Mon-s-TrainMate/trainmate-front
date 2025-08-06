@@ -6,6 +6,7 @@ import { API_HOST } from '@/lib/consts';
 export type UpdateMemberProfileData = {
   name?: string;
   profile_image?: string | null;
+  phone?: string | null;
   age?: number | null;
   height_cm?: number | null;
   weight_kg?: number | null;
@@ -23,6 +24,7 @@ export type UpdateMemberProfileResponse =
         user_type: 'trainer' | 'member';
         created_at: string;
         profile_image: string | null;
+        phone: string | null;
         age: number | null;
         height_cm: number | null;
         weight_kg: number | null;
