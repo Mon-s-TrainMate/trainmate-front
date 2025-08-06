@@ -72,6 +72,7 @@ export function createUser(name: string, email: string, user_type: string) {
     user_type,
     created_at: '2025-08-01',
     profile_image: `https://i.pravatar.cc/150?img=${id}`,
+    phone: '010-0000-0000',
     age: (Math.random() * 80) | 0,
     height_cm: (Math.random() * 50 + 150) | 0,
     weight_kg: (Math.random() * 100 + 50) | 0,

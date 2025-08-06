@@ -1,5 +1,5 @@
 import z from 'zod';
-import { emailSchema, passwordSchema } from '../schema';
+import { emailSchema, nameSchema, passwordSchema } from '@/lib/schema';
 
 export type SignUpFormSchema = z.infer<typeof signUpFormSchema>;
 export const signUpFormSchema = z
@@ -8,7 +8,7 @@ export const signUpFormSchema = z
     privacy_agreed: z.boolean().refine((value) => value),
     marketing_agreed: z.boolean(),
     user_type: z.enum(['member', 'trainer']),
-    name: z.string().min(1, { error: '이름을 입력해주세요.' }),
+    name: nameSchema,
     email: emailSchema,
     password: passwordSchema,
     confirm_password: passwordSchema,

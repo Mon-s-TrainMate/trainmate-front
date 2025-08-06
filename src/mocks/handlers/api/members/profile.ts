@@ -23,6 +23,7 @@ export const mswMemberProfile = http.get<{ memberId: string }>(
         email: user.email,
         user_type: user.user_type,
         profile_image: user.profile_image,
+        phone: user.phone,
         age: user.age,
         height_cm: user.height_cm,
         weight_kg: user.weight_kg,

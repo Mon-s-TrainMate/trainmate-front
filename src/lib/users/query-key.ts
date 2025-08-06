@@ -9,3 +9,7 @@ export function getMemberListQueryKey() {
 export function getMemberRecordListQueryKey(memberId: string, date: string) {
   return ['members', memberId, 'records', date] as const;
 }
+
+export function getMemberProfileQueryKey(memberId: string) {
+  return ['members', memberId, 'profile'] as const;
+}
