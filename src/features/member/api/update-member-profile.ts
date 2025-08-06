@@ -49,42 +49,27 @@ export async function updateMemberProfile(
   data: UpdateMemberProfileData
 ): Promise<UpdateMemberProfileResponse> {
   const token = await getAccessToken();
+  const res = await fetch(`${API_HOST}/api/members/profile/`, {
+    method: 'PATCH',
+    headers: {
+      'content-type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify(data),
+  });
 
-  if (!token) {
+  const body = await res.json();
+
+  if (!res.ok) {
     return {
       success: false,
-      message: 'Authentication required',
+      detail: body.detail,
+      message: body.message || body.detail || 'Failed to update profile',
+      code: body.code,
+      messages: body.messages,
+      errors: body.errors || body.error,
     };
   }
 
-  try {
-    const res = await fetch(`${API_HOST}/api/members/profile/`, {
-      method: 'PUT',
-      headers: {
-        'content-type': 'application/json',
-        Authorization: `Bearer ${token}`,
-      },
-      body: JSON.stringify(data),
-    });
-
-    const body = await res.json();
-
-    if (!res.ok) {
-      return {
-        success: false,
-        detail: body.detail,
-        message: body.message || body.detail || 'Failed to update profile',
-        code: body.code,
-        messages: body.messages,
-        errors: body.errors || body.error,
-      };
-    }
-
-    return body;
-  } catch {
-    return {
-      success: false,
-      message: 'Network error occurred',
-    };
-  }
+  return body;
 }
