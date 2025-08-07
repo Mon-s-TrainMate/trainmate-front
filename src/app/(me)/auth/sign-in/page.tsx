@@ -122,7 +122,7 @@ export default function Page() {
                   <Separator />
                   <div className="flex items-center">
                     <FormControl>
-                      <Checkbox></Checkbox>
+                      <Checkbox onCheckedChange={field.onChange} />
                     </FormControl>
                     <FormLabel className={field.value ? 'text-primary' : ''}>
                       로그인 상태 유지하기
