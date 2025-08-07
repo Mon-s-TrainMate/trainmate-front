@@ -120,7 +120,7 @@ export default function Page() {
               render={({ field }) => (
                 <FormItem>
                   <Separator />
-                  <div className="flex items-center">
+                  <div className="flex items-center gap-2">
                     <FormControl>
                       <Checkbox onCheckedChange={field.onChange} />
                     </FormControl>
