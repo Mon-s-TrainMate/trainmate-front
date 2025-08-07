@@ -33,10 +33,10 @@ import { SignInFormSchema, signInFormSchema } from './schema';
 import { AlertCircle } from 'lucide-react';
 import { useState } from 'react';
 
-const userTypes: { value: SignInFormSchema['userType']; label: string }[] = [
-  { value: 'member', label: '개인 회원' },
-  { value: 'trainer', label: '트레이너' },
-];
+// const userTypes: { value: SignInFormSchema['userType']; label: string }[] = [
+//   { value: 'member', label: '개인 회원' },
+//   { value: 'trainer', label: '트레이너' },
+// ];
 
 export default function Page() {
   const router = useRouter();
@@ -77,7 +77,7 @@ export default function Page() {
             }
           })}
         >
-          <FormField
+          {/* <FormField
             control={form.control}
             name="userType"
             render={({ field }) => (
@@ -107,7 +107,7 @@ export default function Page() {
                 <FormMessage />
               </FormItem>
             )}
-          />
+          /> */}
           <FormField
             control={form.control}
             name="email"
