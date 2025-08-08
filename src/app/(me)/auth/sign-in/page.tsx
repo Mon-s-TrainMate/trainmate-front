@@ -124,7 +124,9 @@ export default function Page() {
                     <FormControl>
                       <Checkbox onCheckedChange={field.onChange} />
                     </FormControl>
-                    <FormLabel className={field.value ? 'text-primary' : ''}>
+                    <FormLabel
+                      className={field.value ? 'text-primary' : 'text-gray-2'}
+                    >
                       로그인 상태 유지하기
                     </FormLabel>
                   </div>
@@ -132,7 +134,9 @@ export default function Page() {
                 </FormItem>
               )}
             ></FormField>
-            <Button type="submit">로그인하기</Button>
+            <Button type="submit" className="h-14.5">
+              로그인하기
+            </Button>
             <Link
               href="/auth/sign-up"
               className="grid grid-cols-[1fr_max-content_1fr] items-center gap-x-6.25 break-keep text-gray-2"
