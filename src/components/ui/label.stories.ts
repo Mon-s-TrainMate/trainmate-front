@@ -9,6 +9,10 @@ const meta = {
       control: { type: 'select' },
       options: ['sm', 'xs', 'base', 'xl', 'xxl'],
     },
+    weight: {
+      control: { type: 'select' },
+      options: ['light', 'normal', 'medium', 'semibold', 'bold'],
+    },
   },
 } satisfies Meta<typeof Label>;
 
@@ -19,5 +23,6 @@ export const label: Story = {
   args: {
     children: 'label',
     labelSize: 'xxl',
+    weight: 'normal',
   },
 };

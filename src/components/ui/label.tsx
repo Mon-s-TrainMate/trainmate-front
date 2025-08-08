@@ -17,9 +17,17 @@ const labelVariants = cva(
         xl: 'text-xl',
         xxl: 'text-2xl',
       },
+      weight: {
+        light: 'font-light',
+        normal: 'font-normal',
+        medium: 'font-medium',
+        semibold: 'font-semibold',
+        bold: 'font-bold',
+      },
     },
     defaultVariants: {
       labelSize: 'base',
+      weight: 'normal',
     },
   }
 );
@@ -27,13 +35,14 @@ const labelVariants = cva(
 function Label({
   className,
   labelSize,
+  weight,
   ...props
 }: React.ComponentProps<typeof LabelPrimitive.Root> &
   VariantProps<typeof labelVariants>) {
   return (
     <LabelPrimitive.Root
       data-slot="label"
-      className={cn(labelVariants({ labelSize }), className)}
+      className={cn(labelVariants({ labelSize, weight }), className)}
       {...props}
     />
   );
