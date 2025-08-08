@@ -16,7 +16,7 @@ const buttonVariants = cva(
         tertiary:
           'border border-transparent bg-black text-white hover:border-black hover:bg-gray-1 disabled:bg-gray-3',
         text: 'bg-none text-black hover:bg-primary-foreground hover:text-primary disabled:text-gray-3',
-        icon: 'bg-none text-black hover:bg-primary-foreground focus:bg-primary-foreground focus:text-primary disabled:bg-gray-5 disabled:text-gray-2',
+        icon: 'bg-none text-black hover:bg-primary-foreground active:bg-primary-foreground active:text-primary disabled:bg-gray-5 disabled:text-gray-2',
       },
       size: {
         sm: 'h-10.5 rounded-sm px-3.5 font-medium',
