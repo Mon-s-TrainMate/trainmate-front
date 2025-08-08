@@ -16,12 +16,14 @@ const buttonVariants = cva(
         tertiary:
           'border border-transparent bg-black text-white hover:border-black hover:bg-gray-1 disabled:bg-gray-3',
         text: 'bg-none text-black hover:bg-primary-foreground hover:text-primary disabled:text-gray-3',
+        icon: 'bg-none text-black hover:bg-primary-foreground focus:bg-primary-foreground focus:text-primary disabled:bg-gray-5 disabled:text-gray-2',
       },
       size: {
         sm: 'h-10.5 rounded-sm px-3.5 font-medium',
         md: 'h-11.5 rounded-md px-5 font-semibold',
         lg: 'h-11.5 rounded-md px-6 font-bold',
         icon: 'size-6 rounded-sm p-0',
+        circle: 'size-12 rounded-full p-0',
       },
     },
     defaultVariants: {

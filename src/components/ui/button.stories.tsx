@@ -19,11 +19,11 @@ const meta = {
   argTypes: {
     variant: {
       control: 'select',
-      options: ['primary', 'secondary', 'tertiary', 'text'],
+      options: ['primary', 'secondary', 'tertiary', 'text', 'icon'],
     },
     size: {
       control: 'select',
-      options: ['sm', 'md', 'lg', 'icon'],
+      options: ['sm', 'md', 'lg', 'icon', 'circle'],
     },
     disabled: {
       control: 'boolean',
@@ -47,8 +47,8 @@ export const Primary: Story = {
 
 export const Icon: Story = {
   args: {
-    variant: 'primary',
-    size: 'icon',
+    variant: 'icon',
+    size: 'circle',
     children: <BotIcon />,
   },
 };
