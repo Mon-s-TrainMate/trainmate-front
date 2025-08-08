@@ -45,7 +45,7 @@ export default function Page() {
     },
   });
   return (
-    <div className="mt-35 flex flex-col items-center">
+    <div className="mt-20 flex min-h-screen flex-col items-center justify-center pb-20">
       <div className="flex w-136 flex-col items-center gap-15 rounded-xl bg-white p-8">
         <BrandCatchphrase />
         <Form {...form}>
