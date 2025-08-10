@@ -204,6 +204,7 @@ type SelectBoxProps = {
   disabled?: boolean;
   unit?: string;
   align?: 'left' | 'center';
+  className?: string;
 };
 
 function SelectBox({
@@ -214,6 +215,7 @@ function SelectBox({
   onValueChange,
   disabled = false,
   align = 'left',
+  className,
 }: SelectBoxProps) {
   const [open, setOpen] = React.useState(false);
 
@@ -225,7 +227,7 @@ function SelectBox({
       onOpenChange={setOpen}
       open={open}
     >
-      <SelectTrigger open={open}>
+      <SelectTrigger open={open} className={className}>
         <div className="flex-1 text-center">
           <SelectValue placeholder={placeholder} />
         </div>

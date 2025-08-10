@@ -49,7 +49,10 @@ export function MemberRecordWidget({ memberId }: MemberRecordWidgetProps) {
       </div>
       <div className="flex flex-col gap-y-2">
         {records.map((record) => (
-          <Link href={`/members/${memberId}/records`} key={record.id}>
+          <Link
+            href={`/members/${memberId}/records/${record.id}`}
+            key={record.id}
+          >
             <MemberRecordSummary {...record} />
           </Link>
         ))}
