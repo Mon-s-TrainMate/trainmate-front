@@ -6,8 +6,9 @@ export function getMemberListQueryKey() {
   return ['members'];
 }
 
-export function getMemberRecordListQueryKey(memberId: string, date: string) {
-  return ['members', memberId, 'records', date] as const;
+export function getMemberRecordListQueryKey(memberId: string, date?: string) {
+  const queryDate = date ?? new Date().toISOString().split('T')[0];
+  return ['members', memberId, 'records', queryDate] as const;
 }
 
 export function getMemberProfileQueryKey(memberId: string) {
