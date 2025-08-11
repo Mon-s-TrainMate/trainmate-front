@@ -12,7 +12,7 @@ const dataValueVariants = cva('flex', {
   },
 });
 
-const labelVariants = cva('', {
+const labelVariants = cva('break-keep whitespace-nowrap', {
   variants: {
     size: {
       lg: 'text-xl font-light text-gray-2',
@@ -34,16 +34,19 @@ const valueContainerVariants = cva('flex items-baseline', {
   },
 });
 
-const valueVariants = cva('leading-none font-light', {
-  variants: {
-    size: {
-      lg: 'text-[3.25rem] text-black',
-      md: 'text-[2.5rem] text-black',
-      sm: 'text-2xl text-main-2',
-      xs: 'text-lg text-black',
+const valueVariants = cva(
+  'leading-none font-light break-keep whitespace-nowrap',
+  {
+    variants: {
+      size: {
+        lg: 'text-[3.25rem] text-black',
+        md: 'text-[2.5rem] text-black',
+        sm: 'text-2xl text-main-2',
+        xs: 'text-lg text-black',
+      },
     },
-  },
-});
+  }
+);
 
 const unitVariants = cva('font-light', {
   variants: {

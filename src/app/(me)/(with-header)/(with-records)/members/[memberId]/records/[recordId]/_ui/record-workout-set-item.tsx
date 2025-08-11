@@ -44,65 +44,62 @@ export const WorkoutSetItem = React.memo(function ExerciseSetItem({
   canRemove,
 }: WorkoutSetItemProps) {
   return (
-    <div className="flex items-center justify-between rounded-xl border-0 bg-white p-0">
-      <div className="flex w-[400px] items-center gap-14">
+    <div className="flex flex-wrap items-center justify-between gap-4 rounded-xl border-0 bg-white p-0">
+      <div className="flex flex-1 items-center justify-between gap-4">
         <div className="text-base font-bold text-black">
           {String(index + 1).padStart(2, '0')}
         </div>
-        <div className="flex w-80 items-center gap-2.5">
-          <div className="w-[155px]">
-            <SelectBox
-              items={REPS_OPTIONS.map((option) => ({
-                ...option,
-                value: option.value.toString(),
-              }))}
-              placeholder="횟수"
-              value={repetitions.toString()}
-              onValueChange={(value) =>
-                updateSet(id, 'repetitions', parseInt(value))
-              }
-              unit="회"
-              className="w-full"
-            />
-          </div>
-          <div className="w-[155px]">
-            <SelectBox
-              items={WEIGHT_OPTIONS.map((option) => ({
-                ...option,
-                value: option.value.toString(),
-              }))}
-              placeholder="무게"
-              value={weightKg.toString()}
-              onValueChange={(value) =>
-                updateSet(id, 'weightKg', parseInt(value))
-              }
-              unit="kg"
-              className="w-full"
-            />
-          </div>
+        <div className="flex w-full items-center gap-2.5">
+          <SelectBox
+            items={REPS_OPTIONS.map((option) => ({
+              ...option,
+              value: option.value.toString(),
+            }))}
+            placeholder="횟수"
+            value={repetitions.toString()}
+            onValueChange={(value) =>
+              updateSet(id, 'repetitions', parseInt(value))
+            }
+            unit="회"
+            className="w-40"
+          />
+          <SelectBox
+            items={WEIGHT_OPTIONS.map((option) => ({
+              ...option,
+              value: option.value.toString(),
+            }))}
+            placeholder="무게"
+            value={weightKg.toString()}
+            onValueChange={(value) =>
+              updateSet(id, 'weightKg', parseInt(value))
+            }
+            unit="kg"
+            className="w-40"
+          />
         </div>
       </div>
-      <div className="text-[26px] font-normal text-black">
-        {formatDuration(durationSec)}
-      </div>
-      <div className="flex items-center gap-3">
-        <Button
-          className="h-12 w-12 rounded-full"
-          onClick={() => {
-            toggleSetTimer(id, durationSec);
-          }}
-        >
-          {isPlaying ? <SquareIcon /> : <PlayIcon />}
-        </Button>
-        {canRemove && (
+      <div className="flex flex-1 items-center justify-end gap-4">
+        <div className="text-2xl font-normal break-keep whitespace-nowrap text-black">
+          {formatDuration(durationSec)}
+        </div>
+        <div className="flex items-center gap-3">
+          <Button
+            className="h-12 w-12 rounded-full"
+            onClick={() => {
+              toggleSetTimer(id, durationSec);
+            }}
+          >
+            {isPlaying ? <SquareIcon /> : <PlayIcon />}
+          </Button>
           <Button
             onClick={() => removeSet(id)}
             variant="secondary"
+            disabled={!canRemove}
             className="h-12 w-12 rounded-full"
           >
             <TrashIcon />
           </Button>
-        )}
+        </div>
       </div>
     </div>
   );
