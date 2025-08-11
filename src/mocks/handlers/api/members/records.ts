@@ -25,7 +25,7 @@ export const mswMemberRecords = http.get<
   const records = user.records
     .filter((record) => (date == null ? true : record.date === date))
     .map((record) => ({
-      record_id: record.record_id,
+      id: record.record_id,
       is_trainer: record.is_trainer,
       exercise_name: record.exercise_name,
       set_count: record.set_count,

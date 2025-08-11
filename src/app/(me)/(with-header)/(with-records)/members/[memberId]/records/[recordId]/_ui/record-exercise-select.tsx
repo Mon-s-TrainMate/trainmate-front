@@ -82,11 +82,9 @@ export const ExerciseSelect = memo(function ExerciseSelect({
     value: equipment,
   }));
   const filteredExercises = exercises.filter((exercise) => {
-    const matchesBodyPart =
-      !selectedBodyPart || exercise.bodyPart === selectedBodyPart;
-    const matchesEquipment =
-      !selectedMachine || exercise.equipment === selectedMachine;
-    return matchesBodyPart && matchesEquipment && exercise.isActive;
+    const matchesBodyPart = exercise.bodyPart === selectedBodyPart;
+    const matchesEquipment = exercise.equipment === selectedMachine;
+    return matchesBodyPart && matchesEquipment;
   });
 
   const exerciseOptions = filteredExercises.map((exercise) => ({

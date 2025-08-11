@@ -5,8 +5,8 @@ interface CreateExerciseOptions {
   exercise_name: string;
   body_part: string;
   equipment: string;
-  measurement_unit?: '회' | null;
-  weight_unit?: 'kg' | null;
+  measurement_unit?: '회' | 'none';
+  weight_unit?: 'kg' | 'none';
   met_value?: number;
   is_active?: boolean;
   created_at?: string;
@@ -18,8 +18,8 @@ function createExercise(options: CreateExerciseOptions) {
     exercise_name: options.exercise_name,
     body_part: options.body_part,
     equipment: options.equipment,
-    measurement_unit: options.measurement_unit ?? null,
-    weight_unit: options.weight_unit ?? null,
+    measurement_unit: options.measurement_unit ?? 'none',
+    weight_unit: options.weight_unit ?? 'none',
     met_value: options.met_value ?? 3.5,
     is_active: options.is_active ?? true,
     created_at: options.created_at ?? '2025-08-01T00:00:00.000Z',

@@ -9,7 +9,7 @@ import {
 import { mswMemberProfile } from './handlers/api/members/profile';
 import { mswMemberRecords } from './handlers/api/members/records';
 import { mswCreateWorkoutSet } from './handlers/api/members/workout-sets';
-import { mswExercises } from './handlers/api/exercises';
+import { mswExercises } from './handlers/api/workouts/exercises';
 import { mswLogger } from './handlers/logger';
 
 export const handlers = [
