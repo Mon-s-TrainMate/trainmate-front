@@ -27,8 +27,8 @@ export function RecordPersonalInfoWidget({
   ].filter((config) => config.value != null);
 
   return (
-    <div className="shadow-sm flex items-center justify-between rounded-xl bg-white p-6">
-      <div className="flex items-center gap-x-5">
+    <div className="shadow-sm flex flex-wrap items-center justify-center gap-6 rounded-xl bg-white p-4 @lg:justify-between @lg:p-6">
+      <div className="hidden items-center gap-x-5 @3xl:flex">
         <UserAvatar src={data?.profileImage} size="lg" />
         <div className="flex-1">
           <div className="text-2xl font-semibold text-black">{data?.name}</div>
@@ -42,7 +42,7 @@ export function RecordPersonalInfoWidget({
           </div>
         </div>
       </div>
-      <div className="flex items-center gap-x-5.5">
+      <div className="flex flex-1 items-center justify-center gap-x-5.5">
         <PhysicalMetric
           label="체지방량"
           value={data?.bodyFatPercentage}

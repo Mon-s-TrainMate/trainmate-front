@@ -26,7 +26,7 @@ export function WorkoutSetList({
   toggleSetTimer,
 }: WorkoutSetListProps) {
   return (
-    <div className="shadow-sm rounded-xl bg-white p-6">
+    <div className="shadow-sm rounded-xl bg-white p-4 @lg:p-6">
       <div className="flex flex-col gap-y-4">
         <div className="flex items-center justify-between">
           <h3 className="text-sm font-normal text-black">

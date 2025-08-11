@@ -1,5 +1,6 @@
 'use client';
 
+import { Button } from '@/components/ui/button';
 import { SelectBox } from '@/components/ui/select';
 import { useExercises } from '@/features/exercise/hooks/use-exercises';
 import { PlusCircleIcon, SearchIcon } from 'lucide-react';
@@ -9,29 +10,25 @@ interface SearchFieldProps {
   placeholder: string;
   selectedExercise: string;
   onExerciseSelect: (exerciseId: string) => void;
-  className?: string;
 }
 function SearchField({
   placeholder,
   selectedExercise,
   onExerciseSelect,
-  className,
 }: SearchFieldProps) {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     onExerciseSelect(e.target.value);
   };
 
   return (
-    <div
-      className={`flex w-80 items-center gap-2.5 rounded-xl bg-gray-5 px-5 py-3.5 ${className || ''}`}
-    >
-      <SearchIcon className="h-5 w-5 text-gray-2" />
+    <div className="relative min-w-0 flex-1">
+      <SearchIcon className="pointer-events-none absolute my-3.5 ml-5 h-5 w-5 text-gray-2" />
       <input
         type="text"
         placeholder={placeholder}
         value={selectedExercise}
         onChange={handleChange}
-        className="flex-1 bg-transparent text-sm text-black placeholder-gray-2 outline-none"
+        className="w-full min-w-0 rounded-xl bg-gray-5 py-3.5 pr-5 pl-12.5 text-sm text-black placeholder-gray-2"
       />
     </div>
   );
@@ -99,7 +96,7 @@ export const ExerciseSelect = memo(function ExerciseSelect({
 
   if (error) {
     return (
-      <div className="shadow-sm rounded-xl bg-white p-6">
+      <div className="shadow-sm rounded-xl bg-white p-4 @lg:p-6">
         <div className="text-red-600 text-center">
           운동 목록을 불러오는 중 오류가 발생했습니다.
         </div>
@@ -108,29 +105,29 @@ export const ExerciseSelect = memo(function ExerciseSelect({
   }
 
   return (
-    <div className="shadow-sm rounded-xl bg-white p-6">
+    <div className="shadow-sm rounded-xl bg-white p-4 @lg:p-6">
       <div className="flex flex-col items-end gap-y-6">
-        <div className="flex w-full items-center justify-between">
+        <div className="flex w-full flex-col justify-between @lg:flex-row-reverse @lg:items-center">
+          <Button className="flex w-max items-center gap-x-2" variant="icon">
+            <PlusCircleIcon className="h-6 w-6 text-black" />
+            <span className="text-base text-black">추천 운동루틴 불러오기</span>
+          </Button>
           <SearchField
             placeholder="운동 이름을 검색해보세요."
             selectedExercise={selectedExercise}
             onExerciseSelect={onExerciseChange}
           />
-          <div className="flex items-center gap-x-2">
-            <PlusCircleIcon className="h-6 w-6 text-black" />
-            <span className="text-base text-black">추천 운동루틴 불러오기</span>
-          </div>
         </div>
         <div className="flex w-full flex-col gap-y-3">
           <div className="text-sm text-black">진행할 운동을 선택해주세요.</div>
-          <div className="flex w-full items-center gap-x-3">
+          <div className="flex w-full flex-wrap items-center gap-3">
             <SelectBox
               items={uniqueBodyParts}
               placeholder="부위"
               value={selectedBodyPart}
               onValueChange={setSelectedBodyPart}
               disabled={isLoading}
-              className="flex-1"
+              className="flex-1 basis-40"
             />
             <SelectBox
               items={uniqueEquipment}
@@ -138,7 +135,7 @@ export const ExerciseSelect = memo(function ExerciseSelect({
               value={selectedMachine}
               onValueChange={setSelectedMachine}
               disabled={isLoading}
-              className="flex-1"
+              className="flex-1 basis-40"
             />
             <SelectBox
               items={exerciseOptions}
@@ -146,7 +143,7 @@ export const ExerciseSelect = memo(function ExerciseSelect({
               value={selectedExercise}
               onValueChange={onExerciseChange}
               disabled={isLoading}
-              className="w-80"
+              className="flex-1 basis-80"
             />
           </div>
         </div>

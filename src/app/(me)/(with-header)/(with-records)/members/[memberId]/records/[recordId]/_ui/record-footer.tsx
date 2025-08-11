@@ -14,8 +14,8 @@ export function RecordFooter({ sets }: RecordFooterProps) {
   const estimatedCalories = Math.floor((totalDuration / 60) * 5);
 
   return (
-    <div className="flex items-center justify-between rounded-xl bg-white px-10 py-6">
-      <div className="flex items-center gap-10">
+    <div className="flex flex-col justify-between gap-4 rounded-xl bg-white p-4 @md:px-10 @md:py-6 @3xl:flex-row @3xl:items-center">
+      <div className="flex flex-wrap items-center justify-center gap-10">
         <DataValue
           size="md"
           label="set calories"
@@ -28,7 +28,7 @@ export function RecordFooter({ sets }: RecordFooterProps) {
           value={formatDuration(totalDuration)}
         />
       </div>
-      <Button className="w-48 rounded-[10px] bg-primary px-6 py-4 text-base font-bold text-white shadow-[2px_4px_10px_0px_rgba(180,180,180,0.35)] hover:bg-primary/90">
+      <Button className="rounded-md bg-primary px-6 py-4 text-base font-bold text-white shadow-[2px_4px_10px_0px_rgba(180,180,180,0.35)] hover:bg-primary/90 @3xl:w-48">
         세트 저장하기
       </Button>
     </div>
