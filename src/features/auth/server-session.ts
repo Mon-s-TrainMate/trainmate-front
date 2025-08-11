@@ -21,12 +21,16 @@ async function getServerSession(key: string) {
   const cookieStore = await cookies();
   const token = cookieStore.get(key)?.value ?? null;
   if (token == null) return null;
-  const claims = decodeJwt(token);
-  if (Date.now() / 1000 > (claims.exp ?? 0) - 5 * 60) {
-    await deleteServerSession(key);
+  try {
+    const claims = decodeJwt(token);
+    if (Date.now() / 1000 > (claims.exp ?? 0) - 5 * 60) {
+      await deleteServerSession(key);
+      return null;
+    }
+    return token;
+  } catch {
     return null;
   }
-  return token;
 }
 
 async function deleteServerSession(key: string) {
