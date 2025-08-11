@@ -7,7 +7,7 @@ export type MemberRecordListResponse =
   | {
       success: true;
       records: {
-        record_id: number;
+        id: number;
         is_trainer: boolean;
         exercise_name: string;
         set_count: number;
@@ -38,7 +38,7 @@ export async function getMemberRecordList(
   if (!body.success) throw body;
 
   return body.records.map((record) => ({
-    id: record.record_id,
+    id: record.id,
     isTrainer: record.is_trainer,
     exerciseName: record.exercise_name,
     setCount: record.set_count,
