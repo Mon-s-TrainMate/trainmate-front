@@ -3,7 +3,7 @@
 import { Button } from '@/components/ui/button';
 import { SelectBox } from '@/components/ui/select';
 import { formatDuration } from '@/lib/time/format-duration';
-import { PlayIcon, TrashIcon } from 'lucide-react';
+import { PlayIcon, SquareIcon, TrashIcon } from 'lucide-react';
 import React from 'react';
 
 import { WorkoutSet } from '../_hooks/use-workout-sets';
@@ -18,11 +18,8 @@ const REPS_OPTIONS = Array.from({ length: 30 }, (_, i) => ({
   value: i + 1,
 }));
 
-interface WorkoutSetItemProps {
+type WorkoutSetItemProps = {
   id: number;
-  weightKg: number;
-  repetitions: number;
-  durationSec: number;
   index: number;
   updateSet: <K extends keyof WorkoutSet>(
     id: number,
@@ -30,17 +27,20 @@ interface WorkoutSetItemProps {
     value: WorkoutSet[K]
   ) => void;
   removeSet: (id: number) => void;
+  toggleSetTimer: (id: number, initialDurationSec: number) => void;
   canRemove: boolean;
-}
+} & WorkoutSet;
 
 export const WorkoutSetItem = React.memo(function ExerciseSetItem({
   id,
   weightKg,
   repetitions,
   durationSec,
+  isPlaying,
   index,
   updateSet,
   removeSet,
+  toggleSetTimer,
   canRemove,
 }: WorkoutSetItemProps) {
   return (
@@ -86,8 +86,13 @@ export const WorkoutSetItem = React.memo(function ExerciseSetItem({
         {formatDuration(durationSec)}
       </div>
       <div className="flex items-center gap-3">
-        <Button className="h-12 w-12 rounded-full">
-          <PlayIcon />
+        <Button
+          className="h-12 w-12 rounded-full"
+          onClick={() => {
+            toggleSetTimer(id, durationSec);
+          }}
+        >
+          {isPlaying ? <SquareIcon /> : <PlayIcon />}
         </Button>
         {canRemove && (
           <Button

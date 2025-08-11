@@ -15,6 +15,7 @@ interface WorkoutSetListProps {
     field: K,
     value: WorkoutSet[K]
   ) => void;
+  toggleSetTimer: (id: number, initialDurationSec: number) => void;
 }
 
 export function WorkoutSetList({
@@ -22,6 +23,7 @@ export function WorkoutSetList({
   addSet,
   removeSet,
   updateSet,
+  toggleSetTimer,
 }: WorkoutSetListProps) {
   return (
     <div className="shadow-sm rounded-xl bg-white p-6">
@@ -49,6 +51,7 @@ export function WorkoutSetList({
               index={index}
               updateSet={updateSet}
               removeSet={removeSet}
+              toggleSetTimer={toggleSetTimer}
               canRemove={sets.length > 1}
             />
           ))}

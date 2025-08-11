@@ -17,6 +17,7 @@ export function RecordPageClient({}: RecordPageClientProps) {
     addWorkoutSet: addSet,
     removeWorkoutSet: removeSet,
     updateWorkoutSet: updateSet,
+    toggleWorkoutSetTimer: toggleSetTimer,
   } = useWorkoutSets([]);
 
   return (
@@ -30,6 +31,7 @@ export function RecordPageClient({}: RecordPageClientProps) {
         addSet={addSet}
         removeSet={removeSet}
         updateSet={updateSet}
+        toggleSetTimer={toggleSetTimer}
       />
       <RecordFooter sets={workoutSets} />
     </div>
