@@ -8,7 +8,7 @@ export const mswMemberRecords = http.get<
   { memberId: string },
   never,
   MemberRecordListResponse
->(API_HOST + '/api/members/:memberId/records', async ({ params, request }) => {
+>(API_HOST + '/api/workouts/:memberId/records', async ({ params, request }) => {
   const memberId = Number(params.memberId);
   const user = users.find((user) => user.id === memberId);
   if (user == null)
