@@ -1,6 +1,6 @@
+import type { SignUpFormSchema } from '@/features/auth/schema';
 import { useEffect, useRef } from 'react';
 import { getSignUpFormSessionData } from '../_lib/session-data';
-import { SignUpFormSchema } from '../schema';
 
 export function useUserDataGuard(
   fn: (...args: unknown[]) => unknown,

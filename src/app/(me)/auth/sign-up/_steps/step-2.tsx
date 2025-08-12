@@ -10,13 +10,13 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
+import { signUpFormSchema } from '@/features/auth/schema';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { ChevronLeftIcon } from 'lucide-react';
 import { useForm } from 'react-hook-form';
 import { useSignUpFormApiErrors } from '../_hooks/use-errors';
 import { useUserDataGuard } from '../_hooks/use-user-data';
 import { getSignUpFormSessionData } from '../_lib/session-data';
-import { signUpFormSchema } from '../schema';
 import { keys as step0Keys } from './step-0';
 import { keys as step1Keys } from './step-1';
 

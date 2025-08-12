@@ -1,5 +1,5 @@
+import type { SignUpFormSchema } from '@/features/auth/schema';
 import { Observer } from '@/lib/observer/observer';
-import { SignUpFormSchema } from '../schema';
 
 type FieldName = keyof SignUpFormSchema;
 

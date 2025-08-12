@@ -1,4 +1,4 @@
-import { signUpFormSchema } from '@/app/(me)/auth/sign-up/schema';
+import { signUpFormSchema } from '@/features/auth/schema';
 import { API_HOST } from '@/lib/consts';
 import { http, HttpResponse } from 'msw';
 import { ZodError } from 'zod';

@@ -1,33 +1,28 @@
 'use client';
 
-import { getUsersQueryKey } from '@/lib/users/query-key';
-import { useQueryClient } from '@tanstack/react-query';
+import { useSignUp } from '@/features/auth/hooks/use-sign-up';
+import { signUpFormSchema } from '@/features/auth/schema';
 import { useRouter } from 'next/navigation';
 import { JSX, useState } from 'react';
-import { createUser } from './_actions/action';
 import { setSignUpFormApiError } from './_lib/api-error';
 import { clearSignUpFormSessionData } from './_lib/session-data';
 import { GreetingStep } from './_steps/greeting-step';
 import { Step0, keys as step0Keys } from './_steps/step-0';
 import { Step1, keys as step1Keys } from './_steps/step-1';
 import { Step2, keys as step2Keys } from './_steps/step-2';
-import { signUpFormSchema } from './schema';
 
 export default function Page() {
   const [stepIndex, setStepIndex] = useState(2);
   const router = useRouter();
-  const queryClient = useQueryClient();
+  const mutation = useSignUp();
 
   const next = () => setStepIndex((step) => step + 1);
   const back = () => setStepIndex((step) => step - 1);
   const onSubmit = async (values: unknown) => {
     const data = signUpFormSchema.parse(values);
-    const res = await createUser(data);
+    const res = await mutation.mutateAsync(data);
     if (res.success) {
       clearSignUpFormSessionData();
-      await queryClient.invalidateQueries({
-        queryKey: getUsersQueryKey('me'),
-      });
       next();
     } else {
       setSignUpFormApiError(res.errors);
