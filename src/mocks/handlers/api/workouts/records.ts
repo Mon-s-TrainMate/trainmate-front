@@ -1,4 +1,4 @@
-import { MemberRecordListResponse } from '@/features/member/api/get-member-record-list';
+import { MemberRecordListResponse } from '@/features/workouts/api/get-member-record-list';
 import { API_HOST } from '@/lib/consts';
 import { users } from '@/mocks/data';
 import { withAuthorization } from '@/mocks/utils';
@@ -8,7 +8,7 @@ export const mswMemberRecords = http.get<
   { memberId: string },
   never,
   MemberRecordListResponse
->(API_HOST + '/api/members/:memberId/records', async ({ params, request }) => {
+>(API_HOST + '/api/workouts/:memberId/records', async ({ params, request }) => {
   const memberId = Number(params.memberId);
   const user = users.find((user) => user.id === memberId);
   if (user == null)

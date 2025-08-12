@@ -68,6 +68,7 @@ export function useWorkoutSets(initialSets: InternalWorkoutSet[]) {
     removeWorkoutSet,
     updateWorkoutSet,
     toggleWorkoutSetTimer: toggleTimer,
+    setWorkoutSets,
   };
 }
 

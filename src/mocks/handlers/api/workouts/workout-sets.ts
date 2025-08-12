@@ -64,7 +64,7 @@ export const mswCreateWorkoutSet = http.post<
   WorkoutSetRequest,
   WorkoutSetResponse
 >(
-  API_HOST + '/api/members/:memberId/workout-sets',
+  API_HOST + '/api/workouts/:memberId/workout-sets',
   async ({ params, request }) => {
     const memberId = Number(params.memberId);
     const requestData = await request.json();

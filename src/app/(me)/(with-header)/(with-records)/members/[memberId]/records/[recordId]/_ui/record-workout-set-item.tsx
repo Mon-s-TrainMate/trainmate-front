@@ -18,9 +18,9 @@ import { AlertCircleIcon, PlayIcon, SquareIcon, TrashIcon } from 'lucide-react';
 import React from 'react';
 import { WorkoutSet } from '../_hooks/use-workout-sets';
 
-const WEIGHT_OPTIONS = Array.from({ length: 50 }, (_, i) => ({
-  label: `${(i + 1) * 5}`,
-  value: (i + 1) * 5,
+const WEIGHT_OPTIONS = Array.from({ length: 100 }, (_, i) => ({
+  label: `${i + 1}`,
+  value: i + 1,
 }));
 
 const REPS_OPTIONS = Array.from({ length: 30 }, (_, i) => ({

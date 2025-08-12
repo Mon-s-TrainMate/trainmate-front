@@ -26,7 +26,7 @@ export async function getMemberRecordList(
   }
 ) {
   const token = await getAccessToken();
-  const url = new URL(`${API_HOST}/api/members/${memberId}/records`);
+  const url = new URL(`${API_HOST}/api/workouts/${memberId}/records`);
   if (options?.date != null) url.searchParams.append('date', options.date);
   const res = await fetch(url, {
     headers: {
