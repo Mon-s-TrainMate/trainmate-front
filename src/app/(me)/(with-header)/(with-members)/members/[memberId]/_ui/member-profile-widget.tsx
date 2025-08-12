@@ -19,12 +19,10 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { Separator } from '@/components/ui/separator';
-import { updateMemberProfile } from '@/features/member/api/update-member-profile';
 import { useMemberProfile } from '@/features/member/hooks/use-member-profile';
-import { getMemberProfileQueryKey } from '@/lib/users/query-key';
+import { useUpdateMemberProfile } from '@/features/member/hooks/use-update-member-profile';
 import { cn } from '@/lib/utils';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useQueryClient } from '@tanstack/react-query';
 import { CircleAlertIcon, PlusCircleIcon } from 'lucide-react';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
@@ -78,7 +76,12 @@ interface DialogForm {
 }
 function DialogForm({ memberId, setOpen }: DialogForm) {
   const { data } = useMemberProfile(memberId);
-  const queryClient = useQueryClient();
+  const mutation = useUpdateMemberProfile({
+    memberId,
+    onSuccess() {
+      setOpen(false);
+    },
+  });
   const form = useForm({
     resolver: zodResolver(updatingProfileSchema),
     defaultValues: {
@@ -104,16 +107,12 @@ function DialogForm({ memberId, setOpen }: DialogForm) {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(async (values) => {
-          await updateMemberProfile({
+          mutation.mutate({
             height_cm: Number(values.height_cm),
             weight_kg: Number(values.weight_kg),
             body_fat_percentage: Number(values.body_fat_percentage),
             muscle_mass_kg: Number(values.muscle_mass_kg),
           });
-          await queryClient.invalidateQueries({
-            queryKey: getMemberProfileQueryKey(memberId),
-          });
-          setOpen(false);
         })}
         className="flex flex-col gap-y-10"
       >
@@ -156,11 +155,15 @@ function DialogForm({ memberId, setOpen }: DialogForm) {
               form.reset();
               setOpen(false);
             }}
-            disabled={form.formState.disabled}
+            disabled={form.formState.disabled || mutation.isPending}
           >
             취소하기
           </Button>
-          <Button type="submit" size="lg" disabled={form.formState.disabled}>
+          <Button
+            type="submit"
+            size="lg"
+            disabled={form.formState.disabled || mutation.isPending}
+          >
             편집하기
           </Button>
         </DialogFooter>
