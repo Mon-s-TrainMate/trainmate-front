@@ -76,12 +76,7 @@ interface DialogForm {
 }
 function DialogForm({ memberId, setOpen }: DialogForm) {
   const { data } = useMemberProfile(memberId);
-  const mutation = useUpdateMemberProfile({
-    memberId,
-    onSuccess() {
-      setOpen(false);
-    },
-  });
+  const mutation = useUpdateMemberProfile(memberId);
   const form = useForm({
     resolver: zodResolver(updatingProfileSchema),
     defaultValues: {
@@ -107,12 +102,17 @@ function DialogForm({ memberId, setOpen }: DialogForm) {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(async (values) => {
-          mutation.mutate({
+          const res = await mutation.mutateAsync({
             height_cm: Number(values.height_cm),
             weight_kg: Number(values.weight_kg),
             body_fat_percentage: Number(values.body_fat_percentage),
             muscle_mass_kg: Number(values.muscle_mass_kg),
           });
+          if (res.success) {
+            setOpen(false);
+          } else {
+            form.setError('root', { type: 'manual', message: res.message });
+          }
         })}
         className="flex flex-col gap-y-10"
       >
@@ -145,6 +145,11 @@ function DialogForm({ memberId, setOpen }: DialogForm) {
             />
           ))}
         </div>
+        {form.formState.errors.root && (
+          <p className="text-destructive">
+            {form.formState.errors.root.message}
+          </p>
+        )}
 
         <DialogFooter className="grid grid-cols-2 gap-x-2.5">
           <Button

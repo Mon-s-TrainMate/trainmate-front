@@ -23,7 +23,6 @@ import { useMemberProfile } from '@/features/member/hooks/use-member-profile';
 import { useUpdateMemberProfile } from '@/features/member/hooks/use-update-member-profile';
 import { UserAvatar } from '@/features/user/ui/user-avatar';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useQueryClient } from '@tanstack/react-query';
 import {
   CircleAlertIcon,
   MailIcon,
@@ -106,13 +105,7 @@ interface DialogFormProps {
 }
 function DialogForm({ memberId, setOpen }: DialogFormProps) {
   const { data } = useMemberProfile(memberId);
-  const mutation = useUpdateMemberProfile({
-    memberId,
-    onSuccess() {
-      setOpen(false);
-    },
-  });
-  const queryClient = useQueryClient();
+  const mutation = useUpdateMemberProfile(memberId);
   const form = useForm({
     resolver: zodResolver(updatingProfileSchema),
     defaultValues: {
@@ -126,9 +119,14 @@ function DialogForm({ memberId, setOpen }: DialogFormProps) {
       <form
         onSubmit={form.handleSubmit(async (values) => {
           // TODO: upload profile image
-          mutation.mutate({
+          const res = await mutation.mutateAsync({
             phone: values.phone,
           });
+          if (res.success) {
+            setOpen(false);
+          } else {
+            form.setError('root', { type: 'manual', message: res.message });
+          }
         })}
         className="flex flex-col gap-y-10"
       >
@@ -177,6 +175,11 @@ function DialogForm({ memberId, setOpen }: DialogFormProps) {
             )}
           />
         </div>
+        {form.formState.errors.root && (
+          <p className="text-destructive">
+            {form.formState.errors.root.message}
+          </p>
+        )}
 
         <DialogFooter className="grid grid-cols-2 gap-x-2.5">
           <Button
