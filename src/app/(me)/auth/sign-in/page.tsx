@@ -1,5 +1,14 @@
 'use client';
 
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from '@/components/ui/alert-dialog';
 import { BrandCatchphrase } from '@/components/ui/brand-catchphrase';
 import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
@@ -11,29 +20,18 @@ import {
   FormLabel,
   FormMessage,
 } from '@/components/ui/form';
-import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-} from '@/components/ui/alert-dialog';
 import { Input } from '@/components/ui/input';
 import { Separator } from '@/components/ui/separator';
-import { getUsersQueryKey } from '@/lib/users/query-key';
-import { useQueryClient } from '@tanstack/react-query';
+import { useSignIn } from '@/features/auth/hooks/use-sign-in';
+import { AlertCircle } from 'lucide-react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { useForm } from 'react-hook-form';
-import { getUser } from './_actions/action';
-import { AlertCircle } from 'lucide-react';
 import { useState } from 'react';
+import { useForm } from 'react-hook-form';
 
 export default function Page() {
   const router = useRouter();
-  const queryClient = useQueryClient();
+  const mutation = useSignIn();
   const [isAlertOpen, setIsAlertOpen] = useState(false);
 
   const form = useForm({
@@ -52,11 +50,8 @@ export default function Page() {
           <form
             className="flex w-full max-w-lg flex-col gap-y-10 px-4"
             onSubmit={form.handleSubmit(async (values) => {
-              const res = await getUser(values);
+              const res = await mutation.mutateAsync(values);
               if (res.success) {
-                await queryClient.invalidateQueries({
-                  queryKey: getUsersQueryKey('me'),
-                });
                 router.push('/');
               } else {
                 for (const [key, errors] of Object.entries(res.errors)) {
