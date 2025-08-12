@@ -23,6 +23,8 @@ import {
 import { Input } from '@/components/ui/input';
 import { Separator } from '@/components/ui/separator';
 import { useSignIn } from '@/features/auth/hooks/use-sign-in';
+import { signInFormSchema } from '@/features/auth/schema';
+import { zodResolver } from '@hookform/resolvers/zod';
 import { AlertCircle } from 'lucide-react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
@@ -35,6 +37,7 @@ export default function Page() {
   const [isAlertOpen, setIsAlertOpen] = useState(false);
 
   const form = useForm({
+    resolver: zodResolver(signInFormSchema),
     defaultValues: {
       userType: 'member' as const,
       email: '',
