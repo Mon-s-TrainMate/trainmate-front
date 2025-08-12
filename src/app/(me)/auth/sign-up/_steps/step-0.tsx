@@ -9,6 +9,7 @@ import {
 import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Form, FormControl, FormField, FormItem } from '@/components/ui/form';
+import { signUpFormSchema } from '@/features/auth/schema';
 import { cn } from '@/lib/utils';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { ChevronLeftIcon } from 'lucide-react';
@@ -19,7 +20,6 @@ import {
   appendSignUpFormSessionData,
   getSignUpFormSessionData,
 } from '../_lib/session-data';
-import { signUpFormSchema } from '../schema';
 
 const schema = signUpFormSchema.pick({
   terms_agreed: true,

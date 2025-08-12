@@ -11,6 +11,7 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
+import { signUpFormSchema } from '@/features/auth/schema';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { ChevronLeftIcon } from 'lucide-react';
 import { useEffect } from 'react';
@@ -21,7 +22,6 @@ import {
   appendSignUpFormSessionData,
   getSignUpFormSessionData,
 } from '../_lib/session-data';
-import { signUpFormSchema } from '../schema';
 import { keys as step0Keys } from './step-0';
 
 const prevKeys = step0Keys;

@@ -1,10 +1,10 @@
+import type { SignUpFormSchema } from '@/features/auth/schema';
 import { useEffect, useRef } from 'react';
 import {
   popSignUpFormApiError,
   signUpFormApiErrorObserver,
   SignUpFormErrors,
 } from '../_lib/api-error';
-import { SignUpFormSchema } from '../schema';
 
 export function useSignUpFormApiErrors<Path extends keyof SignUpFormSchema>(
   fn: (errors: SignUpFormErrors<Path>) => void,

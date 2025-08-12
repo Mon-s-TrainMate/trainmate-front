@@ -1,4 +1,4 @@
-import { SignUpFormSchema } from '../schema';
+import type { SignUpFormSchema } from '@/features/auth/schema';
 
 export function getSignUpFormSessionData(): Partial<SignUpFormSchema> {
   const raw = sessionStorage.getItem('sign-up-form');

@@ -19,10 +19,9 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { useUsersMe } from '@/features/auth/hooks/use-me';
-import { updateMemberProfile } from '@/features/member/api/update-member-profile';
 import { useMemberProfile } from '@/features/member/hooks/use-member-profile';
+import { useUpdateMemberProfile } from '@/features/member/hooks/use-update-member-profile';
 import { UserAvatar } from '@/features/user/ui/user-avatar';
-import { getMemberProfileQueryKey } from '@/lib/users/query-key';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useQueryClient } from '@tanstack/react-query';
 import {
@@ -107,6 +106,12 @@ interface DialogFormProps {
 }
 function DialogForm({ memberId, setOpen }: DialogFormProps) {
   const { data } = useMemberProfile(memberId);
+  const mutation = useUpdateMemberProfile({
+    memberId,
+    onSuccess() {
+      setOpen(false);
+    },
+  });
   const queryClient = useQueryClient();
   const form = useForm({
     resolver: zodResolver(updatingProfileSchema),
@@ -121,13 +126,9 @@ function DialogForm({ memberId, setOpen }: DialogFormProps) {
       <form
         onSubmit={form.handleSubmit(async (values) => {
           // TODO: upload profile image
-          await updateMemberProfile({
+          mutation.mutate({
             phone: values.phone,
           });
-          await queryClient.invalidateQueries({
-            queryKey: getMemberProfileQueryKey(memberId),
-          });
-          setOpen(false);
         })}
         className="flex flex-col gap-y-10"
       >
@@ -183,11 +184,15 @@ function DialogForm({ memberId, setOpen }: DialogFormProps) {
             size="lg"
             variant="secondary"
             onClick={() => setOpen(false)}
-            disabled={form.formState.disabled}
+            disabled={form.formState.disabled || mutation.isPending}
           >
             취소하기
           </Button>
-          <Button type="submit" size="lg" disabled={form.formState.disabled}>
+          <Button
+            type="submit"
+            size="lg"
+            disabled={form.formState.disabled || mutation.isPending}
+          >
             편집하기
           </Button>
         </DialogFooter>

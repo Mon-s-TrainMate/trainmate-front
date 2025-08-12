@@ -1,10 +1,10 @@
 'use server';
-import { signIn } from '@/features/auth/api/sign-in';
-import { ACCESS_TOKEN_KEY, REFRESH_TOKEN_KEY } from '@/features/auth/consts';
-import { setServerSession } from '@/features/auth/server-session';
+import { signIn } from '../api/sign-in';
+import { ACCESS_TOKEN_KEY, REFRESH_TOKEN_KEY } from '../consts';
 import { SignInFormSchema } from '../schema';
+import { setServerSession } from '../server-session';
 
-export async function getUser(data: SignInFormSchema) {
+export async function signInAction(data: SignInFormSchema) {
   const signInResponse = await signIn({
     email: data.email,
     password: data.password,
@@ -16,5 +16,5 @@ export async function getUser(data: SignInFormSchema) {
   await setServerSession(ACCESS_TOKEN_KEY, signInResponse.tokens.access);
   await setServerSession(REFRESH_TOKEN_KEY, signInResponse.tokens.refresh);
 
-  return { success: true, user: signInResponse.user } as const;
+  return { success: true as const, user: signInResponse.user };
 }
