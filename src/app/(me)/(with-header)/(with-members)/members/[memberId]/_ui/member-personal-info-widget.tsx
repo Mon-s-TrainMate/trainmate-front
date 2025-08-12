@@ -57,11 +57,17 @@ export function MemberPersonalInfoWidget({
     },
   ].filter((config) => config.value != null);
   return (
-    <div className="flex items-start gap-x-5 rounded-lg bg-white p-6">
-      <UserAvatar src={data?.profileImage} size="lg" />
+    <div className="flex items-start gap-x-5 rounded-lg bg-white p-5 @lg:p-6">
       <div className="flex-1">
-        <div className="text-2xl font-semibold text-black">{data?.name}</div>
-        <div className="flex items-center gap-x-7.5 text-gray-2">
+        <UserAvatar
+          src={data?.profileImage}
+          size="lg"
+          className="float-left mr-5 size-7 rounded-full @lg:size-17"
+        />
+        <div className="text-lg font-semibold text-black @lg:text-2xl">
+          {data?.name}
+        </div>
+        <div className="mt-3 flex flex-wrap items-center gap-x-7.5 text-gray-2">
           {infoConfigs.map((config) => (
             <div key={config.id} className="flex items-center gap-x-2">
               <config.Icon />

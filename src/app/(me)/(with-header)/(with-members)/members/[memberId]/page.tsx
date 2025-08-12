@@ -11,12 +11,14 @@ export default async function Page({ params }: Props) {
   await authGuard();
 
   return (
-    <div className="flex min-w-0 flex-col gap-y-15 overflow-y-auto px-10 py-8">
-      <div className="flex flex-col gap-y-4">
-        <MemberPersonalInfoWidget memberId={memberId} />
-        <MemberProfileWidget memberId={memberId} />
+    <div className="@container min-w-0 overflow-y-auto">
+      <div className="flex flex-col gap-y-15 p-3 @lg:px-10 @lg:py-8">
+        <div className="flex flex-col gap-y-4">
+          <MemberPersonalInfoWidget memberId={memberId} />
+          <MemberProfileWidget memberId={memberId} />
+        </div>
+        <MemberRecordWidget memberId={memberId} />
       </div>
-      <MemberRecordWidget memberId={memberId} />
     </div>
   );
 }

@@ -25,7 +25,7 @@ export function MemberRecordWidget({ memberId }: MemberRecordWidgetProps) {
   );
   return (
     <div className="flex flex-col gap-y-5.5">
-      <div className="flex items-center justify-between font-light tracking-[-1.18px] text-black">
+      <div className="flex flex-wrap items-center justify-between font-light tracking-[-1.18px] text-black">
         <div>
           <input
             type="date"
@@ -33,15 +33,19 @@ export function MemberRecordWidget({ memberId }: MemberRecordWidgetProps) {
             onChange={(e) => setDate(e.currentTarget.value)}
           />
         </div>
-        <div className="flex items-center gap-x-5">
-          <div className="flex items-center gap-x-4">
+        <div className="flex flex-wrap items-center gap-x-5">
+          <div className="flex items-center gap-x-4 text-xs text-gray-2 @lg:text-base">
             time
-            <div className="text-2xl">{formatDuration(totalDurationSec)}</div>
+            <div className="text-base text-gray-1 @lg:text-2xl">
+              {formatDuration(totalDurationSec)}
+            </div>
           </div>
-          <div className="flex items-center gap-x-4">
+          <div className="flex items-center gap-x-4 text-xs text-gray-2 @lg:text-base">
             total
-            <div className="flex items-end gap-x-2">
-              <div className="text-2xl">{caloriesBurned.toLocaleString()}</div>
+            <div className="flex items-end gap-x-2 text-gray-1">
+              <div className="text-base @lg:text-2xl">
+                {caloriesBurned.toLocaleString()}
+              </div>
               kcal
             </div>
           </div>
@@ -57,8 +61,8 @@ export function MemberRecordWidget({ memberId }: MemberRecordWidgetProps) {
           </Link>
         ))}
       </div>
-      <div className="flex flex-col items-center justify-center p-6">
-        <Button className="w-full max-w-80">
+      <div className="flex flex-col items-center justify-center py-6 @lg:px-6">
+        <Button className="w-full @lg:max-w-80">
           운동 관리하기
           <ChevronRightIcon />
         </Button>

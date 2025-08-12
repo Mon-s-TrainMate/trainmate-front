@@ -44,7 +44,7 @@ export function MemberRecordSummary({
         </div>
       </div>
       <div className="flex items-center gap-x-9">
-        <div className="flex min-w-100 items-center justify-between gap-x-2">
+        <div className="hidden min-w-100 items-center justify-between gap-x-2 @3xl:flex">
           <Value Icon={ListCheckIcon} value={setCount} unit="set" />
           <Value
             Icon={AlarmClockIcon}
