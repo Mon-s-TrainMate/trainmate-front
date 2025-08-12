@@ -22,6 +22,7 @@ import { Separator } from '@/components/ui/separator';
 import { updateMemberProfile } from '@/features/member/api/update-member-profile';
 import { useMemberProfile } from '@/features/member/hooks/use-member-profile';
 import { getMemberProfileQueryKey } from '@/lib/users/query-key';
+import { cn } from '@/lib/utils';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useQueryClient } from '@tanstack/react-query';
 import { CircleAlertIcon, PlusCircleIcon } from 'lucide-react';
@@ -37,13 +38,13 @@ export function MemberProfileWidget({ memberId }: MemberProfileWidgetProps) {
 
   return (
     <div className="flex items-start gap-x-5 rounded-lg bg-white p-6">
-      <div className="flex flex-1 items-center gap-x-12.5">
+      <div className="grid flex-1 items-center gap-4 @xs:grid-cols-[1fr_max-content_1fr] @3xl:grid-cols-[1fr_max-content_1fr_max-content_1fr_max-content_1fr]">
         <Value title="키" value={data?.heightCm} unit="cm" />
-        <VerticalSeparator />
+        <VerticalSeparator className="hidden @xs:block" />
         <Value title="몸무게" value={data?.weightKg} unit="kg" />
-        <VerticalSeparator />
+        <VerticalSeparator className="hidden @3xl:block" />
         <Value title="체지방량" value={data?.bodyFatPercentage} unit="%" />
-        <VerticalSeparator />
+        <VerticalSeparator className="hidden @xs:block" />
         <Value title="근골격량" value={data?.muscleMassKg} unit="kg" />
       </div>
       <ProfileEditDialog memberId={memberId} />
@@ -178,8 +179,8 @@ function Value({ title, value, unit }: ValueProps) {
     <div className="grid font-light tracking-[-1.18px]">
       <div className="text-xs text-gray-2">{title}</div>
       {value != null ? (
-        <div className="flex items-end gap-x-2 text-2xl text-black">
-          <span className="text-4xl">{value}</span>
+        <div className="flex items-end gap-x-2 text-sm text-black @lg:text-2xl">
+          <span className="text-2xl @lg:text-4xl">{value}</span>
           {unit}
         </div>
       ) : (
@@ -191,11 +192,14 @@ function Value({ title, value, unit }: ValueProps) {
   );
 }
 
-function VerticalSeparator() {
+interface VerticalSeparatorProps {
+  className?: string;
+}
+function VerticalSeparator({ className }: VerticalSeparatorProps) {
   return (
     <Separator
       orientation="vertical"
-      className="min-h-8 min-w-0.5 rounded-full"
+      className={cn('max-h-8 min-w-0.5 rounded-full', className)}
     />
   );
 }
