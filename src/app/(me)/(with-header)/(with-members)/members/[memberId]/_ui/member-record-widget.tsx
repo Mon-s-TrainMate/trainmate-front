@@ -3,6 +3,7 @@
 import { Button } from '@/components/ui/button';
 import { useMemberRecordList } from '@/features/member/hooks/use-member-record-list';
 import { formatDuration } from '@/lib/time/format-duration';
+import { formatISO } from 'date-fns';
 import { ChevronRightIcon } from 'lucide-react';
 import Link from 'next/link';
 import { useState } from 'react';
@@ -12,7 +13,9 @@ interface MemberRecordWidgetProps {
   memberId: string;
 }
 export function MemberRecordWidget({ memberId }: MemberRecordWidgetProps) {
-  const [date, setDate] = useState('2025-08-05');
+  const [date, setDate] = useState(() =>
+    formatISO(new Date(), { representation: 'date' })
+  );
   const { data: records = [] } = useMemberRecordList(memberId, date);
 
   const totalDurationSec = records.reduce(

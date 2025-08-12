@@ -1,6 +1,7 @@
 import { API_HOST } from '@/lib/consts';
 import { users } from '@/mocks/data';
 import { withAuthorization } from '@/mocks/utils';
+import { formatISO } from 'date-fns';
 import { http, HttpResponse } from 'msw';
 
 interface WorkoutSetRequest {
@@ -85,7 +86,7 @@ export const mswCreateWorkoutSet = http.post<
       );
     }
 
-    const today = new Date().toISOString().split('T')[0];
+    const today = formatISO(new Date(), { representation: 'date' });
     const setId = Date.now();
     let existingRecord = user.records.find(
       (record: ExerciseRecord) =>
