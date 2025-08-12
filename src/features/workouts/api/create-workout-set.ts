@@ -51,14 +51,17 @@ export async function createWorkoutSet(
 ): Promise<CreateWorkoutSetResponse> {
   const token = await getAccessToken();
 
-  const res = await fetch(`${API_HOST}/api/members/${memberId}/workout-sets/`, {
-    method: 'POST',
-    headers: {
-      'content-type': 'application/json',
-      Authorization: `Bearer ${token}`,
-    },
-    body: JSON.stringify(data),
-  });
+  const res = await fetch(
+    `${API_HOST}/api/workouts/${memberId}/workout-sets/`,
+    {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(data),
+    }
+  );
 
   const body = await res.json();
 

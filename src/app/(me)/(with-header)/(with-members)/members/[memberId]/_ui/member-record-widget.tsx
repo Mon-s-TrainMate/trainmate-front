@@ -1,7 +1,7 @@
 'use client';
 
 import { Button } from '@/components/ui/button';
-import { useMemberRecordList } from '@/features/member/hooks/use-member-record-list';
+import { useMemberRecordList } from '@/features/workouts/hooks/use-member-record-list';
 import { formatDuration } from '@/lib/time/format-duration';
 import { formatISO } from 'date-fns';
 import { ChevronRightIcon } from 'lucide-react';

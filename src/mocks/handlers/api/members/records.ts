@@ -1,4 +1,4 @@
-import { MemberRecordListResponse } from '@/features/member/api/get-member-record-list';
+import { MemberRecordListResponse } from '@/features/workouts/api/get-member-record-list';
 import { API_HOST } from '@/lib/consts';
 import { users } from '@/mocks/data';
 import { withAuthorization } from '@/mocks/utils';
