@@ -1,11 +1,21 @@
 'use client';
 
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from '@/components/ui/alert-dialog';
 import { Button } from '@/components/ui/button';
 import { SelectBox } from '@/components/ui/select';
 import { formatDuration } from '@/lib/time/format-duration';
-import { PlayIcon, SquareIcon, TrashIcon } from 'lucide-react';
+import { AlertCircleIcon, PlayIcon, SquareIcon, TrashIcon } from 'lucide-react';
 import React from 'react';
-
 import { WorkoutSet } from '../_hooks/use-workout-sets';
 
 const WEIGHT_OPTIONS = Array.from({ length: 50 }, (_, i) => ({
@@ -91,14 +101,43 @@ export const WorkoutSetItem = React.memo(function ExerciseSetItem({
           >
             {isPlaying ? <SquareIcon /> : <PlayIcon />}
           </Button>
-          <Button
-            onClick={() => removeSet(id)}
-            variant="secondary"
-            disabled={!canRemove}
-            className="h-12 w-12 rounded-full"
-          >
-            <TrashIcon />
-          </Button>
+          <AlertDialog>
+            <AlertDialogTrigger asChild>
+              <Button
+                variant="secondary"
+                disabled={!canRemove}
+                className="h-12 w-12 rounded-full"
+              >
+                <TrashIcon />
+              </Button>
+            </AlertDialogTrigger>
+            <AlertDialogContent>
+              <AlertDialogHeader className="flex-row">
+                <AlertCircleIcon className="text-red-1" />
+                <div>
+                  <AlertDialogTitle>
+                    운동 세트를 삭제하겠습니까?
+                  </AlertDialogTitle>
+                  <AlertDialogDescription>
+                    한번 삭제된 세트는 복구할 수 없습니다.
+                  </AlertDialogDescription>
+                </div>
+              </AlertDialogHeader>
+              <AlertDialogFooter>
+                <AlertDialogCancel className="flex-1">
+                  취소하기
+                </AlertDialogCancel>
+                <AlertDialogAction
+                  className="flex-1"
+                  onClick={() => {
+                    removeSet(id);
+                  }}
+                >
+                  삭제하기
+                </AlertDialogAction>
+              </AlertDialogFooter>
+            </AlertDialogContent>
+          </AlertDialog>
         </div>
       </div>
     </div>
