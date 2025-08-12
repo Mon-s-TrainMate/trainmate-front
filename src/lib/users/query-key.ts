@@ -1,3 +1,5 @@
+import { formatISO } from 'date-fns';
+
 export function getUsersQueryKey(id: number | string) {
   return ['users', String(id)];
 }
@@ -7,7 +9,7 @@ export function getMemberListQueryKey() {
 }
 
 export function getMemberRecordListQueryKey(memberId: string, date?: string) {
-  const queryDate = date ?? new Date().toISOString().split('T')[0];
+  const queryDate = date ?? formatISO(new Date(), { representation: 'date' });
   return ['members', memberId, 'records', queryDate] as const;
 }
 
