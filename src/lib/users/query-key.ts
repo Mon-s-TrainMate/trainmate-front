@@ -10,7 +10,11 @@ export function getMemberListQueryKey() {
 
 export function getMemberRecordListQueryKey(memberId: string, date?: string) {
   const queryDate = date ?? formatISO(new Date(), { representation: 'date' });
-  return ['members', memberId, 'records', queryDate] as const;
+  return ['members', memberId, 'records', '?date', queryDate] as const;
+}
+
+export function getMemberRecordQueryKey(memberId: string, recordId: string) {
+  return ['members', memberId, 'records', recordId] as const;
 }
 
 export function getMemberProfileQueryKey(memberId: string) {

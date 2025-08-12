@@ -7,7 +7,7 @@ export function useMemberRecordList(memberId: string, date: string) {
     queryKey: getMemberRecordListQueryKey(memberId, date),
     queryFn: ({ queryKey }) =>
       getMemberRecordList(queryKey[1], {
-        date: queryKey[3],
+        date: queryKey[4],
       }),
   });
 }
