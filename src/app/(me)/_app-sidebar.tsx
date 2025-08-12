@@ -3,7 +3,6 @@
 import { UserAvatar } from '@/features/user/ui/user-avatar';
 import {
   CalendarIcon,
-  FileTextIcon,
   MessageSquareMoreIcon,
   SettingsIcon,
   UserRoundIcon,
@@ -21,15 +20,10 @@ const items = [
   },
   {
     id: 1,
-    href: '/records',
-    Icon: FileTextIcon,
-  },
-  {
-    id: 2,
     Icon: CalendarIcon,
   },
   {
-    id: 3,
+    id: 2,
     Icon: MessageSquareMoreIcon,
   },
 ];
