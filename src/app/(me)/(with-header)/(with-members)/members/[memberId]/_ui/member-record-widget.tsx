@@ -65,9 +65,11 @@ export function MemberRecordWidget({ memberId }: MemberRecordWidgetProps) {
         ))}
       </div>
       <div className="flex flex-col items-center justify-center py-6 @lg:px-6">
-        <Button className="w-full @lg:max-w-80">
-          운동 관리하기
-          <ChevronRightIcon />
+        <Button className="w-full @lg:max-w-80" asChild>
+          <Link href={`/members/${memberId}/records/new`}>
+            운동 관리하기
+            <ChevronRightIcon />
+          </Link>
         </Button>
       </div>
     </div>
