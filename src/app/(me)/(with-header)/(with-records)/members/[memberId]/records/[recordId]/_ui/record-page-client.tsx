@@ -5,7 +5,7 @@ import { useUpdateRecord } from '@/features/workouts/hooks/use-update-record';
 import { useEffect, useRef, useState } from 'react';
 import { InternalWorkoutSet, useWorkoutSets } from '../_hooks/use-workout-sets';
 import { RecordErrorDialog, useRecordError } from './record-alert-dialog';
-import { ExerciseSelect } from './record-exercise-select';
+import { ExerciseCard } from './record-exercise-card';
 import { RecordFooter } from './record-footer';
 import { WorkoutSetList } from './record-workout-set-list';
 
@@ -20,7 +20,10 @@ export function RecordPageClient({
 }: RecordPageClientProps) {
   const [error, setError] = useRecordError();
   const { data } = useMemberRecord(memberId, recordId);
-  const [selectedExercise, setSelectedExercise] = useState<string>('');
+  const [selectedExercise, setSelectedExercise] = useState<{
+    bodyPart: string;
+    exerciseName: string;
+  }>({ bodyPart: '', exerciseName: '' });
   const {
     workoutSets,
     addWorkoutSet: addSet,
@@ -34,7 +37,10 @@ export function RecordPageClient({
 
   useEffect(() => {
     if (data == null) return;
-    setSelectedExercise(data.exerciseName);
+    setSelectedExercise({
+      bodyPart: data.bodyPart,
+      exerciseName: data.exerciseName,
+    });
     const sets = data.sets.map((set) => ({
       id: set.id,
       repetitions: set.repetitions,
@@ -47,10 +53,7 @@ export function RecordPageClient({
 
   return (
     <div className="flex flex-col gap-y-4">
-      <ExerciseSelect
-        selectedExercise={selectedExercise}
-        onExerciseChange={setSelectedExercise}
-      />
+      <ExerciseCard {...selectedExercise} />
       <WorkoutSetList
         sets={workoutSets}
         addSet={addSet}

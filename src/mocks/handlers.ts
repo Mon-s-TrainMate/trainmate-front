@@ -11,6 +11,7 @@ import { mswMemberRecords } from './handlers/api/workouts/records';
 import { mswCreateWorkoutSet } from './handlers/api/workouts/sets/create-workout-set';
 import { mswDeleteWorkoutSet } from './handlers/api/workouts/sets/delete-workout-set';
 import { mswUpdateWorkoutSet } from './handlers/api/workouts/sets/update-workout-set';
+import { mswCreateNewWorkoutSet } from './handlers/api/workouts/workout-sets';
 import { mswLogin } from './handlers/auth/login';
 import { mswRefresh } from './handlers/auth/refresh';
 import { mswSignup } from './handlers/auth/signup';
@@ -31,5 +32,6 @@ export const handlers = [
   mswCreateWorkoutSet,
   mswUpdateWorkoutSet,
   mswDeleteWorkoutSet,
+  mswCreateNewWorkoutSet,
   mswExercises,
 ];
