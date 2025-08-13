@@ -9,7 +9,7 @@ export interface WorkoutSet {
   isPlaying: boolean;
 }
 
-type InternalWorkoutSet = Omit<WorkoutSet, 'isPlaying'>;
+export type InternalWorkoutSet = Omit<WorkoutSet, 'isPlaying'>;
 
 export function useWorkoutSets(initialSets: InternalWorkoutSet[]) {
   const [workoutSets, setWorkoutSets] =
