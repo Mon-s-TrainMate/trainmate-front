@@ -28,7 +28,7 @@ export async function createWorkoutSet(
   const token = await getAccessToken();
 
   const res = await fetch(
-    `${API_HOST}/api/workouts/${memberId}/records/${recordId}/sets/`,
+    `${API_HOST}/api/workouts/${memberId}/records/${recordId}/sets/add/`,
     {
       method: 'POST',
       headers: {
