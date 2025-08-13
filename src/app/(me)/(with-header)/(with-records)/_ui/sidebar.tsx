@@ -1,18 +1,120 @@
 'use client';
-
-import { ChevronLeftIcon } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { useMemberRecordList } from '@/features/workouts/hooks/use-member-record-list';
+import { formatDuration } from '@/lib/time/format-duration';
+import { formatISO } from 'date-fns';
+import { ChevronLeftIcon, PlusCircleIcon, Trash } from 'lucide-react';
 import Link from 'next/link';
-import { useParams } from 'next/navigation';
+import { usePathname } from 'next/navigation';
+import { ReactNode, useState } from 'react';
 
-export function Sidebar() {
-  const { memberId } = useParams();
+const sumBy = <T extends Record<string, unknown>>(
+  sets: T[],
+  key: { [K in keyof T]-?: number extends T[K] ? K : never }[keyof T]
+) => sets.reduce((total, set) => total + (set[key] as number), 0);
+
+interface SidebarProps {
+  memberId: string;
+}
+export function Sidebar({ memberId }: SidebarProps) {
+  const [date, setDate] = useState(() =>
+    formatISO(new Date(), { representation: 'date' })
+  );
+  const { data: records = [] } = useMemberRecordList(memberId, date);
+
+  const totalTime = sumBy(records, 'totalDurationSec');
+  const totalCalories = sumBy(records, 'caloriesBurned');
+
   return (
     <aside className="bg-white">
-      <header className="flex items-center border-b p-6">
-        <Link href={`/members/${memberId}`}>
-          <ChevronLeftIcon />
-        </Link>
+      <header className="flex items-center justify-between border-b p-6">
+        <div className="flex items-center p-4">
+          <Link href={`/members/${memberId}`}>
+            <ChevronLeftIcon />
+          </Link>
+          <input
+            type="date"
+            value={date}
+            onChange={(e) => setDate(e.currentTarget.value)}
+          />
+        </div>
+        <div className="flex gap-3">
+          <PlusCircleIcon className="h-5 w-5 cursor-pointer text-black" />
+          <Trash className="h-5 w-5 cursor-pointer text-black" />
+        </div>
       </header>
+      <div className="flex flex-col gap-3 p-6">
+        <section className="flex items-center justify-center text-center">
+          <h2 className="sr-only">저장된 운동</h2>
+          {records.length === 0 ? (
+            <p className="self-center pt-12 pb-12 text-sm text-gray-2">
+              등록된 운동이 없습니다.
+              <br />
+              새로운 운동을 등록해보세요.
+            </p>
+          ) : (
+            <div className="flex w-full flex-col gap-y-3">
+              {records.map((record) => (
+                <NavLink
+                  key={record.id}
+                  href={`/members/${memberId}/records/${record.id}`}
+                >
+                  <div className="flex items-center gap-2">
+                    {record.isTrainer ? (
+                      <div className="size-1 rounded-full bg-main-2"></div>
+                    ) : (
+                      <div className="size-1 rounded-full bg-gray-2"></div>
+                    )}
+                    <p className="text-lg font-normal text-black">
+                      {record.exerciseName}
+                    </p>
+                  </div>
+                  <p className="text-2xl font-light text-black">
+                    {record.caloriesBurned}{' '}
+                    <span className="text-sm font-light text-gray-1">kcal</span>
+                  </p>
+                </NavLink>
+              ))}
+            </div>
+          )}
+        </section>
+        <section className="flex justify-between py-3 text-base font-light text-gray-2">
+          <h2 className="sr-only">총 운동 시간 및 칼로리</h2>
+          <p className="flex items-center gap-4">
+            time
+            <span className="text-2xl text-main-2">
+              {formatDuration(totalTime)}
+            </span>
+          </p>
+          <p className="flex items-center gap-4 font-light">
+            total
+            <span className="text-2xl text-main-2">
+              {totalCalories}
+              <span className="text-base text-gray-1"> kcal</span>
+            </span>
+          </p>
+        </section>
+      </div>
+      <div className="pt-3 pr-6 pb-3 pl-6">
+        <Button disabled>저장하기</Button>
+      </div>
     </aside>
+  );
+}
+
+interface NavLinkProps {
+  href: string;
+  children?: ReactNode;
+}
+function NavLink({ href, children }: NavLinkProps) {
+  const pathname = usePathname();
+  return (
+    <Link
+      href={href}
+      data-active={pathname.startsWith(href)}
+      className="flex w-full items-center justify-between rounded-md border border-gray-3 p-5 data-[active=true]:border-transparent data-[active=true]:bg-main-5"
+    >
+      {children}
+    </Link>
   );
 }
