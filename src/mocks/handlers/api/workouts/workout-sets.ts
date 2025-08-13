@@ -1,44 +1,12 @@
+import {
+  CreateNewWorkoutSetData,
+  CreateNewWorkoutSetResponse,
+} from '@/features/workouts/api/create-new-workout-set';
 import { API_HOST } from '@/lib/consts';
 import { users } from '@/mocks/data';
 import { withAuthorization } from '@/mocks/utils';
 import { formatISO } from 'date-fns';
 import { http, HttpResponse } from 'msw';
-
-interface WorkoutSetRequest {
-  body_part: string;
-  equipment: string;
-  exercise_name: string;
-  repetitions: number;
-  weight_kg: number;
-  duration_sec: number;
-  calories: number;
-}
-
-interface WorkoutSetResponse {
-  success: boolean;
-  message: string;
-  data?: {
-    set_id: number;
-    exercise_name: string;
-    body_part: string;
-    equipment: string;
-    set_number: number;
-    repetitions: number;
-    weight_kg: number;
-    duration_sec: number;
-    calories: number;
-    is_trainer_workout: boolean;
-    workout_totals: {
-      total_sets: number;
-      total_duration_sec: number;
-      total_calories: number;
-    };
-    daily_totals: {
-      total_duration_sec: number;
-      total_calories: number;
-    };
-  };
-}
 
 interface ExerciseRecord {
   record_id: number;
@@ -59,10 +27,10 @@ interface ExerciseSet {
   kg: number;
 }
 
-export const unusedRoute = http.post<
+export const mswCreateNewWorkoutSet = http.post<
   { memberId: string },
-  WorkoutSetRequest,
-  WorkoutSetResponse
+  CreateNewWorkoutSetData,
+  CreateNewWorkoutSetResponse
 >(
   API_HOST + '/api/workouts/:memberId/workout-sets',
   async ({ params, request }) => {
