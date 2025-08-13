@@ -3,34 +3,46 @@
 import { getAccessToken } from '@/features/auth/server-session';
 import { API_HOST } from '@/lib/consts';
 
-export interface CreateWorkoutSetData {
+export type UpdateWorkoutSetData = Partial<{
   repetitions: number;
   weight_kg: number;
   duration_sec: number;
   calories: number;
-}
+}>;
 
-export type CreateWorkoutSetResponse =
+export type UpdateWorkoutSetResponse =
   | {
       success: true;
       message: string;
+      data: {
+        set_id: number;
+        exercise_name: string;
+        set_number: number;
+        repetitions: number;
+        weight_kg: number;
+        duration_sec: number;
+        duration_display: string;
+        calories: number;
+        updated_fields: string[];
+      };
     }
   | {
       success: false;
       message?: string;
     };
 
-export async function createWorkoutSet(
+export async function updateWorkoutSet(
   memberId: string,
   recordId: string,
-  data: CreateWorkoutSetData
+  setId: string,
+  data: UpdateWorkoutSetData
 ) {
   const token = await getAccessToken();
 
   const res = await fetch(
-    `${API_HOST}/api/workouts/${memberId}/records/${recordId}/sets/`,
+    `${API_HOST}/api/workouts/${memberId}/records/${recordId}/sets/${setId}/`,
     {
-      method: 'POST',
+      method: 'PATCH',
       headers: {
         'content-type': 'application/json',
         Authorization: `Bearer ${token}`,
@@ -39,7 +51,7 @@ export async function createWorkoutSet(
     }
   );
 
-  const body: CreateWorkoutSetResponse = await res.json();
+  const body: UpdateWorkoutSetResponse = await res.json();
 
   return body;
 }

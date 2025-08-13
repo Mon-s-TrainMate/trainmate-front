@@ -59,7 +59,7 @@ interface ExerciseSet {
   kg: number;
 }
 
-export const mswCreateWorkoutSet = http.post<
+export const unusedRoute = http.post<
   { memberId: string },
   WorkoutSetRequest,
   WorkoutSetResponse

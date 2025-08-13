@@ -3,14 +3,7 @@
 import { getAccessToken } from '@/features/auth/server-session';
 import { API_HOST } from '@/lib/consts';
 
-export interface CreateWorkoutSetData {
-  repetitions: number;
-  weight_kg: number;
-  duration_sec: number;
-  calories: number;
-}
-
-export type CreateWorkoutSetResponse =
+export type DeleteWorkoutSetResponse =
   | {
       success: true;
       message: string;
@@ -20,26 +13,25 @@ export type CreateWorkoutSetResponse =
       message?: string;
     };
 
-export async function createWorkoutSet(
+export async function deleteWorkoutSet(
   memberId: string,
   recordId: string,
-  data: CreateWorkoutSetData
+  setId: string
 ) {
   const token = await getAccessToken();
 
   const res = await fetch(
-    `${API_HOST}/api/workouts/${memberId}/records/${recordId}/sets/`,
+    `${API_HOST}/api/workouts/${memberId}/records/${recordId}/sets/${setId}/`,
     {
-      method: 'POST',
+      method: 'DELETE',
       headers: {
         'content-type': 'application/json',
         Authorization: `Bearer ${token}`,
       },
-      body: JSON.stringify(data),
     }
   );
 
-  const body: CreateWorkoutSetResponse = await res.json();
+  const body: DeleteWorkoutSetResponse = await res.json();
 
   return body;
 }

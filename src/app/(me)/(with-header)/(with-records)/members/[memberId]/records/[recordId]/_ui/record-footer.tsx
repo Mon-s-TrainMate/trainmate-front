@@ -7,9 +7,11 @@ import { WorkoutSet } from '../_hooks/use-workout-sets';
 
 interface RecordFooterProps {
   sets: WorkoutSet[];
+  pending: boolean;
+  onSave: () => void;
 }
 
-export function RecordFooter({ sets }: RecordFooterProps) {
+export function RecordFooter({ sets, pending, onSave }: RecordFooterProps) {
   const totalDuration = sets.reduce((total, set) => total + set.durationSec, 0);
   const estimatedCalories = Math.floor((totalDuration / 60) * 5);
 
@@ -28,8 +30,12 @@ export function RecordFooter({ sets }: RecordFooterProps) {
           value={formatDuration(totalDuration)}
         />
       </div>
-      <Button className="rounded-md bg-primary px-6 py-4 text-base font-bold text-white shadow-[2px_4px_10px_0px_rgba(180,180,180,0.35)] transition-none hover:bg-primary/90 @3xl:w-48">
-        세트 저장하기
+      <Button
+        className="rounded-md bg-primary px-6 py-4 text-base font-bold text-white shadow-[2px_4px_10px_0px_rgba(180,180,180,0.35)] transition-none hover:bg-primary/90 @3xl:w-48"
+        onClick={onSave}
+        disabled={pending}
+      >
+        {pending ? '세트 저장 중' : '세트 저장하기'}
       </Button>
     </div>
   );
