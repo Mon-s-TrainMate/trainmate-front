@@ -10,6 +10,7 @@ import { mswMemberRecord } from './handlers/api/workouts/record';
 import { mswMemberRecords } from './handlers/api/workouts/records';
 import { mswCreateWorkoutSet } from './handlers/api/workouts/workout-sets';
 import { mswLogin } from './handlers/auth/login';
+import { mswRefresh } from './handlers/auth/refresh';
 import { mswSignup } from './handlers/auth/signup';
 import { mswLogger } from './handlers/logger';
 
@@ -17,6 +18,7 @@ export const handlers = [
   mswLogger,
   mswLogin,
   mswSignup,
+  mswRefresh,
   mswMyProfile,
   mswUpdateMyProfile,
   mswPatchMyProfile,

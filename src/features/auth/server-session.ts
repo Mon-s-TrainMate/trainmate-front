@@ -2,6 +2,7 @@
 
 import { decodeJwt } from 'jose';
 import { cookies } from 'next/headers';
+import { refresh } from './api/token-refresh';
 import { ACCESS_TOKEN_KEY, REFRESH_TOKEN_KEY } from './consts';
 
 export async function setServerSession(key: string, token: string) {
@@ -44,7 +45,12 @@ export async function getAccessToken() {
   const refreshToken = await getServerSession(REFRESH_TOKEN_KEY);
   if (refreshToken == null) return null;
 
-  // TODO: refresh logic
+  const res = await refresh(refreshToken);
+  if (res.success) {
+    await setServerSession(ACCESS_TOKEN_KEY, res.access);
+    await setServerSession(REFRESH_TOKEN_KEY, res.refresh);
+    return res.access;
+  }
 
   return null;
 }

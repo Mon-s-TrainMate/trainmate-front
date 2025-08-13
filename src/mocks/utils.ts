@@ -21,6 +21,25 @@ export async function signJwt(
     .sign(secret);
 }
 
+export async function verifyJwt(token: string) {
+  try {
+    const result = await jwtVerify(token, secret);
+    return result.payload as UserPayload;
+  } catch (error) {
+    if (error instanceof JWSInvalid) {
+      throw HttpResponse.json(
+        {
+          detail: error.message,
+          code: 'token_not_valid',
+        },
+        { status: 401 }
+      );
+    }
+    console.error(error);
+    throw HttpResponse.json({}, { status: 500 });
+  }
+}
+
 export async function withAuthorization(request: Request) {
   const authorization = request.headers.get('Authorization');
   if (!authorization?.startsWith('Bearer '))
@@ -32,27 +51,5 @@ export async function withAuthorization(request: Request) {
     );
 
   const token = authorization.slice(7);
-  try {
-    const result = await jwtVerify(token, secret);
-    return result.payload as UserPayload;
-  } catch (error) {
-    if (error instanceof JWSInvalid) {
-      throw HttpResponse.json(
-        {
-          detail: error.message,
-          code: 'token_not_valid',
-          messages: [
-            {
-              token_class: 'AccessToken',
-              token_type: 'access',
-              message: error.message,
-            },
-          ],
-        },
-        { status: 401 }
-      );
-    }
-    console.error(error);
-    throw HttpResponse.json({}, { status: 500 });
-  }
+  return await verifyJwt(token);
 }
