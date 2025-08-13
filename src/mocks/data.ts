@@ -162,11 +162,19 @@ function createExerciseRecord(date: string) {
 }
 
 let exerciseSetId = 0;
-function createExerciseRecordSet() {
-  const repeat = (Math.random() * 10 + 1) | 0;
-  const duration = (Math.random() * 300 + 30) | 0;
-  const calories_burned = (Math.random() * 50 + 10) | 0;
-  const kg = (Math.random() * 100 + 10) | 0;
+export function createExerciseRecordSet(
+  options?: Partial<{
+    repeat: number;
+    duration: number;
+    calories_burned: number;
+    kg: number;
+  }>
+) {
+  const repeat = options?.repeat ?? (Math.random() * 10 + 1) | 0;
+  const duration = options?.duration ?? (Math.random() * 300 + 30) | 0;
+  const calories_burned =
+    options?.calories_burned ?? (Math.random() * 50 + 10) | 0;
+  const kg = options?.kg ?? (Math.random() * 100 + 10) | 0;
 
   return {
     set_id: exerciseSetId++,
