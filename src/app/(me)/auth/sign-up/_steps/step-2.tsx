@@ -11,6 +11,7 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { signUpFormSchema } from '@/features/auth/schema';
+import { useIsSm } from '@/lib/hooks/use-is-mobile';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { ChevronLeftIcon } from 'lucide-react';
 import { useForm } from 'react-hook-form';
@@ -48,6 +49,7 @@ export function Step2({ onBack, onSubmit }: Props) {
       confirm_password: '',
     },
   });
+  const isSm = useIsSm();
   useUserDataGuard(onBack, prevKeys);
   useSignUpFormApiErrors((errors) => {
     for (const { path, messages } of errors) {
@@ -84,6 +86,7 @@ export function Step2({ onBack, onSubmit }: Props) {
                   type="password"
                   autoComplete="new-password"
                   placeholder="비밀번호를 입력하세요"
+                  inputSize={isSm ? 'lg' : 'sm'}
                   {...field}
                 />
               </FormControl>
@@ -104,6 +107,7 @@ export function Step2({ onBack, onSubmit }: Props) {
                   type="password"
                   autoComplete="new-password"
                   placeholder="비밀번호를 확인하세요"
+                  inputSize={isSm ? 'lg' : 'sm'}
                   {...field}
                 />
               </FormControl>
