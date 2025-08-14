@@ -6,7 +6,7 @@ interface LayoutProps {
 }
 export default function Layout({ children }: LayoutProps) {
   return (
-    <div className="grid h-full grid-rows-[6.0625rem_1fr]">
+    <div className="grid h-full grid-rows-[max-content_1fr]">
       <AppHeader />
       {children}
     </div>
