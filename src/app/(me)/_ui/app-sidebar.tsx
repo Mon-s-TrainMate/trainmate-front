@@ -32,7 +32,7 @@ const items = [
 export function AppSidebar() {
   const { data: user } = useMyProfile();
   return (
-    <aside className="sticky top-0 z-50 grid w-22 grid-rows-[max-content_1fr_max-content] bg-white shadow-sidebar">
+    <aside className="sticky top-0 z-50 grid w-22 grid-rows-[max-content_1fr_max-content] overflow-clip bg-white shadow-sidebar">
       <header className="flex flex-col items-center gap-y-4 px-4 pt-6">
         <Link href="/">
           <UserAvatar src={user?.profileImage} />

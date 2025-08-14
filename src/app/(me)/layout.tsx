@@ -6,7 +6,7 @@ import {
   QueryClient,
 } from '@tanstack/react-query';
 import { ReactNode } from 'react';
-import { AppSidebar } from './_app-sidebar';
+import { App } from './_ui/app';
 
 interface LayoutProps {
   children?: ReactNode;
@@ -21,10 +21,7 @@ export default async function Layout({ children }: LayoutProps) {
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
-      <div className="grid h-full grid-cols-[max-content_1fr] overflow-auto">
-        <AppSidebar />
-        <main className="h-full min-h-0 min-w-0 overflow-auto">{children}</main>
-      </div>
+      <App>{children}</App>
     </HydrationBoundary>
   );
 }
