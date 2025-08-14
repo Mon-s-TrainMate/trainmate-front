@@ -2,30 +2,11 @@
 
 import { getAccessToken } from '@/features/auth/server-session';
 import { API_HOST } from '@/lib/consts';
+import { MemberProfileResponse } from './get-member-profile-by-id';
 
-export type MemberProfileResponse = {
-  success: true;
-  user: {
-    id: number;
-    name: string;
-    email: string;
-    user_type: 'trainer' | 'member';
-    created_at: string;
-    profile_image: string | null;
-    phone: string | null;
-    age: number | null;
-    height_cm: number | null;
-    weight_kg: number | null;
-    body_fat_percentage: number | null;
-    muscle_mass_kg: number | null;
-  };
-};
-
-export type Profile = Awaited<ReturnType<typeof getMemberProfileById>>;
-
-export async function getMemberProfileById(memberId: string) {
+export async function getMyProfile() {
   const token = await getAccessToken();
-  const res = await fetch(`${API_HOST}/api/members/profile/${memberId}/`, {
+  const res = await fetch(`${API_HOST}/api/members/profile/`, {
     headers: {
       'content-type': 'application/json',
       Authorization: `Bearer ${token}`,

@@ -25,8 +25,6 @@ export const mswLogin = http.post<never, { email: string }>(
 
     const payload = {
       user_id: user.id,
-      name: user.name,
-      email: user.email,
       user_type: user.user_type,
     };
 

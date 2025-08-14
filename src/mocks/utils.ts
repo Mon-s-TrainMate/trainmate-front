@@ -4,8 +4,6 @@ import { HttpResponse } from 'msw';
 
 interface UserPayload extends JWTPayload {
   user_id: number;
-  name: string;
-  email: string;
   user_type: string;
 }
 

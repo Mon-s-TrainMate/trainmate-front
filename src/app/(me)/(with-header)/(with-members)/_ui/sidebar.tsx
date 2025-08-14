@@ -2,8 +2,8 @@
 
 import { Input } from '@/components/ui/input';
 import { Separator } from '@/components/ui/separator';
-import { useUsersMe } from '@/features/auth/hooks/use-me';
 import { useMemberList } from '@/features/member/hooks/use-member-list';
+import { useMyProfile } from '@/features/member/hooks/use-my-profile';
 import { UserRoundIcon } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -42,7 +42,7 @@ interface MemberContentProps {
   members?: Member[];
 }
 function MemberListContent({ members }: MemberContentProps) {
-  const { data: user } = useUsersMe();
+  const { data: user } = useMyProfile();
   const [keyword, setKeyword] = useState('');
   const filteredMembers =
     members?.filter((member) => member.name.includes(keyword)) ?? [];
@@ -65,7 +65,13 @@ function MemberListContent({ members }: MemberContentProps) {
   );
 }
 
-type MemberLinkProps = Member;
+interface MemberLinkProps {
+  id: number;
+  name: string;
+  email: string;
+  profileImage?: string;
+  recentRecordTime?: Date;
+}
 function MemberLink(props: MemberLinkProps) {
   const pathname = usePathname();
   const active = pathname.startsWith(`/members/${props.id}`);

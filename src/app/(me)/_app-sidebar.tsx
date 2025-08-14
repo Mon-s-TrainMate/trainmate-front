@@ -1,5 +1,6 @@
 'use client';
 
+import { useMyProfile } from '@/features/member/hooks/use-my-profile';
 import { UserAvatar } from '@/features/user/ui/user-avatar';
 import {
   CalendarIcon,
@@ -29,11 +30,12 @@ const items = [
 ];
 
 export function AppSidebar() {
+  const { data: user } = useMyProfile();
   return (
     <aside className="sticky top-0 z-50 grid w-22 grid-rows-[max-content_1fr_max-content] bg-white shadow-sidebar">
       <header className="flex flex-col items-center gap-y-4 px-4 pt-6">
         <Link href="/">
-          <UserAvatar />
+          <UserAvatar src={user?.profileImage} />
         </Link>
         <div
           role="separator"

@@ -3,39 +3,48 @@
 import { BrandCatchphrase } from '@/components/ui/brand-catchphrase';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
-import { ClientUser } from '@/features/auth/actions/me';
-import { useUsersMe } from '@/features/auth/hooks/use-me';
+import { useMyProfile } from '@/features/member/hooks/use-my-profile';
 import { UserAvatar } from '@/features/user/ui/user-avatar';
 import { BellIcon } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
 export function AppHeader() {
-  const { data: user } = useUsersMe();
+  const { data: user } = useMyProfile();
   const pathname = usePathname();
   return (
     <div className="flex items-center border-b bg-white pt-4 pr-7.5 pl-22">
       {pathname === '/' && <BrandCatchphrase />}
-      {user != null ? <SignedInActions user={user} /> : <AnonymousActions />}
+      {user != null ? (
+        <SignedInActions
+          name={user.name}
+          userType={user.userType}
+          profileImage={user.profileImage}
+        />
+      ) : (
+        <AnonymousActions />
+      )}
     </div>
   );
 }
 
 interface SignedInActionsProps {
-  user: ClientUser;
+  name: string;
+  userType: string;
+  profileImage?: string;
 }
-function SignedInActions({ user }: SignedInActionsProps) {
+function SignedInActions(props: SignedInActionsProps) {
   return (
     <div className="ml-auto flex items-center gap-x-9">
       <div className="flex items-center gap-x-4">
-        <UserAvatar size="xs" />
-        <span className="text-xl break-keep text-black">{user.name}</span>
+        <UserAvatar size="xs" src={props.profileImage} />
+        <span className="text-xl break-keep text-black">{props.name}</span>
         <Separator
           orientation="vertical"
           className="min-h-3 rounded-full bg-gray-3"
         />
         <span className="text-gray-2">
-          {user.userType === 'trainer' ? '트레이너' : '회원'}
+          {props.userType === 'trainer' ? '트레이너' : '회원'}
         </span>
       </div>
       <button className="flex items-center justify-center text-black">
