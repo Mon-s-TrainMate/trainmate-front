@@ -144,7 +144,7 @@ export function Step0(props: Props) {
                 <AccordionTrigger className="w-8 justify-end" />
               </div>
               <AccordionContent>
-                <div className="max-h-85 overflow-y-auto rounded-xl border px-4 py-2.5 text-gray-2">
+                <div className="max-h-85 overflow-y-auto rounded-xl border px-4 py-2.5 whitespace-pre-line text-gray-2">
                   {item.content}
                 </div>
               </AccordionContent>
@@ -167,19 +167,22 @@ export const agreementData = {
     {
       name: 'terms_agreed' as const,
       label: '서비스 이용약관에 동의합니다.',
-      content: '내용 '.repeat(1000),
+      content:
+        "법학에서 '법률'이란 '일반적으로 입법부가 의결하고 국가원수가 공포하는 법'을 가리킨다. 여기서 입법(立法)이란 '국가가 법조의 형식으로 일반적ㆍ추상적 규율을 제정하는 작용, 또는 그에 의하여 제정된 법규범'을 의미하는데, '일반'이라 함은 불특정다수인을 대상으로 함을 의미하고, '추상'이라 함은 불특정다수의 사건에 적용됨을 가리킨다. 규율은 생활관계를 일방적, 구속적으로 확인하고 형성하는 고권적 명령으로 정의된다. 따라서 법률은 국가와 국민간의 관계를 규율하여 국민에 대하여 직접 구속력을 갖는다.\n \n 만약 일반성과 추상성을 가지지 않게 된다면, 삼권분립의 원칙에서 벗어나 입법자가 사실상 행정적, 사법적 권력을 휘두룰 수 있는 위험이 있게 된다.[3] 이렇듯 구체적인 범위를 정한 법률을 처분적 법률이라고 하는데, 원칙적으로는 삼권분립의 원칙에 어긋나 무효이다. 다만, 공익적 성격이 강한 경우에는 예외적으로 처분적 법률이 허용되기도 한다. 대표적으로는 5·18 특별법이나 세월호 특별법 등이 있다. 5·18 민주화운동이라는 구체적 사례에서 발생한 위법 행위들에 대해 공소시효를 정지하거나,재심 제도를 두는 등 처분적 법률이 이루어졌다.",
       required: true,
     },
     {
       name: 'privacy_agreed' as const,
       label: '개인정보 수집 및 이용에 동의합니다.',
-      content: '내용 '.repeat(1000),
+      content:
+        '1. 수집 항목\n- 필수: 이름, 이메일 주소\n\n2. 수집 및 이용 목적\n- 회원 가입 및 본인 식별\n- 서비스 제공 및 관리\n- 고객 상담 및 불만 처리\n- 이벤트/프로모션 안내 및 맞춤형 서비스 제공\n\n3. 보유 및 이용 기간\n- 회원 탈퇴 시까지 (단, 관계 법령에 의해 보관이 필요한 경우 해당 기간 동안 보관)\n\n4. 동의 거부 권리\n- 귀하는 개인정보 수집·이용에 동의하지 않을 권리가 있으며, 동의하지 않을 경우 회원가입 및 일부 서비스 이용이 제한될 수 있습니다.\n',
       required: true,
     },
     {
       name: 'marketing_agreed' as const,
       label: '이벤트 혜택 정보 수신에 동의합니다.',
-      content: '내용 '.repeat(1000),
+      content:
+        '1. 수집 항목\n- 이메일 주소\n\n2. 수집 및 이용 목적\n- 이벤트, 프로모션, 할인 혜택 안내\n- 맞춤형 마케팅 정보 제공\n\n3. 보유 및 이용 기간\n- 동의 철회 전까지 (회원 탈퇴 시 자동 삭제)\n\n4. 동의 거부 권리\n- 선택적 동의 항목으로, 동의하지 않아도 회원가입 및 기본 서비스 이용에는 지장이 없습니다.',
     },
   ],
 };
