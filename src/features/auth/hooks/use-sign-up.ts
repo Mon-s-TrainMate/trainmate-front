@@ -1,4 +1,4 @@
-import { getUsersQueryKey } from '@/lib/users/query-key';
+import { getMyProfileQueryKey, getUsersQueryKey } from '@/lib/users/query-key';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { signUpAction } from '../actions/sign-up-action';
 
@@ -9,9 +9,14 @@ export function useSignUp() {
     mutationFn: signUpAction,
     async onSuccess(data) {
       if (data.success) {
-        await queryClient.invalidateQueries({
-          queryKey: getUsersQueryKey('me'),
-        });
+        await Promise.all([
+          queryClient.invalidateQueries({
+            queryKey: getUsersQueryKey('me'),
+          }),
+          queryClient.invalidateQueries({
+            queryKey: getMyProfileQueryKey(),
+          }),
+        ]);
       }
     },
   });

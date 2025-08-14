@@ -20,3 +20,7 @@ export function getMemberRecordQueryKey(memberId: string, recordId: string) {
 export function getMemberProfileQueryKey(memberId: string) {
   return ['members', memberId, 'profile'] as const;
 }
+
+export function getMyProfileQueryKey() {
+  return ['my', 'profile'] as const;
+}
