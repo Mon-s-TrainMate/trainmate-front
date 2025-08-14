@@ -13,7 +13,7 @@ export function AuthGuard({ children }: AuthGuardProps) {
   const router = useRouter();
   useEffect(() => {
     if (!isFetched || data != null) return;
-    router.push('/auth/sign-in');
+    router.replace('/auth/sign-in');
   }, [data, isFetched, router]);
   if (data == null) <></>;
   return children;
