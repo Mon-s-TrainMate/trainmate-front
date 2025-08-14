@@ -23,7 +23,10 @@ export function UserAvatar({ src, size, className }: UserAvatarProps) {
   return (
     <Avatar className={styles({ size, className })}>
       <AvatarImage src={src ?? undefined} />
-      <AvatarFallback />
+      <AvatarFallback delayMs={300}>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src="/logo.svg" alt="" className="h-full w-full" />
+      </AvatarFallback>
     </Avatar>
   );
 }
