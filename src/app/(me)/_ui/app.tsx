@@ -14,7 +14,7 @@ export function App({ children }: AppProps) {
 
   return (
     <div className="grid h-full grid-cols-[max-content_1fr] overflow-auto">
-      {pathname === '/' || isSm ? <AppSidebar /> : ''}
+      {pathname === '/' || isSm ? <AppSidebar /> : <div />}
       <main className="h-full min-h-0 min-w-0 overflow-auto">{children}</main>
     </div>
   );
