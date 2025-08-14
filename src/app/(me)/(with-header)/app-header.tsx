@@ -16,7 +16,11 @@ export function AppHeader() {
     <div className="flex items-center border-b bg-white pt-4 pr-7.5 pl-22">
       {pathname === '/' && <BrandCatchphrase />}
       {user != null ? (
-        <SignedInActions name={user.name} userType={user.userType} />
+        <SignedInActions
+          name={user.name}
+          userType={user.userType}
+          profileImage={user.profileImage}
+        />
       ) : (
         <AnonymousActions />
       )}
@@ -27,12 +31,13 @@ export function AppHeader() {
 interface SignedInActionsProps {
   name: string;
   userType: string;
+  profileImage?: string;
 }
 function SignedInActions(props: SignedInActionsProps) {
   return (
     <div className="ml-auto flex items-center gap-x-9">
       <div className="flex items-center gap-x-4">
-        <UserAvatar size="xs" />
+        <UserAvatar size="xs" src={props.profileImage} />
         <span className="text-xl break-keep text-black">{props.name}</span>
         <Separator
           orientation="vertical"
