@@ -5,8 +5,8 @@ const styles = cva('', {
   variants: {
     size: {
       xs: 'size-8 rounded-sm',
-      sm: 'size-9 rounded-sm md:size-12 md:rounded-lg',
-      md: 'size-12 rounded-lg md:size-14 md:rounded-xl',
+      sm: 'size-12 rounded-lg',
+      md: 'size-14 rounded-xl',
       lg: 'size-15 rounded-xl',
       xl: 'size-20 rounded-xl',
     },
