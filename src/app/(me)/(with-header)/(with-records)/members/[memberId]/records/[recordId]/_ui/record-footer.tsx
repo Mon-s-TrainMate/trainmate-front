@@ -2,6 +2,7 @@
 
 import { Button } from '@/components/ui/button';
 import { DataValue } from '@/features/data-value/ui/data-value';
+import { sumBy } from '@/lib/array/sum-by';
 import { formatDuration } from '@/lib/time/format-duration';
 import { WorkoutSet } from '../_hooks/use-workout-sets';
 
@@ -12,7 +13,7 @@ interface RecordFooterProps {
 }
 
 export function RecordFooter({ sets, pending, onSave }: RecordFooterProps) {
-  const totalDuration = sets.reduce((total, set) => total + set.durationSec, 0);
+  const totalDuration = sumBy(sets, 'durationSec');
   const estimatedCalories = Math.floor((totalDuration / 60) * 5);
 
   return (
