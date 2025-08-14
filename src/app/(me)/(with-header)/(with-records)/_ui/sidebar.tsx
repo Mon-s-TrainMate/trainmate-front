@@ -40,7 +40,7 @@ export function Sidebar({ memberId }: SidebarProps) {
               <PlusCircleIcon />
             </Link>
           </Button>
-          <Button variant="icon" size="icon">
+          <Button className="hidden" variant="icon" size="icon" disabled>
             <Trash />
           </Button>
         </div>
