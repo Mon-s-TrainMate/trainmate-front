@@ -144,7 +144,7 @@ export function Step0(props: Props) {
                 <AccordionTrigger className="w-8 justify-end" />
               </div>
               <AccordionContent>
-                <div className="max-h-85 overflow-y-auto rounded-xl border px-4 py-2.5 text-gray-2">
+                <div className="max-h-85 overflow-y-auto rounded-xl border px-4 py-2.5 whitespace-pre-line text-gray-2">
                   {item.content}
                 </div>
               </AccordionContent>
@@ -167,7 +167,8 @@ export const agreementData = {
     {
       name: 'terms_agreed' as const,
       label: '서비스 이용약관에 동의합니다.',
-      content: '내용 '.repeat(1000),
+      content:
+        "법학에서 '법률'이란 '일반적으로 입법부가 의결하고 국가원수가 공포하는 법'을 가리킨다. 여기서 입법(立法)이란 '국가가 법조의 형식으로 일반적ㆍ추상적 규율을 제정하는 작용, 또는 그에 의하여 제정된 법규범'을 의미하는데, '일반'이라 함은 불특정다수인을 대상으로 함을 의미하고, '추상'이라 함은 불특정다수의 사건에 적용됨을 가리킨다. 규율은 생활관계를 일방적, 구속적으로 확인하고 형성하는 고권적 명령으로 정의된다. 따라서 법률은 국가와 국민간의 관계를 규율하여 국민에 대하여 직접 구속력을 갖는다.\n \n 만약 일반성과 추상성을 가지지 않게 된다면, 삼권분립의 원칙에서 벗어나 입법자가 사실상 행정적, 사법적 권력을 휘두룰 수 있는 위험이 있게 된다.[3] 이렇듯 구체적인 범위를 정한 법률을 처분적 법률이라고 하는데, 원칙적으로는 삼권분립의 원칙에 어긋나 무효이다. 다만, 공익적 성격이 강한 경우에는 예외적으로 처분적 법률이 허용되기도 한다. 대표적으로는 5·18 특별법이나 세월호 특별법 등이 있다. 5·18 민주화운동이라는 구체적 사례에서 발생한 위법 행위들에 대해 공소시효를 정지하거나,재심 제도를 두는 등 처분적 법률이 이루어졌다.",
       required: true,
     },
     {
