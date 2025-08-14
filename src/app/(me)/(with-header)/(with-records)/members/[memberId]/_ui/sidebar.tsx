@@ -2,20 +2,18 @@
 import { Button } from '@/components/ui/button';
 import { useMemberRecordList } from '@/features/workouts/hooks/use-member-record-list';
 import { sumBy } from '@/lib/array/sum-by';
+import { useDepth } from '@/lib/hooks/use-depth';
 import { formatDuration } from '@/lib/time/format-duration';
-import { formatISO } from 'date-fns';
-import { ChevronLeftIcon, PlusCircleIcon, Trash } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { ReactNode, useState } from 'react';
+import { ReactNode } from 'react';
+import { useRecordDate } from '../_hooks/use-record-date';
 
 interface SidebarProps {
   memberId: string;
 }
 export function Sidebar({ memberId }: SidebarProps) {
-  const [date, setDate] = useState(() =>
-    formatISO(new Date(), { representation: 'date' })
-  );
+  const { date } = useRecordDate();
   const { data: records = [] } = useMemberRecordList(memberId, date);
 
   const totalTime = sumBy(records, 'totalDurationSec');
@@ -23,28 +21,6 @@ export function Sidebar({ memberId }: SidebarProps) {
 
   return (
     <aside className="bg-white">
-      <header className="flex items-center justify-between border-b p-6">
-        <div className="flex items-center p-4">
-          <Link href={`/members/${memberId}`}>
-            <ChevronLeftIcon />
-          </Link>
-          <input
-            type="date"
-            value={date}
-            onChange={(e) => setDate(e.currentTarget.value)}
-          />
-        </div>
-        <div className="flex gap-3">
-          <Button variant="icon" size="icon" asChild>
-            <Link href={`/members/${memberId}/records/new`}>
-              <PlusCircleIcon />
-            </Link>
-          </Button>
-          <Button className="hidden" variant="icon" size="icon" disabled>
-            <Trash />
-          </Button>
-        </div>
-      </header>
       <div className="flex flex-col gap-3 p-6">
         <section className="flex items-center justify-center text-center">
           <h2 className="sr-only">저장된 운동</h2>
@@ -110,11 +86,15 @@ interface NavLinkProps {
 }
 function NavLink({ href, children }: NavLinkProps) {
   const pathname = usePathname();
+  const { next } = useDepth();
   return (
     <Link
       href={href}
       data-active={pathname.startsWith(href)}
       className="flex w-full items-center justify-between rounded-md border border-gray-3 p-5 data-[active=true]:border-transparent data-[active=true]:bg-main-5"
+      onClick={() => {
+        next();
+      }}
     >
       {children}
     </Link>

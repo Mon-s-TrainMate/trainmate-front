@@ -12,6 +12,7 @@ import {
 import { Input } from '@/components/ui/input';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { signUpFormSchema } from '@/features/auth/schema';
+import { useIsSm } from '@/lib/hooks/use-is-mobile';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { ChevronLeftIcon } from 'lucide-react';
 import { useEffect } from 'react';
@@ -49,6 +50,7 @@ export function Step1({ onBack, onNext }: Props) {
       email: '',
     },
   });
+  const isSm = useIsSm();
   useUserDataGuard(onBack, prevKeys);
   useSignUpFormApiErrors((errors) => {
     for (const { path, messages } of errors) {
@@ -121,6 +123,7 @@ export function Step1({ onBack, onNext }: Props) {
                 <Input
                   autoComplete="name"
                   placeholder="이름을 입력해주세요."
+                  inputSize={isSm ? 'lg' : 'sm'}
                   {...field}
                 />
               </FormControl>
@@ -139,6 +142,7 @@ export function Step1({ onBack, onNext }: Props) {
                   type="email"
                   autoComplete="email"
                   placeholder="이메일을 입력해주세요."
+                  inputSize={isSm ? 'lg' : 'sm'}
                   {...field}
                 />
               </FormControl>

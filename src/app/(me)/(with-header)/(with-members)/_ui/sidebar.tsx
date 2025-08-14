@@ -4,6 +4,8 @@ import { Input } from '@/components/ui/input';
 import { Separator } from '@/components/ui/separator';
 import { useMemberList } from '@/features/member/hooks/use-member-list';
 import { useMyProfile } from '@/features/member/hooks/use-my-profile';
+import { useDepth } from '@/lib/hooks/use-depth';
+import { useIsSm } from '@/lib/hooks/use-is-mobile';
 import { UserRoundIcon } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -13,11 +15,14 @@ import { Member } from './types';
 
 export function Sidebar() {
   const { data: members } = useMemberList();
+  const isSm = useIsSm();
   return (
-    <aside className="bg-white">
-      <header className="flex items-center border-b p-6">
-        <MemberListHeader count={members?.length ?? 0} />
-      </header>
+    <aside className="w-full bg-white sm:w-100">
+      {isSm && (
+        <header className="flex items-center border-b p-6">
+          <MemberListHeader count={members?.length ?? 0} />
+        </header>
+      )}
       <MemberListContent members={members} />
     </aside>
   );
@@ -75,8 +80,14 @@ interface MemberLinkProps {
 function MemberLink(props: MemberLinkProps) {
   const pathname = usePathname();
   const active = pathname.startsWith(`/members/${props.id}`);
+  const { next } = useDepth();
   return (
-    <Link href={`/members/${props.id}`}>
+    <Link
+      href={`/members/${props.id}`}
+      onClick={() => {
+        next();
+      }}
+    >
       <MemberItem {...props} active={active} />
     </Link>
   );

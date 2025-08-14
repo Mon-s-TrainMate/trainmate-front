@@ -24,6 +24,7 @@ import { Input } from '@/components/ui/input';
 import { Separator } from '@/components/ui/separator';
 import { useSignIn } from '@/features/auth/hooks/use-sign-in';
 import { signInFormSchema } from '@/features/auth/schema';
+import { useIsSm } from '@/lib/hooks/use-is-mobile';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { AlertCircle } from 'lucide-react';
 import Link from 'next/link';
@@ -35,6 +36,7 @@ export default function Page() {
   const router = useRouter();
   const mutation = useSignIn();
   const [isAlertOpen, setIsAlertOpen] = useState(false);
+  const isSm = useIsSm();
 
   const form = useForm({
     resolver: zodResolver(signInFormSchema),
@@ -46,12 +48,12 @@ export default function Page() {
     },
   });
   return (
-    <div className="mt-20 flex min-h-screen flex-col items-center justify-center pb-20">
-      <div className="flex w-136 flex-col items-center gap-15 rounded-xl bg-white p-8">
-        <BrandCatchphrase />
+    <div className="m-3 flex min-h-screen flex-col items-center justify-center">
+      <div className="flex flex-col items-center gap-15 rounded-xl bg-white p-8 sm:w-136">
+        {isSm && <BrandCatchphrase />}
         <Form {...form}>
           <form
-            className="flex w-full max-w-lg flex-col gap-y-10 px-4"
+            className="flex w-full max-w-lg flex-col gap-y-10"
             onSubmit={form.handleSubmit(async (values) => {
               const res = await mutation.mutateAsync(values);
               if (res.success) {
@@ -73,9 +75,10 @@ export default function Page() {
               name="email"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>이메일</FormLabel>
+                  <FormLabel className="text-sm">이메일</FormLabel>
                   <FormControl>
                     <Input
+                      inputSize={isSm ? 'lg' : 'sm'}
                       placeholder="이메일 주소를 입력해주세요."
                       {...field}
                       className={`focus-visible:border-primary ${
@@ -92,10 +95,11 @@ export default function Page() {
               name="password"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>비밀번호</FormLabel>
+                  <FormLabel className="text-sm">비밀번호</FormLabel>
                   <FormControl>
                     <Input
                       type="password"
+                      inputSize={isSm ? 'lg' : 'sm'}
                       placeholder="비밀번호를 입력해주세요."
                       {...field}
                       className={`focus-visible:border-primary ${

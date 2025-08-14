@@ -13,7 +13,7 @@ export function AppHeader() {
   const { data: user } = useMyProfile();
   const pathname = usePathname();
   return (
-    <div className="flex items-center border-b bg-white pt-4 pr-7.5 pl-22">
+    <div className="flex flex-col gap-3 p-4 pt-9 sm:flex-row sm:items-center sm:border-b sm:bg-white sm:pl-8">
       {pathname === '/' && <BrandCatchphrase />}
       {user != null ? (
         <SignedInActions
@@ -56,11 +56,11 @@ function SignedInActions(props: SignedInActionsProps) {
 
 function AnonymousActions() {
   return (
-    <div className="ml-auto flex items-center gap-x-7">
-      <Link href="/auth/sign-up">
+    <div className="flex flex-col gap-x-7 sm:ml-auto sm:flex-row sm:items-center">
+      <Link href="/auth/sign-up" className="hidden sm:block">
         <Button variant="text">회원가입</Button>
       </Link>
-      <Link href="/auth/sign-in">
+      <Link href="/auth/sign-in" className="w-full">
         <Button>로그인하기</Button>
       </Link>
     </div>
