@@ -1,17 +1,13 @@
 'use client';
 import { Button } from '@/components/ui/button';
 import { useMemberRecordList } from '@/features/workouts/hooks/use-member-record-list';
+import { sumBy } from '@/lib/array/sum-by';
 import { formatDuration } from '@/lib/time/format-duration';
 import { formatISO } from 'date-fns';
 import { ChevronLeftIcon, PlusCircleIcon, Trash } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { ReactNode, useState } from 'react';
-
-const sumBy = <T extends Record<string, unknown>>(
-  sets: T[],
-  key: { [K in keyof T]-?: number extends T[K] ? K : never }[keyof T]
-) => sets.reduce((total, set) => total + (set[key] as number), 0);
 
 interface SidebarProps {
   memberId: string;

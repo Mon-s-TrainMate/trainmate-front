@@ -2,6 +2,7 @@
 
 import { Button } from '@/components/ui/button';
 import { useMemberRecordList } from '@/features/workouts/hooks/use-member-record-list';
+import { sumBy } from '@/lib/array/sum-by';
 import { formatDuration } from '@/lib/time/format-duration';
 import { formatISO } from 'date-fns';
 import { ChevronRightIcon } from 'lucide-react';
@@ -18,14 +19,8 @@ export function MemberRecordWidget({ memberId }: MemberRecordWidgetProps) {
   );
   const { data: records = [] } = useMemberRecordList(memberId, date);
 
-  const totalDurationSec = records.reduce(
-    (acc, record) => acc + record.totalDurationSec,
-    0
-  );
-  const caloriesBurned = records.reduce(
-    (acc, record) => acc + record.caloriesBurned,
-    0
-  );
+  const totalDurationSec = sumBy(records, 'totalDurationSec');
+  const caloriesBurned = sumBy(records, 'caloriesBurned');
   return (
     <div className="flex flex-col gap-y-5.5">
       <div className="flex flex-wrap items-center justify-between font-light tracking-[-1.18px] text-black">

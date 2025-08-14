@@ -2,6 +2,7 @@ import {
   CreateNewWorkoutSetData,
   CreateNewWorkoutSetResponse,
 } from '@/features/workouts/api/create-new-workout-set';
+import { sumBy } from '@/lib/array/sum-by';
 import { API_HOST } from '@/lib/consts';
 import { users } from '@/mocks/data';
 import { withAuthorization } from '@/mocks/utils';
@@ -72,13 +73,13 @@ export const mswCreateNewWorkoutSet = http.post<
     if (existingRecord) {
       existingRecord.sets.push(newSet);
       existingRecord.set_count = existingRecord.sets.length;
-      existingRecord.total_duration_sec = existingRecord.sets.reduce(
-        (sum: number, set: ExerciseSet) => sum + set.duration,
-        0
+      existingRecord.total_duration_sec = sumBy(
+        existingRecord.sets,
+        'duration'
       );
-      existingRecord.calories_burned = existingRecord.sets.reduce(
-        (sum: number, set: ExerciseSet) => sum + set.calories_burned,
-        0
+      existingRecord.calories_burned = sumBy(
+        existingRecord.sets,
+        'calories_burned'
       );
     } else {
       existingRecord = {
@@ -100,33 +101,16 @@ export const mswCreateNewWorkoutSet = http.post<
     );
 
     const workoutTotals = {
-      total_sets: exerciseRecords.reduce(
-        (sum: number, record: ExerciseRecord) => sum + record.set_count,
-        0
-      ),
-      total_duration_sec: exerciseRecords.reduce(
-        (sum: number, record: ExerciseRecord) =>
-          sum + record.total_duration_sec,
-        0
-      ),
-      total_calories: exerciseRecords.reduce(
-        (sum: number, record: ExerciseRecord) => sum + record.calories_burned,
-        0
-      ),
+      total_sets: sumBy(exerciseRecords, 'set_count'),
+      total_duration_sec: sumBy(exerciseRecords, 'total_duration_sec'),
+      total_calories: sumBy(exerciseRecords, 'calories_burned'),
     };
     const dailyRecords = user.records.filter(
       (record: ExerciseRecord) => record.date === today
     );
     const dailyTotals = {
-      total_duration_sec: dailyRecords.reduce(
-        (sum: number, record: ExerciseRecord) =>
-          sum + record.total_duration_sec,
-        0
-      ),
-      total_calories: dailyRecords.reduce(
-        (sum: number, record: ExerciseRecord) => sum + record.calories_burned,
-        0
-      ),
+      total_duration_sec: sumBy(dailyRecords, 'total_duration_sec'),
+      total_calories: sumBy(dailyRecords, 'calories_burned'),
     };
 
     return HttpResponse.json({
