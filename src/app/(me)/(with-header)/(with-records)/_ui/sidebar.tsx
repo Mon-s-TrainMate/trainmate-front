@@ -35,8 +35,14 @@ export function Sidebar({ memberId }: SidebarProps) {
           />
         </div>
         <div className="flex gap-3">
-          <PlusCircleIcon className="h-5 w-5 cursor-pointer text-black" />
-          <Trash className="h-5 w-5 cursor-pointer text-black" />
+          <Button variant="icon" size="icon" asChild>
+            <Link href={`/members/${memberId}/records/new`}>
+              <PlusCircleIcon />
+            </Link>
+          </Button>
+          <Button className="hidden" variant="icon" size="icon" disabled>
+            <Trash />
+          </Button>
         </div>
       </header>
       <div className="flex flex-col gap-3 p-6">
