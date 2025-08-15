@@ -7,6 +7,7 @@ import {
   PopoverTrigger,
 } from '@/components/ui/popover';
 import { Separator } from '@/components/ui/separator';
+import { useSignOut } from '@/features/auth/hooks/use-sign-out';
 import { useMyProfile } from '@/features/member/hooks/use-my-profile';
 import { UserAvatar } from '@/features/user/ui/user-avatar';
 import {
@@ -28,6 +29,7 @@ const items = [
 export function AppSidebar() {
   const { data: user } = useMyProfile();
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
+  const signOutMutation = useSignOut();
 
   return (
     <aside className="sticky top-0 z-50 grid w-22 grid-rows-[max-content_1fr_max-content] overflow-clip bg-white shadow-sidebar">
@@ -74,13 +76,27 @@ export function AppSidebar() {
               <p className="font-semibold text-main-2">버전정보: v0.0.1</p>
             </div>
             <Separator />
-            <Button
-              variant="text"
-              className="underline"
-              onClick={() => setIsSettingsOpen(false)}
-            >
-              로그아웃
-            </Button>
+            {user != null ? (
+              <Button
+                variant="text"
+                className="underline"
+                onClick={async () => {
+                  await signOutMutation.mutateAsync();
+                  setIsSettingsOpen(false);
+                }}
+              >
+                로그아웃
+              </Button>
+            ) : (
+              <Button
+                asChild
+                onClick={() => {
+                  setIsSettingsOpen(false);
+                }}
+              >
+                <Link href="/auth/sign-in">로그인</Link>
+              </Button>
+            )}
           </PopoverContent>
         </Popover>
       </footer>
