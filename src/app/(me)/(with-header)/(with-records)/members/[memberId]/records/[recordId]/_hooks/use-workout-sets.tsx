@@ -18,6 +18,7 @@ export function useWorkoutSets(initialSets: InternalWorkoutSet[]) {
     stateRef: timerStateRef,
     toggle: toggleTimer,
     stop: stopTimer,
+    stopAll: stopAllTimer,
   } = useWorkoutTimer({
     onChange({ workoutSetId, durationSec }) {
       setWorkoutSets((sets) =>
@@ -68,6 +69,7 @@ export function useWorkoutSets(initialSets: InternalWorkoutSet[]) {
     removeWorkoutSet,
     updateWorkoutSet,
     toggleWorkoutSetTimer: toggleTimer,
+    stopAllWorkoutSetTimer: stopAllTimer,
     setWorkoutSets,
   };
 }
@@ -106,6 +108,12 @@ export function useWorkoutTimer(options: {
     stateRef.current = null;
   });
 
+  const stopAll = useEvent(() => {
+    if (stateRef.current == null) return;
+    const workoutSetId = stateRef.current.workoutSetId;
+    stop(workoutSetId);
+  });
+
   const toggle = useEvent(
     (workoutSetId: number, initialDurationSec: number) => {
       if (stateRef.current?.workoutSetId === workoutSetId) {
@@ -138,5 +146,5 @@ export function useWorkoutTimer(options: {
     return startTimer();
   }, [isSomethingPlaying, startTimer]);
 
-  return { stateRef, toggle, stop };
+  return { stateRef, toggle, stop, stopAll };
 }

@@ -31,6 +31,7 @@ export function RecordPageClient({
     removeWorkoutSet: removeSet,
     updateWorkoutSet: updateSet,
     toggleWorkoutSetTimer: toggleSetTimer,
+    stopAllWorkoutSetTimer: stopAllTimer,
     setWorkoutSets,
   } = useWorkoutSets([]);
   const initialSetsRef = useRef<InternalWorkoutSet[]>([]);
@@ -69,6 +70,7 @@ export function RecordPageClient({
         pending={mutation.isPending}
         weightKg={memberWeightKg}
         onSave={async () => {
+          stopAllTimer();
           const responses = await mutation.mutateAsync({
             weightKg: memberWeightKg,
             oldSets: initialSetsRef.current,
