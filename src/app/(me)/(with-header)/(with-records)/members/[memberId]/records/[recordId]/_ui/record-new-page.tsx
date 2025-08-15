@@ -25,6 +25,7 @@ export function RecordNewPage({ memberId }: RecordNewPageProps) {
     removeWorkoutSet: removeSet,
     updateWorkoutSet: updateSet,
     toggleWorkoutSetTimer: toggleSetTimer,
+    stopAllWorkoutSetTimer: stopAllTimer,
   } = useWorkoutSets([]);
   const { data: profile } = useMemberProfile(memberId);
   const memberWeightKg = profile?.weightKg ?? 70;
@@ -49,6 +50,7 @@ export function RecordNewPage({ memberId }: RecordNewPageProps) {
         pending={mutation.isPending}
         weightKg={memberWeightKg}
         onSave={async () => {
+          stopAllTimer();
           const exerciseType = exercises.find(
             (exercise) => exercise.exerciseName === selectedExercise
           );
