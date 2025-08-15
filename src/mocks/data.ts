@@ -1,4 +1,3 @@
-import { sumBy } from '@/lib/array/sum-by';
 import { addDays, formatISO, set } from 'date-fns';
 
 interface CreateExerciseOptions {
@@ -143,18 +142,11 @@ function createExerciseRecord(date: string) {
     createExerciseRecordSet()
   );
 
-  const set_count = sets.length;
-  const total_duration_sec = sumBy(sets, 'duration');
-  const calories_burned = sumBy(sets, 'calories_burned');
-
   return {
     record_id: exerciseRecordId++,
     date,
     is_trainer,
     exercise_name,
-    set_count,
-    total_duration_sec,
-    calories_burned,
     sets,
   };
 }

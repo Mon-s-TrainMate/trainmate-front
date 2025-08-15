@@ -1,19 +1,22 @@
 'use client';
 
-import { getMemberRecordQueryKey } from '@/lib/users/query-key';
+import { getEntireMemberRecordListQueryKey } from '@/lib/users/query-key';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { createWorkoutSet } from '../api/create-workout-set';
 import { deleteWorkoutSet } from '../api/delete-workout-set';
 import { updateWorkoutSet } from '../api/update-workout-set';
+import { calculateCaloriesBurned } from '../utils/calculate-calories-burned';
 
 export function useUpdateRecord(memberId: string, recordId: string) {
   const queryClient = useQueryClient();
 
   return useMutation({
     mutationFn: async ({
+      weightKg,
       oldSets,
       newSets,
     }: {
+      weightKg: number;
       oldSets: Set[];
       newSets: Set[];
     }) => {
@@ -24,7 +27,7 @@ export function useUpdateRecord(memberId: string, recordId: string) {
             repetitions: set.repetitions,
             weight_kg: set.weightKg,
             duration_sec: set.durationSec,
-            calories: 0,
+            calories: calculateCaloriesBurned(3.5, weightKg, set.durationSec),
           })
         ),
         ...plan.deletes.map((set) =>
@@ -35,7 +38,10 @@ export function useUpdateRecord(memberId: string, recordId: string) {
             repetitions: set.repetitions,
             weight_kg: set.weightKg,
             duration_sec: set.durationSec,
-            calories: 0,
+            calories:
+              set.durationSec != null
+                ? calculateCaloriesBurned(3.5, weightKg, set.durationSec)
+                : undefined,
           })
         ),
       ]);
@@ -43,7 +49,7 @@ export function useUpdateRecord(memberId: string, recordId: string) {
     onSuccess: async (data) => {
       if (data.some((res) => res.success)) {
         await queryClient.invalidateQueries({
-          queryKey: getMemberRecordQueryKey(memberId, recordId),
+          queryKey: getEntireMemberRecordListQueryKey(memberId),
         });
       }
     },

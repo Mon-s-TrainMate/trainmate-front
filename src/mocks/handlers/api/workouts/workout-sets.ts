@@ -2,31 +2,13 @@ import {
   CreateNewWorkoutSetData,
   CreateNewWorkoutSetResponse,
 } from '@/features/workouts/api/create-new-workout-set';
+import { sum } from '@/lib/array/sum';
 import { sumBy } from '@/lib/array/sum-by';
 import { API_HOST } from '@/lib/consts';
 import { users } from '@/mocks/data';
 import { withAuthorization } from '@/mocks/utils';
 import { formatISO } from 'date-fns';
 import { http, HttpResponse } from 'msw';
-
-interface ExerciseRecord {
-  record_id: number;
-  date: string;
-  is_trainer: boolean;
-  exercise_name: string;
-  set_count: number;
-  total_duration_sec: number;
-  calories_burned: number;
-  sets: ExerciseSet[];
-}
-
-interface ExerciseSet {
-  set_id: number;
-  repeat: number;
-  duration: number;
-  calories_burned: number;
-  kg: number;
-}
 
 export const mswCreateNewWorkoutSet = http.post<
   { memberId: string },
@@ -58,7 +40,7 @@ export const mswCreateNewWorkoutSet = http.post<
     const today = formatISO(new Date(), { representation: 'date' });
     const setId = Date.now();
     let existingRecord = user.records.find(
-      (record: ExerciseRecord) =>
+      (record) =>
         record.date === today &&
         record.exercise_name === requestData.exercise_name
     );
@@ -72,45 +54,39 @@ export const mswCreateNewWorkoutSet = http.post<
 
     if (existingRecord) {
       existingRecord.sets.push(newSet);
-      existingRecord.set_count = existingRecord.sets.length;
-      existingRecord.total_duration_sec = sumBy(
-        existingRecord.sets,
-        'duration'
-      );
-      existingRecord.calories_burned = sumBy(
-        existingRecord.sets,
-        'calories_burned'
-      );
     } else {
       existingRecord = {
         record_id: Date.now() + 1,
         date: today,
         is_trainer: me?.user_type === 'trainer',
         exercise_name: requestData.exercise_name,
-        set_count: 1,
-        total_duration_sec: requestData.duration_sec,
-        calories_burned: requestData.calories,
         sets: [newSet],
       };
       user.records.push(existingRecord);
     }
     const exerciseRecords = user.records.filter(
-      (record: ExerciseRecord) =>
+      (record) =>
         record.date === today &&
         record.exercise_name === requestData.exercise_name
     );
 
     const workoutTotals = {
-      total_sets: sumBy(exerciseRecords, 'set_count'),
-      total_duration_sec: sumBy(exerciseRecords, 'total_duration_sec'),
-      total_calories: sumBy(exerciseRecords, 'calories_burned'),
+      total_sets: sum(exerciseRecords.map((record) => record.sets.length)),
+      total_duration_sec: sum(
+        exerciseRecords.map((record) => sumBy(record.sets, 'duration'))
+      ),
+      total_calories: sum(
+        exerciseRecords.map((record) => sumBy(record.sets, 'calories_burned'))
+      ),
     };
-    const dailyRecords = user.records.filter(
-      (record: ExerciseRecord) => record.date === today
-    );
+    const dailyRecords = user.records.filter((record) => record.date === today);
     const dailyTotals = {
-      total_duration_sec: sumBy(dailyRecords, 'total_duration_sec'),
-      total_calories: sumBy(dailyRecords, 'calories_burned'),
+      total_duration_sec: sum(
+        dailyRecords.map((record) => sumBy(record.sets, 'duration'))
+      ),
+      total_calories: sum(
+        dailyRecords.map((record) => sumBy(record.sets, 'calories_burned'))
+      ),
     };
 
     return HttpResponse.json({
@@ -121,7 +97,7 @@ export const mswCreateNewWorkoutSet = http.post<
         exercise_name: requestData.exercise_name,
         body_part: requestData.body_part,
         equipment: requestData.equipment,
-        set_number: existingRecord.set_count,
+        set_number: existingRecord.sets.length,
         repetitions: requestData.repetitions,
         weight_kg: requestData.weight_kg,
         duration_sec: requestData.duration_sec,

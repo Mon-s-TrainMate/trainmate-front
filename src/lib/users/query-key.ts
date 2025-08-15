@@ -13,6 +13,10 @@ export function getMemberRecordListQueryKey(memberId: string, date?: string) {
   return ['members', memberId, 'records', '?date', queryDate] as const;
 }
 
+export function getEntireMemberRecordListQueryKey(memberId: string) {
+  return ['members', memberId, 'records'] as const;
+}
+
 export function getMemberRecordQueryKey(memberId: string, recordId: string) {
   return ['members', memberId, 'records', recordId] as const;
 }

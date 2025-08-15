@@ -1,6 +1,7 @@
 'use client';
 
 import { useExercises } from '@/features/exercise/hooks/use-exercises';
+import { useMemberProfile } from '@/features/member/hooks/use-member-profile';
 import { useCreateRecord } from '@/features/workouts/hooks/use-create-record';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
@@ -25,6 +26,8 @@ export function RecordNewPage({ memberId }: RecordNewPageProps) {
     updateWorkoutSet: updateSet,
     toggleWorkoutSetTimer: toggleSetTimer,
   } = useWorkoutSets([]);
+  const { data: profile } = useMemberProfile(memberId);
+  const memberWeightKg = profile?.weightKg ?? 70;
   const mutation = useCreateRecord(memberId);
   const router = useRouter();
 
@@ -44,6 +47,7 @@ export function RecordNewPage({ memberId }: RecordNewPageProps) {
       <RecordFooter
         sets={workoutSets}
         pending={mutation.isPending}
+        weightKg={memberWeightKg}
         onSave={async () => {
           const exerciseType = exercises.find(
             (exercise) => exercise.exerciseName === selectedExercise
@@ -70,7 +74,10 @@ export function RecordNewPage({ memberId }: RecordNewPageProps) {
             });
             return;
           }
-          const responses = await mutation.mutateAsync(sets);
+          const responses = await mutation.mutateAsync({
+            weightKg: memberWeightKg,
+            sets,
+          });
           const errors = responses.filter((res) => !res.success);
           if (errors.length > 0) {
             setError({

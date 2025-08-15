@@ -1,4 +1,5 @@
 import { MemberRecordResponse } from '@/features/workouts/api/get-member-record';
+import { sumBy } from '@/lib/array/sum-by';
 import { API_HOST } from '@/lib/consts';
 import { users } from '@/mocks/data';
 import { withAuthorization } from '@/mocks/utils';
@@ -27,16 +28,20 @@ export const mswMemberRecord = http.get<
     if (record == null)
       return HttpResponse.json({ success: false }, { status: 404 });
 
+    const total_duration_sec = sumBy(record.sets, 'duration');
+    const total_calories = sumBy(record.sets, 'calories_burned');
+    const total_sets = record.sets.length;
+
     return HttpResponse.json({
       success: true,
       data: {
         workout_exercise_id: record.record_id,
         body_part: '{{body-part}}',
         exercise_name: record.exercise_name,
-        total_duration_sec: record.total_duration_sec,
-        total_calories: record.calories_burned,
+        total_duration_sec,
         total_duration_display: '{{total-duration-display}}',
-        total_sets: record.sets.length,
+        total_calories,
+        total_sets,
         sets: record.sets.map((set) => ({
           set_id: set.set_id,
           set_number: set.set_id,
