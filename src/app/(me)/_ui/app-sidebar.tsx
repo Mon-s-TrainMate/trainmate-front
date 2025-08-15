@@ -1,6 +1,12 @@
 'use client';
 
-import { useState } from 'react';
+import { Button } from '@/components/ui/button';
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from '@/components/ui/popover';
+import { Separator } from '@/components/ui/separator';
 import { useMyProfile } from '@/features/member/hooks/use-my-profile';
 import { UserAvatar } from '@/features/user/ui/user-avatar';
 import {
@@ -11,8 +17,7 @@ import {
 } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { ElementType } from 'react';
-import { Button } from '@/components/ui/button';
+import { ElementType, useState } from 'react';
 
 const items = [
   { id: 0, href: '/members', Icon: UserRoundIcon },
@@ -44,43 +49,41 @@ export function AppSidebar() {
       </section>
 
       <footer className="relative mb-3 flex justify-center">
-        <Button
-          className={`${
-            isSettingsOpen
-              ? 'size-12 rounded-full bg-main-5 text-main-2 hover:border-main-5 hover:bg-main-5'
-              : 'size-12 bg-white text-black hover:border-white hover:bg-white'
-          }`}
-          onClick={() => setIsSettingsOpen(!isSettingsOpen)}
-        >
-          <SettingsIcon className="strokeWidth={1} size-6" />
-          {isSettingsOpen && (
-            <span className="absolute top-1/2 right-full size-2 translate-x-1/2 -translate-y-1/2 rounded-full bg-primary group-data-[active=true]:block" />
-          )}
-        </Button>
-      </footer>
-
-      {isSettingsOpen && (
-        <div className="fixed bottom-3 left-25 rounded-lg bg-white p-4 shadow-level-1">
-          <div className="flex flex-col gap-4">
+        <Popover open={isSettingsOpen} onOpenChange={setIsSettingsOpen}>
+          <PopoverTrigger
+            className={`flex size-12 items-center justify-center rounded-full hover:border-main-5 hover:bg-main-5 ${
+              isSettingsOpen ? 'bg-main-5 text-main-2' : 'bg-white text-black'
+            }`}
+            data-active={isSettingsOpen}
+            onClick={() => setIsSettingsOpen(!isSettingsOpen)}
+          >
+            <SettingsIcon className="strokeWidth={1} size-6" />
+            {isSettingsOpen && (
+              <span className="absolute top-1/2 right-full size-2 translate-x-1/2 -translate-y-1/2 rounded-full bg-primary group-data-[active=true]:block" />
+            )}
+          </PopoverTrigger>
+          <PopoverContent
+            side="right"
+            sideOffset={36}
+            align="start"
+            collisionPadding={24}
+            className="flex flex-col gap-4 rounded-lg p-4"
+          >
             <div className="flex flex-col items-center gap-3">
-              <h2>
-                <UserAvatar />
-              </h2>
-              <p className="text-main-2">버전정보: v0.0.1</p>
+              <UserAvatar />
+              <p className="font-semibold text-main-2">버전정보: v0.0.1</p>
             </div>
-            <div className="h-0.25 w-67 bg-gray-3" />
-            <div className="">
-              <Button
-                variant="text"
-                className="underline"
-                onClick={() => setIsSettingsOpen(false)}
-              >
-                로그아웃
-              </Button>
-            </div>
-          </div>
-        </div>
-      )}
+            <Separator />
+            <Button
+              variant="text"
+              className="underline"
+              onClick={() => setIsSettingsOpen(false)}
+            >
+              로그아웃
+            </Button>
+          </PopoverContent>
+        </Popover>
+      </footer>
     </aside>
   );
 }
