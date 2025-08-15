@@ -54,3 +54,8 @@ export async function getAccessToken() {
 
   return null;
 }
+
+export async function signOut() {
+  await deleteServerSession(ACCESS_TOKEN_KEY);
+  await deleteServerSession(REFRESH_TOKEN_KEY);
+}
