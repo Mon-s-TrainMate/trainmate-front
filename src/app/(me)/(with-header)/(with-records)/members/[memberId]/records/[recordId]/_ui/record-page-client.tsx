@@ -1,5 +1,6 @@
 'use client';
 
+import { useMemberProfile } from '@/features/member/hooks/use-member-profile';
 import { useMemberRecord } from '@/features/workouts/hooks/use-member-record';
 import { useUpdateRecord } from '@/features/workouts/hooks/use-update-record';
 import { useEffect, useRef, useState } from 'react';
@@ -33,6 +34,8 @@ export function RecordPageClient({
     setWorkoutSets,
   } = useWorkoutSets([]);
   const initialSetsRef = useRef<InternalWorkoutSet[]>([]);
+  const { data: profile } = useMemberProfile(memberId);
+  const memberWeightKg = profile?.weightKg ?? 70;
   const mutation = useUpdateRecord(memberId, recordId);
 
   useEffect(() => {
@@ -64,8 +67,10 @@ export function RecordPageClient({
       <RecordFooter
         sets={workoutSets}
         pending={mutation.isPending}
+        weightKg={memberWeightKg}
         onSave={async () => {
           const responses = await mutation.mutateAsync({
+            weightKg: memberWeightKg,
             oldSets: initialSetsRef.current,
             newSets: workoutSets,
           });

@@ -2,6 +2,8 @@
 
 import { Button } from '@/components/ui/button';
 import { DataValue } from '@/features/data-value/ui/data-value';
+import { calculateCaloriesBurned } from '@/features/workouts/utils/calculate-calories-burned';
+import { sum } from '@/lib/array/sum';
 import { sumBy } from '@/lib/array/sum-by';
 import { formatDuration } from '@/lib/time/format-duration';
 import { WorkoutSet } from '../_hooks/use-workout-sets';
@@ -9,12 +11,20 @@ import { WorkoutSet } from '../_hooks/use-workout-sets';
 interface RecordFooterProps {
   sets: WorkoutSet[];
   pending: boolean;
+  weightKg: number;
   onSave: () => void;
 }
 
-export function RecordFooter({ sets, pending, onSave }: RecordFooterProps) {
+export function RecordFooter({
+  sets,
+  pending,
+  weightKg,
+  onSave,
+}: RecordFooterProps) {
   const totalDuration = sumBy(sets, 'durationSec');
-  const estimatedCalories = Math.floor((totalDuration / 60) * 5);
+  const caloriesBurned = sum(
+    sets.map((set) => calculateCaloriesBurned(3.5, weightKg, set.durationSec))
+  );
 
   return (
     <div className="flex flex-col justify-between gap-4 rounded-xl bg-white p-4 @md:px-10 @md:py-6 @3xl:flex-row @3xl:items-center">
@@ -22,7 +32,7 @@ export function RecordFooter({ sets, pending, onSave }: RecordFooterProps) {
         <DataValue
           size="md"
           label="set calories"
-          value={estimatedCalories}
+          value={caloriesBurned}
           unit="kcal"
         />
         <DataValue

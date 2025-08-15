@@ -1,14 +1,19 @@
 'use client';
 
-import { getMemberRecordListQueryKey } from '@/lib/users/query-key';
+import { getEntireMemberRecordListQueryKey } from '@/lib/users/query-key';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { createNewWorkoutSet } from '../api/create-new-workout-set';
+import { calculateCaloriesBurned } from '../utils/calculate-calories-burned';
 
 export function useCreateRecord(memberId: string) {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: async (
+    mutationFn: async ({
+      weightKg,
+      sets,
+    }: {
+      weightKg: number;
       sets: {
         bodyPart: string;
         equipment: string;
@@ -16,8 +21,8 @@ export function useCreateRecord(memberId: string) {
         repetitions: number;
         weightKg: number;
         durationSec: number;
-      }[]
-    ) => {
+      }[];
+    }) => {
       return await Promise.all(
         sets.map((set) =>
           createNewWorkoutSet(memberId, {
@@ -27,7 +32,7 @@ export function useCreateRecord(memberId: string) {
             repetitions: set.repetitions,
             weight_kg: set.weightKg,
             duration_sec: set.durationSec,
-            calories: 0,
+            calories: calculateCaloriesBurned(3.5, weightKg, set.durationSec),
           })
         )
       );
@@ -35,7 +40,7 @@ export function useCreateRecord(memberId: string) {
     onSuccess: async (data) => {
       if (data.some((res) => res.success)) {
         await queryClient.invalidateQueries({
-          queryKey: getMemberRecordListQueryKey(memberId),
+          queryKey: getEntireMemberRecordListQueryKey(memberId),
         });
       }
     },
