@@ -1,5 +1,3 @@
-import React from 'react';
-
 const UserMetrics = ({
   title = 'trainer',
   value = 0,
@@ -10,13 +8,11 @@ const UserMetrics = ({
 
   return (
     <section className="font-light">
-      <h2 className="text-xl text-gray-2">{title}</h2>
+      <h2 className="text-sm text-gray-2 md:text-xl">{title}</h2>
       <div className="flex items-center gap-15">
-        <p className="text-[3.25rem]">
+        <p className="text-[2rem] md:text-[3.25rem]">
           {value.toLocaleString()}
-          <span
-            className={`text-black ${isPlus ? 'text-[3.25rem]' : 'ml-2 text-[1.5rem]'}`}
-          >
+          <span className={`text-black ${isPlus ? '' : 'ml-2 text-base'}`}>
             {unit}
           </span>
         </p>
@@ -34,7 +30,7 @@ const MetricsContainer = ({ trainer = 0, member = 0, total = 0 }) => {
   ];
 
   return (
-    <div className="flex gap-15">
+    <div className="flex flex-wrap gap-5 md:gap-15">
       {metricsData.map((metric, index) => (
         <UserMetrics
           key={index}
