@@ -43,8 +43,20 @@ export function AppSidebar() {
         ))}
       </section>
 
-      <footer className="flex justify-center pb-3">
-        <NavLink Icon={SettingsIcon} onClick={() => setIsSettingsOpen(true)} />
+      <footer className="relative mb-3 flex justify-center">
+        <Button
+          className={`${
+            isSettingsOpen
+              ? 'size-12 rounded-full bg-main-5 text-main-2 hover:border-main-5 hover:bg-main-5'
+              : 'size-12 bg-white text-black hover:border-white hover:bg-white'
+          }`}
+          onClick={() => setIsSettingsOpen(!isSettingsOpen)}
+        >
+          <SettingsIcon className="strokeWidth={1} size-6" />
+          {isSettingsOpen && (
+            <span className="absolute top-1/2 right-full size-2 translate-x-1/2 -translate-y-1/2 rounded-full bg-primary group-data-[active=true]:block" />
+          )}
+        </Button>
       </footer>
 
       {isSettingsOpen && (
@@ -76,15 +88,14 @@ export function AppSidebar() {
 interface NavLinkProps {
   href?: string;
   Icon: ElementType;
-  onClick?: () => void;
 }
 
-function NavLink({ href, Icon, onClick }: NavLinkProps) {
+function NavLink({ href, Icon }: NavLinkProps) {
   const pathname = usePathname();
 
   if (!href) {
     return (
-      <button className="flex appearance-none justify-center" onClick={onClick}>
+      <button className="flex appearance-none justify-center">
         <div className="flex size-12 items-center justify-center rounded-full text-gray-2">
           <Icon />
         </div>
