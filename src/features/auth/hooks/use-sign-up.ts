@@ -1,4 +1,4 @@
-import { getMyProfileQueryKey, getUsersQueryKey } from '@/lib/users/query-key';
+import { getMyProfileQueryKey, getUsersQueryKey } from '@/lib/query-key';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { signUpAction } from '../actions/sign-up-action';
 

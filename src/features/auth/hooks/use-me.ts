@@ -1,4 +1,4 @@
-import { getUsersQueryKey } from '@/lib/users/query-key';
+import { getUsersQueryKey } from '@/lib/query-key';
 import { useQuery } from '@tanstack/react-query';
 import { getUsersMe } from '../actions/me';
 

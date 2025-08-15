@@ -1,4 +1,4 @@
-import { getMemberProfileQueryKey } from '@/lib/users/query-key';
+import { getMemberProfileQueryKey } from '@/lib/query-key';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { updateMemberProfile } from '../api/update-member-profile';
 

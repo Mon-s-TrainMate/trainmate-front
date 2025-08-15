@@ -1,6 +1,6 @@
 'use client';
 
-import { getEntireMemberRecordListQueryKey } from '@/lib/users/query-key';
+import { getEntireMemberRecordListQueryKey } from '@/lib/query-key';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { createNewWorkoutSet } from '../api/create-new-workout-set';
 import { calculateCaloriesBurned } from '../utils/calculate-calories-burned';
