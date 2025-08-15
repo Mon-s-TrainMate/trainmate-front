@@ -1,4 +1,4 @@
-import { getMemberRecordListQueryKey } from '@/lib/users/query-key';
+import { getMemberRecordListQueryKey } from '@/lib/query-key';
 import { useQuery } from '@tanstack/react-query';
 import { getMemberRecordList } from '../api/get-member-record-list';
 

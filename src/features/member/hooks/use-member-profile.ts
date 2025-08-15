@@ -1,4 +1,4 @@
-import { getMemberProfileQueryKey } from '@/lib/users/query-key';
+import { getMemberProfileQueryKey } from '@/lib/query-key';
 import { useQuery } from '@tanstack/react-query';
 import { getMemberProfileById } from '../api/get-member-profile-by-id';
 
