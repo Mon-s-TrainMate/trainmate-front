@@ -19,7 +19,7 @@ export default function Home() {
       setCurrentIndex((prev) => (prev + 1) % backgroundImages.length);
     }, 3000);
     return () => clearInterval(interval);
-  }, []);
+  }, [backgroundImages.length]);
 
   return (
     <div className="mr-7.5 mb-17.75 flex flex-col items-end justify-end">
