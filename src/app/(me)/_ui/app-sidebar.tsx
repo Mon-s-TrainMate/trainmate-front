@@ -11,6 +11,7 @@ import {
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { ElementType } from 'react';
+import { Button } from '@/components/ui/button';
 
 // Menu items.
 const items = [
@@ -48,8 +49,10 @@ export function AppSidebar() {
           <NavLink key={item.id} {...item} />
         ))}
       </section>
-      <footer className="pb-3">
-        <NavLink href="/settings" Icon={SettingsIcon} />
+      <footer className="flex justify-center pb-3">
+        <Button className="bg-white text-black hover:border-white hover:bg-white disabled:bg-gray-5 disabled:text-gray-2">
+          <SettingsIcon className="strokeWidth={1} size-6" />
+        </Button>
       </footer>
     </aside>
   );
