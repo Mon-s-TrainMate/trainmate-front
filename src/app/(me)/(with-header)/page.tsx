@@ -17,7 +17,7 @@ export default function Home() {
   return (
     <div className="flex flex-col items-end justify-end px-7.5 pb-17.75">
       <MetricsContainer />
-      <section className="mt-6">
+      <section className="mt-6 ml-6">
         <h2 className="sr-only">광고</h2>
         <Carousel images={images} />
       </section>
@@ -62,7 +62,7 @@ function Carousel({ images }: CarouselProps) {
   const isSm = useIsSm();
 
   return (
-    <div className="flex items-end gap-x-8">
+    <div className="flex max-w-4xl items-end gap-x-8">
       <div className="relative flex h-0 w-5 flex-col">
         {items.map(({ index, isActive, y, isFirst, isLast }) => {
           return (
